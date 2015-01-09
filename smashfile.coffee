@@ -4,10 +4,3 @@ module.exports =
     'jade'
     'styl'
   ]
-
-  # build:
-  #   bower:
-  #     out: 'pkg'
-  #     styles: 'weaveup-customizer.css'
-  #     scripts: 'weaveup-customizer.js'
-  #     views: 'include'

@@ -2,9 +2,8 @@
   "name": "bwi-web-client",
   "private": "true",
   "version": "0.1.0",
-  "description": "A sample application.",
+  "description": "A browser-based client that consumes the BWI API",
   "repository": "",
-  "license": "MIT",
   "author": {
     "name": "",
     "email": ""
