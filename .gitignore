@@ -9,5 +9,6 @@ dist
 src/scripts/tmp/
 client/components/vendor
 compile
+build
 docs
 .groc.json
