@@ -1,5 +1,8 @@
 "use strict"
-
+#
+# vxa =
+#   one:1
+#   one: 2
 app = angular.module("bwi-web-client", [
   "ngRoute"
 ]).config(($routeProvider) ->
