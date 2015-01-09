@@ -1,0 +1,19 @@
+{
+  "name": "bwi-web-client",
+  "private": "true",
+  "version": "0.1.0",
+  "description": "A sample application.",
+  "repository": "",
+  "license": "MIT",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "lodash": "~2.4.1",
+    "angular": "~1.3.5",
+    "angular-route": "~1.3.5",
+    "bootstrap": "~3.3.1"
+  }
+}
