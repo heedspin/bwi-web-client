@@ -1,5 +1,5 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'HeaderCtrl', ($scope, Settings) ->
+  .controller 'TableCtrl', ($scope, Settings) ->
     # header still hides without using session service
