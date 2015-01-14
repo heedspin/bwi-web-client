@@ -1,1 +1,20 @@
-h1 Table
+.table
+  header
+    .row
+      .six.columns
+        .table__title
+          h3 {{tableTitle}}
+      .six.columns
+        .table__actions
+          .input--field-inline
+            input(placeholder="Search by Name")
+            span 
+              button Search
+          .table-expand
+            span Expand
+  table(ng-table="tableParams")
+    tr(ng-repeat="pac in $data")
+      td(data-title="'Pac Name'") {{pac.name}}
+      td(data-title="'Industry'") {{pac.industry}}
+      td(data-title="'Sector'") {{pac.sector}}
+      td(data-title="'Amount'") {{pac.amount | currency : symbol}}
