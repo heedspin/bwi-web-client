@@ -15,9 +15,13 @@ app = angular.module("bwi-web-client", [
       templateUrl:         "login/login.html"
       url:                 "/"
       controller:          "LoginCtrl"
-    ).state "main",
-      templateUrl:         "main/main.html"
-      url:                 "/main"
-      controller:          "MainCtrl"
+    ).state("search",
+      templateUrl:         "search/search.html"
+      url:                 "/search"
+      controller:           "SearchCtrl"
+    ).state "index",
+      templateUrl:         "index/index.html"
+      url:                 "/index"
+      controller:          "IndexCtrl"
   $urlRouterProvider.otherwise "/"
 ])
