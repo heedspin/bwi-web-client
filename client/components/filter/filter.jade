@@ -1,33 +1,34 @@
 section.sup-header(ng-class="position")
   .container
-    .col-md-8
-      .profile
-        h2 {{title}}
-        .row
-          .col-md-2
-            img(src="http://placehold.it/105x100")
-          .col-md-10
-            p Lorem Ipsum: Test
-            p Lorem Ipsum: Test
-            p Lorem Ipsum: Test
-            p Lorem Ipsum: Test
-    .col-md-4
-      .year-filter
-        form.form--inline-labels
-          .input-field
-            label Start
-            select
-              option 2010
-              option 2011
-              option 2012
-              option 2013
-              option 2014
-          .input-field
-            label End
-            select
-              option 2010
-              option 2011
-              option 2012
-              option 2013
-              option 2014              
-          button.button.button--red Find
+    .row
+      .seven.columns
+        .profile
+          h2 {{title}}
+          .row
+            .two.columns
+              img(src="http://placehold.it/105x100")
+            .five.columns.collapse
+              p Lorem Ipsum: Test
+              p Lorem Ipsum: Test
+              p Lorem Ipsum: Test
+              p Lorem Ipsum: Test
+      .five.columns
+        .year-filter
+          form.form--inline-labels
+            .input-field
+              label Start
+              select
+                option 2010
+                option 2011
+                option 2012
+                option 2013
+                option 2014
+            .input-field
+              label End
+              select
+                option 2010
+                option 2011
+                option 2012
+                option 2013
+                option 2014              
+            button.button.button--red Find

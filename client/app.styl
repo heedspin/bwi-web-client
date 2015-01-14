@@ -1,24 +1,52 @@
-// variables
+/* --------------------------------------------------
+Variables
+-------------------------------------------------- */
 white = #fff;
 blue = #21476a;
 dark-red = #720707;
+grey = #616161;
+dark-grey = #333333;
 
+
+/* --------------------------------------------------
+Fonts
+-------------------------------------------------- */
 body {
-  font-size: 18px;
+  font-size: 100%;
   padding: 0;
 }
   
-h1 {
+h1, h2, h3, h4 {
   margin: 0;
 }
 
-// buttons
+h2 {
+  font-size: 2em;
+  color: white;
+}
+
+h3 {
+  color: #414959;
+  font-size: 2em;
+}
+
+p {
+  margin: 0;
+}
+
+label {
+  font-size: 1.125em;
+}
+
+/* --------------------------------------------------
+Buttons
+-------------------------------------------------- */
 .button {
   border-radius: 11px;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1.125em;
   
   &:focus {
     outline: none;
@@ -33,7 +61,17 @@ h1 {
   background: dark-red;
 }
 
-// forms
+.button--grey {
+  background: grey;
+}
+
+.button--dark-grey {
+  background: dark-grey;
+}
+
+/* --------------------------------------------------
+Forms
+-------------------------------------------------- */
 input {
   border-radius: 11px;
   border: 1px solid #dadbdb;
@@ -42,4 +80,15 @@ input {
     outline: none;
   }
 }
-  
+
+.input-field {
+  label {
+    text-align: right;
+    display: inline-block;
+    width: 50px;
+    margin-right: 15px;
+  }
+  select {
+    width: 165px;
+  }
+}
