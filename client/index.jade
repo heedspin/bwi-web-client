@@ -12,9 +12,8 @@ head
   //- endinject
 
 body(ng-app="bwi-web-client")
-  bwi-header(ng-if="sessionId")
-  div.container(ui-view)
-  bwi-footer(ng-if="sessionId")
+  div(ui-view)
+  bwi-footer
     
   
   //- vendor:js
