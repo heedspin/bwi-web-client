@@ -4,3 +4,8 @@ module.exports =
     'jade'
     'styl'
   ]
+
+  overrides:
+    assets:
+      images:
+        path: 'images'
