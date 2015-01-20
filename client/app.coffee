@@ -6,9 +6,11 @@
 
 app = angular.module("bwi-web-client", [
   "ui.router"
+  "ui.select"
+  "ngSanitize"
 ])
-.config(['$stateProvider','$urlRouterProvider'
-($stateProvider, $urlRouterProvider) ->
+.config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig',
+($stateProvider, $urlRouterProvider, uiSelectConfig) ->
 
   $stateProvider
     .state("login",
@@ -24,6 +26,10 @@ app = angular.module("bwi-web-client", [
       url:                 "/index"
       controller:          "IndexCtrl"
   $urlRouterProvider.otherwise "/"
+
+  uiSelectConfig.theme = "bootstrap"
+  uiSelectConfig.resetSearchInput = true
+
 ])
 .run ($rootScope, $state) ->
   $rootScope.$state = $state
