@@ -27,8 +27,7 @@ app = angular.module("bwi-web-client", [
       controller:          "IndexCtrl"
   $urlRouterProvider.otherwise "/"
 
-  uiSelectConfig.theme = "bootstrap"
-  uiSelectConfig.resetSearchInput = true
+  uiSelectConfig.theme = 'selectize'
 
 ])
 .run ($rootScope, $state) ->

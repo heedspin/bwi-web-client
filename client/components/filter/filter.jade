@@ -14,27 +14,14 @@ section
                 p Lorem Ipsum: Test
                 p Lorem Ipsum: Test
         .five.columns
-          .year-filter
-            form
-              .input--field-horizontal
-                label Start
-                .select
-                  select
-                    option 2010
-                    option 2011
-                    option 2012
-                    option 2013
-                    option 2014
-              .input--field-horizontal
-                label End
-                .select
-                  select
-                    option 2010
-                    option 2011
-                    option 2012
-                    option 2013
-                    option 2014
-              button.button.button--red Find
+          ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
+            ui-select-match(placeholder="Start") {{$select.selected.start}}
+            ui-select-choices(repeat="year in years | filter: $select.search")
+              span(ng-bind-html="year.start | highlight: $select.search")
+          ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
+            ui-select-match(placeholder="End") {{$select.selected.end}}
+            ui-select-choices(repeat="year in years | filter: $select.search")
+              span(ng-bind-html="year.end | highlight: $select.search")                
 .tab-wrapper
   .container
     nav.row

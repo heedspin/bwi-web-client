@@ -9,3 +9,30 @@ angular.module('bwi-web-client')
       $scope.position = 'democrat'
     else if position == 'neutral'
       $scope.position = 'neutral'
+
+    $scope.years = [
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+    ]
