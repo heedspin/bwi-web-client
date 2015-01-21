@@ -5,4 +5,5 @@ angular.module('bwi-web-client')
     templateUrl: 'components/footer/footer.html'
     controller: 'FooterCtrl'
     restrict: 'E'
+    replace: true
   )

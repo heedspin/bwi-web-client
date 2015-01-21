@@ -3,13 +3,12 @@ header
     .row
       .seven.columns
         .header__logo
-          h1: img(src="http://placehold.it/150x50")
+          h1: a(href="#/search"): img(src="/images/logo.png")
       .five.columns
         .header__search
-          form
-            .input--field-inline
-              input(placeholder="Search", type="text")
-              span
-                button Search
+          ui-select(ng-model="users.selected")
+            ui-select-match(placeholder="Search") {{$select.selected.name}}
+            ui-select-choices(repeat="user in users")
+              div(ng-bind-html="user.name | highlight: $select.search")
 bwi-filter
 
