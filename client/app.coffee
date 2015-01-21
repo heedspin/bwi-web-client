@@ -19,10 +19,19 @@ app = angular.module("bwi-web-client", [
       templateUrl:         "search/search.html"
       url:                 "/search"
       controller:           "SearchCtrl"
-    ).state "index",
+    ).state("index",
       templateUrl:         "index/index.html"
       url:                 "/index"
       controller:          "IndexCtrl"
+    ).state("index.expenditures",
+      templateUrl:         "/components/expenditures/expenditures.html"
+      url:                 "/expenditures"
+      controller:          "ExpendituresCtrl"
+    ).state "index.receipts",
+      templateUrl:         "/components/receipts/receipts.html"
+      url:                 "/receipts"
+      controller:          "ReceiptsCtrl"
+
   $urlRouterProvider.otherwise "/"
 ])
 .run ($rootScope, $state) ->
