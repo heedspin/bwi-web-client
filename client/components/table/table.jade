@@ -9,8 +9,10 @@
           .table-expand
             i.icon-popup
           .input--field-inline
-            input(placeholder="Search by Name" ng-model="filter.$")
-            i.icon-search
+            ui-select(ng-model="filter.$", ng-disabled="disabled")
+              ui-select-match(placeholder="Search by Name") {{$select.selected.start}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year.start | highlight: $select.search")
   table(ng-table="tableParams")
     tr(ng-repeat="pac in $data")
       td(data-title="'Pac Name'") {{pac.name}}

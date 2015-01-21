@@ -14,14 +14,18 @@ section
                 p Lorem Ipsum: Test
                 p Lorem Ipsum: Test
         .five.columns
-          ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
-            ui-select-match(placeholder="Start") {{$select.selected.start}}
-            ui-select-choices(repeat="year in years | filter: $select.search")
-              span(ng-bind-html="year.start | highlight: $select.search")
-          ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
-            ui-select-match(placeholder="End") {{$select.selected.end}}
-            ui-select-choices(repeat="year in years | filter: $select.search")
-              span(ng-bind-html="year.end | highlight: $select.search")                
+          .select
+            label Start
+            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
+              ui-select-match(placeholder="Start") {{$select.selected.start}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year.start | highlight: $select.search")
+          .select
+            label End
+            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
+              ui-select-match(placeholder="End") {{$select.selected.end}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year.end | highlight: $select.search")                
 .tab-wrapper
   .container
     nav.row

@@ -6,7 +6,7 @@ header
           h1: a(href="#/search"): img(src="/images/logo.png")
       .five.columns
         .header__search
-          ui-select(ng-model="users.selected", ng-disabled="ng-disabled", reset-search-input="false", style="width: 340px;")
+          ui-select(ng-model="users.selected")
             ui-select-match(placeholder="Search") {{$select.selected.name}}
             ui-select-choices(repeat="user in users")
               div(ng-bind-html="user.name | highlight: $select.search")
