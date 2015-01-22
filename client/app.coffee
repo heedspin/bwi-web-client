@@ -19,35 +19,48 @@ app = angular.module("bwi-web-client", [
       templateUrl:         "search/search.html"
       url:                 "/search"
       controller:           "SearchCtrl"
-    ).state("entities",
-      templateUrl:         "entities/entities.html"
-      url:                 "/entities"
-      controller:          "EntitiesCtrl"
-    ).state("entities.pac",
-      templateUrl:         "pac/pac.html"
-      url:                 "/pac/:id/"
+    ).state("elected-official",
+      templateUrl:         "elected-official/elected-official.html"
+      url:                 "/elected-official/:name"
+      controller:          "ElectedOfficialCtrl"
+    ).state("elected-official.pac",
+      templateUrl:         "elected-official/pac/pac.html"
+      url:                 "/pac/:name/"
       controller:          "PacCtrl"
-    ).state("entities.pac.expenditures",
-      templateUrl:         "expenditures/expenditures.html"
-      url:                 "expenditures"
+    ).state("elected-official.party",
+      templateUrl:         "elected-official/party/party.html"
+      url:                 "/party/:name/"
+      controller:          "PartyCtrl"
+    ).state("elected-official.individual",
+      templateUrl:         "elected-official/individual/individual.html"
+      url:                 "/individual/:name/"
+      controller:          "IndividualCtrl"
+    ).state("pac",
+      templateUrl:         "organization/organization.html"
+      url:                 "pac/:name/"
+      controller:          "OrganizationCtrl"
+    ).state("pac.receipts",
+      templateUrl:         "organization/receipts/receipts.html"
+      url:                 "receipts/:name"
+      controller:          "ReceiptsCtrl"
+    ).state("pac.expenditures",
+      templateUrl:         "organization/receipts/receipts.html"
+      url:                 "expenditures/:name/"
       controller:          "ExpendituresCtrl"
-    ).state("entities.pac.receipts",
-      templateUrl:         "receipts/receipts.html"
+    ).state("party",
+      templateUrl:         "organization/organization.html"
+      url:                 "party/:name/"
+      controller:          "OrganizationCtrl"
+    ).state("party.receipts",
+      templateUrl:         "organization/receipts/receipts.html"
       url:                 "receipts"
       controller:          "ReceiptsCtrl"
-    ).state("entities.party",
-      templateUrl:         "party/party.html"
-      url:                 "/party/:id/"
-      controller:          "PartyCtrl"
-    ).state("entities.party.expenditures",
-      templateUrl:         "expenditures/expenditures.html"
+    ).state("party.expenditures",
+      templateUrl:         "organization/receipts/receipts.html"
       url:                 "expenditures"
       controller:          "ExpendituresCtrl"
-    ).state("entities.individual",
-      templateUrl:         "individual/individual.html"
-      url:                 "/individual"
-      controller:          "IndividualCtrl"
     )
+
   $urlRouterProvider.otherwise "/"
 ])
 .run ($rootScope, $state) ->
