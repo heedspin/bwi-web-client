@@ -19,19 +19,35 @@ app = angular.module("bwi-web-client", [
       templateUrl:         "search/search.html"
       url:                 "/search"
       controller:           "SearchCtrl"
-    ).state("index",
-      templateUrl:         "index/index.html"
-      url:                 "/index"
-      controller:          "IndexCtrl"
-    ).state("index.expenditures",
-      templateUrl:         "/components/expenditures/expenditures.html"
-      url:                 "/expenditures"
+    ).state("entities",
+      templateUrl:         "entities/entities.html"
+      url:                 "/entities"
+      controller:          "EntitiesCtrl"
+    ).state("entities.pac",
+      templateUrl:         "pac/pac.html"
+      url:                 "/pac/:id/"
+      controller:          "PacCtrl"
+    ).state("entities.pac.expenditures",
+      templateUrl:         "expenditures/expenditures.html"
+      url:                 "expenditures"
       controller:          "ExpendituresCtrl"
-    ).state "index.receipts",
-      templateUrl:         "/components/receipts/receipts.html"
-      url:                 "/receipts"
+    ).state("entities.pac.receipts",
+      templateUrl:         "receipts/receipts.html"
+      url:                 "receipts"
       controller:          "ReceiptsCtrl"
-
+    ).state("entities.party",
+      templateUrl:         "party/party.html"
+      url:                 "/party/:id/"
+      controller:          "PartyCtrl"
+    ).state("entities.party.expenditures",
+      templateUrl:         "expenditures/expenditures.html"
+      url:                 "expenditures"
+      controller:          "ExpendituresCtrl"
+    ).state("entities.individual",
+      templateUrl:         "individual/individual.html"
+      url:                 "/individual"
+      controller:          "IndividualCtrl"
+    )
   $urlRouterProvider.otherwise "/"
 ])
 .run ($rootScope, $state) ->

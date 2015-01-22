@@ -9,3 +9,6 @@ angular.module('bwi-web-client')
       $scope.position = 'democrat'
     else if position == 'neutral'
       $scope.position = 'neutral'
+
+    $scope.demo = true
+    # $scope.repub = true

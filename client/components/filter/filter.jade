@@ -36,7 +36,12 @@ section
                     option 2014
               button.button.button--red Find
 .tab-wrapper
-  .container
+  .container(ng-if="demo")
     nav.row
-      li.six.columns(ui-sref="index.expenditures") Expenditures
-      li.six.columns(ui-sref="index.receipts") Receipts
+      li.four.columns(ui-sref="entities.pac", ui-sref-active="active") Pac
+      li.four.columns(ui-sref="entities.party", ui-sref-active="active") Party
+      li.four.columns(ui-sref="entities.individual", ui-sref-active="active") Individual
+  .container(ng-if="repub")
+    nav.row
+      li.six.columns(ui-sref="entities.pac.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="entities.pac.receipts", ui-sref-active="active") Receipts
