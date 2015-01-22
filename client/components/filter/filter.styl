@@ -1,12 +1,24 @@
 red = #b12025;
-grey = #6e6e6e;
+blue = #254669;
+grey = #333333;
+
+
+.year-filter {
+  button {
+    margin-left: 20px;
+  }
+}
 
 .sup-header {
-  padding: 50px 0;
+  padding: 50px 0 20px 0;
   color: white;
   
   &.democrat {
     background: red;
+  }
+  
+  &.repub {
+    background: blue;
   }
     
   &.neutral {
@@ -16,4 +28,52 @@ grey = #6e6e6e;
   .button {
     padding: 12px 35px;
   }
-}      
+}
+
+.tab-wrapper {
+  background: grey;
+  color: white;
+  text-transform: uppercase;
+  
+  li {
+    padding: 30px 0 20px 0;
+    display: inline-block;
+    list-style-type: none;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    
+    &:after {
+      content: '';
+      background: url('../../images/tab-hover.png')
+      display: inline;
+      width: 46px;
+      height: 25px;
+      margin: auto;
+      position: absolute;
+      top: -46px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+    }
+    
+    &:hover {
+      &:after {
+        display: block;
+      }
+    }
+    
+    &.active {
+      &:after {
+        display: block;
+      }
+    }
+  }
+    
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+

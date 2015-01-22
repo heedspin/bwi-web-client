@@ -1,3 +1,47 @@
-body {
-  display: block;
+navy-blue = #414959;
+blue = #19334e;
+lightGrey = #a3a3a3;
+
+.table {
+  height: 500px;
+}
+
+.table__actions {
+  .input--field-inline {
+    float: right;
+  }
+  .table-expand {
+    float: right;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+}
+
+.icon-popup {
+  font-size: 1.9em;
+  color: blue;
+  cursor: pointer;
+  &:hover {
+    color: lightGrey;
+  }
+  
+}
+
+.ng-table {
+  width: 100%;
+  
+  th {
+    text-align: left;
+    padding: 20px 0;
+    color: navy-blue;
+  }
+}
+
+tr {
+  border-bottom: 1px solid #c7c5c5;
+}
+
+td {
+  padding: 20px 0;
+  color: navy-blue;
 }

@@ -1,36 +1,51 @@
-section.sup-header(ng-class="position")
-  .container
-    .row
-      .seven.columns
-        .profile
-          h2 {{title}}
-          .row
-            .two.columns
-              img(src="http://placehold.it/105x100")
-            .five.columns.collapse
-              p Lorem Ipsum: Test
-              p Lorem Ipsum: Test
-              p Lorem Ipsum: Test
-              p Lorem Ipsum: Test
-      .five.columns
-        .year-filter
-          form
-            .input--field-horizontal
-              label Start
-              .select
-                select
-                  option 2010
-                  option 2011
-                  option 2012
-                  option 2013
-                  option 2014
-            .input--field-horizontal
-              label End
-              .select
-                select
-                  option 2010
-                  option 2011
-                  option 2012
-                  option 2013
-                  option 2014
-            button.button.button--red Find
+section
+  .sup-header(ng-class="position")
+    .container
+      .row
+        .seven.columns
+          .profile
+            h2 {{title}}
+            .row
+              .two.columns
+                img(src="http://placehold.it/105x100")
+              .five.columns.collapse
+                p Lorem Ipsum: Test
+                p Lorem Ipsum: Test
+                p Lorem Ipsum: Test
+                p Lorem Ipsum: Test
+        .five.columns
+          .year-filter
+            form
+              .input--field-horizontal
+                label Start
+                .select
+                  select
+                    option 2010
+                    option 2011
+                    option 2012
+                    option 2013
+                    option 2014
+              .input--field-horizontal
+                label End
+                .select
+                  select
+                    option 2010
+                    option 2011
+                    option 2012
+                    option 2013
+                    option 2014
+              button.button.button--red Find
+.tab-wrapper
+  .container(ng-if="electedOfficial")
+    nav.row
+      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active") Pac
+      li.four.columns(ui-sref="elected-official.party", ui-sref-active="active") Party
+      li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active") Individual
+  .container(ng-if="pac")
+    nav.row
+      li.six.columns(ui-sref="pac.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="pac.receipts", ui-sref-active="active") Receipts
+  .container(ng-if="party")
+    nav.row
+      li.six.columns(ui-sref="party.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="party.receipts", ui-sref-active="active") Receipts      
