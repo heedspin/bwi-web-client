@@ -11,19 +11,19 @@ grey = #6e6e6e;
 .sup-header {
   padding: 50px 0 20px 0;
   color: white;
-  
+
   &.democrat {
     background: red;
   }
-  
+
   &.repub {
     background: blue;
   }
-    
+
   &.neutral {
-    background: grey; 
+    background: grey;
   }
-  
+
   .button {
     padding: 12px 35px;
   }
@@ -33,4 +33,50 @@ grey = #6e6e6e;
   li {
     padding: 20px 0;
   }
-}   
+}
+  background: grey;
+  color: white;
+  text-transform: uppercase;
+
+  li {
+    padding: 30px 0 20px 0;
+    display: inline-block;
+    list-style-type: none;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      background: url('/data/images/tab-hover.png')
+      display: inline;
+      width: 46px;
+      height: 25px;
+      margin: auto;
+      position: absolute;
+      top: -46px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+    }
+
+    &:hover {
+      &:after {
+        display: block;
+      }
+    }
+
+    &.active {
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+>>>>>>> Stashed changes
