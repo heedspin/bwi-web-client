@@ -21,43 +21,43 @@ app = angular.module("bwi-web-client", [
       controller:           "SearchCtrl"
     ).state("elected-official",
       templateUrl:         "elected-official/elected-official.html"
-      url:                 "/elected-official/:name"
+      url:                 "/elected-official"
       controller:          "ElectedOfficialCtrl"
     ).state("elected-official.pac",
       templateUrl:         "elected-official/pac/pac.html"
-      url:                 "/pac/:name/"
+      url:                 "/pac"
       controller:          "PacCtrl"
     ).state("elected-official.party",
       templateUrl:         "elected-official/party/party.html"
-      url:                 "/party/:name/"
+      url:                 "/party"
       controller:          "PartyCtrl"
     ).state("elected-official.individual",
       templateUrl:         "elected-official/individual/individual.html"
-      url:                 "/individual/:name/"
+      url:                 "/individual"
       controller:          "IndividualCtrl"
     ).state("pac",
       templateUrl:         "organization/organization.html"
-      url:                 "pac/:name/"
+      url:                 "/pac"
       controller:          "OrganizationCtrl"
     ).state("pac.receipts",
       templateUrl:         "organization/receipts/receipts.html"
-      url:                 "receipts/:name"
+      url:                 "/receipts"
       controller:          "ReceiptsCtrl"
     ).state("pac.expenditures",
       templateUrl:         "organization/receipts/receipts.html"
-      url:                 "expenditures/:name/"
+      url:                 "/expenditures"
       controller:          "ExpendituresCtrl"
     ).state("party",
       templateUrl:         "organization/organization.html"
-      url:                 "party/:name/"
+      url:                 "/party"
       controller:          "OrganizationCtrl"
     ).state("party.receipts",
       templateUrl:         "organization/receipts/receipts.html"
-      url:                 "receipts"
+      url:                 "/receipts"
       controller:          "ReceiptsCtrl"
     ).state("party.expenditures",
       templateUrl:         "organization/receipts/receipts.html"
-      url:                 "expenditures"
+      url:                 "/expenditures"
       controller:          "ExpendituresCtrl"
     )
 

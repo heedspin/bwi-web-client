@@ -10,5 +10,6 @@ angular.module('bwi-web-client')
     else if position == 'neutral'
       $scope.position = 'neutral'
 
-    $scope.demo = true
-    # $scope.repub = true
+    $scope.electedOfficial = true
+    # $scope.pac = true
+    # $scope.party = true
