@@ -9,6 +9,7 @@ red = #720707;
 lightRed = #a84e4e;
 grey = #333333;
 lightGrey = #a3a3a3;
+medGrey = #616161;
 
 beige = #fbf3e2;
 
@@ -80,10 +81,26 @@ Buttons
 
 .button--grey {
   background: grey;
+  
+  &:hover {
+    background: lightGrey;
+  }
+}
+
+.button--med-grey {
+  background: medGrey;
+
+  &:hover {
+    background: lightGrey;
+  }
 }
 
 .button--light-grey {
   background: lightGrey;
+
+  &:hover {
+    background: darken(lightGrey, 5%);
+  }
 }
 
 .button--large {

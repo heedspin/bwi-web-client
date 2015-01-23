@@ -1,11 +1,18 @@
 lightGrey = #a3a3a3;
 beige = #fbf3e2;
+grey = #333333;
 
-[state="search"] .wrapper {
-  background: beige url('/data/images/search-bg.png');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+[state="search"] {
+  .wrapper {
+    background: beige url('/data/images/search-bg.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  footer {
+    background: grey;
+  }
 }
 
 .input--search {
