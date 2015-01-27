@@ -1,5 +1,29 @@
+lightGrey = #a3a3a3;
 beige = #fbf3e2;
+grey = #333333;
 
-.page--search {
-  background: beige;
+[state="search"] {
+  .wrapper {
+    background: beige url('/data/images/search-bg.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  footer {
+    background: grey;
+  }
+}
+
+.input--search {
+  input {
+    padding-right: 60px;
+  }
+  i {
+    font-size: 2em;
+    color: lightGrey;
+    position: relative;
+    right: 55px;
+    top: 5px;
+  }
 }

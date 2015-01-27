@@ -25,3 +25,6 @@ app = angular.module("bwi-web-client", [
       controller:          "IndexCtrl"
   $urlRouterProvider.otherwise "/"
 ])
+.run ($rootScope, $state) ->
+  $rootScope.$state = $state
+
