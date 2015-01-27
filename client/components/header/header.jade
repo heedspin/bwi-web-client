@@ -6,8 +6,8 @@ header
           h1: a(href="#/search"): img(src="/data/images/logo.png")
       .five.columns
         .header__search
-          form
-            .input--field-inline
-              input(placeholder="Search", type="text")
-              i.icon-search
+          ui-select(ng-model="users.selected")
+            ui-select-match(placeholder="Search") {{$select.selected.name}}
+            ui-select-choices(repeat="user in users")
+              div(ng-bind-html="user.name | highlight: $select.search")
 bwi-filter

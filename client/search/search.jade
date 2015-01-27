@@ -1,6 +1,6 @@
 .page.page--search
-  h1.logo: img(src="/data/images/logo.png")
-  form.form--large
-    .input-field.input--search
-      input.input--large(placeholder="Search", type="text")
-      i.icon-search
+  h1.logo: img(src="/images/logo.png")
+  ui-select(ng-model="users.selected", ng-disabled="ng-disabled", reset-search-input="false")
+    ui-select-match(placeholder="Search") {{$select.selected.name}}
+    ui-select-choices(repeat="user in users")
+      div(ng-bind-html="user.name | highlight: $select.search")

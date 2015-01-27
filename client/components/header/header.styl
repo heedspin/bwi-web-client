@@ -1,3 +1,5 @@
+lightGrey = #a3a3a3;
+
 header {
   background: #fbf3e2;
   padding: 20px 0;
@@ -14,7 +16,23 @@ header {
 }
 
 .header__search {
-  form {
-    float: right;
+  .ui-select-search {
+    font-size: 1em;
+  }
+  
+  .selectize-control.single .selectize-input:after {
+    content: "\e986";
+    font-family: 'icomoon';
+    width: 42px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 0 11px 11px 0;
+    margin-top: 0;
+    border: none;
+    right: 0px;
+    color: lightGrey;
+    font-size: 1.5em;
+    height: 47px;
+    top: 0;
   }
 }

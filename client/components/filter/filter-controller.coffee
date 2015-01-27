@@ -11,5 +11,30 @@ angular.module('bwi-web-client')
       $scope.position = 'neutral'
 
     $scope.electedOfficial = true
-    # $scope.pac = true
-    # $scope.party = true
+
+    $scope.years = [
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+      {
+        start: 2010
+        end: 2014
+      }
+    ]
