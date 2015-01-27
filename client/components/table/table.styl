@@ -1,4 +1,4 @@
-navy-blue = #414959;
+navyBlue = #414959;
 blue = #19334e;
 lightGrey = #a3a3a3;
 
@@ -10,6 +10,7 @@ lightGrey = #a3a3a3;
   .input--field-inline {
     float: right;
   }
+
   .table-expand {
     float: right;
     margin-top: 10px;
@@ -21,15 +22,42 @@ lightGrey = #a3a3a3;
   font-size: 1.9em;
   color: blue;
   cursor: pointer;
+
   &:hover {
     color: lightGrey;
   }
-  
 }
 
 .ng-table {
   width: 100%;
-  
+
+  th {
+    text-align: left;
+    padding: 20px 0;
+    color: navyBlue;
+  }
+}
+
+tr {
+  border-bottom: 1px solid #c7c5c5;
+}
+
+.table {
+  height: 500px;
+}
+
+.table__actions {
+  .input--field-inline {
+    float: left;
+  }
+  .table-expand {
+    display: inline-block;
+  }
+}
+
+.ng-table {
+  width: 100%;
+
   th {
     text-align: left;
     padding: 20px 0;
@@ -43,5 +71,5 @@ tr {
 
 td {
   padding: 20px 0;
-  color: navy-blue;
+  color: navyBlue;
 }

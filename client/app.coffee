@@ -5,7 +5,8 @@
 #   one: 2
 
 app = angular.module("bwi-web-client", [
-  "ui.router"
+  "ui.router",
+  "ngTable"
 ])
 .config(['$stateProvider','$urlRouterProvider'
 ($stateProvider, $urlRouterProvider) ->

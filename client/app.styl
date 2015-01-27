@@ -2,7 +2,6 @@
 Variables
 -------------------------------------------------- */
 
-
 blue = #19334e;
 lightBlue = #7589a1;
 red = #720707;
@@ -20,8 +19,9 @@ Fonts
 body {
   font-size: 100%;
   padding: 0;
+  background: beige;
 }
-  
+
 h1, h2, h3, h4 {
   margin: 0;
 }
@@ -53,27 +53,27 @@ Buttons
   border: none;
   cursor: pointer;
   font-size: 1.125em;
-  
+
   &:focus {
     outline: none;
   }
-  
+
   &:active {
     background: grey;
   }
 }
-  
+
 .button--blue {
   background: blue;
-  
+
   &:hover {
     background: lightBlue;
   }
 }
-  
+
 .button--red {
   background: red;
-  
+
   &:hover {
     background: lightRed;
   }
@@ -81,7 +81,7 @@ Buttons
 
 .button--grey {
   background: grey;
-  
+
   &:hover {
     background: lightGrey;
   }
@@ -124,11 +124,11 @@ input {
   border-top: none;
   border-bottom: 1px solid #DDD;
   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
-  
+
   &:focus {
     outline: none;
   }
-  
+
   &.input--large {
     margin-bottom: 20px;
     font-size: 2em;
@@ -141,7 +141,7 @@ input {
 
 .input--field-horizontal {
   display: inline-block;
-  
+
   label {
     text-align: right;
     display: inline-block;
@@ -153,7 +153,7 @@ input {
 .input--field-inline {
   display: table;
   border-collapse: separate;
-  
+
   input {
     padding: 13px 20px;
     font-size: 1.125em;
@@ -162,7 +162,7 @@ input {
     z-index: 2;
     position: relative;
   }
-    
+
   i {
     display: table-cell;
     vertical-align: middle;
@@ -181,11 +181,11 @@ input {
   position: relative;
   display: inline-block;
   margin-bottom: 20px;
-  
+
   select {
     height: 44px;
     width: 165px;
-    padding: 13px 20px;  
+    padding: 13px 20px;
     margin: 0;
     -webkit-border-radius: 11px;
     -moz-border-radius: 11px;
@@ -199,13 +199,13 @@ input {
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
-    
-    
+
+
     @media screen and (-webkit-min-device-pixel-ratio:0) {
       padding-right: 18px;
     }
   }
-  
+
   &:after {
     content: "\e601";
     font-family: 'icomoon';
@@ -222,7 +222,7 @@ input {
     z-index: 1;
     top: 0;
     border-radius: 0 11px 11px 0;
-    
+
   }
 }
 
@@ -235,7 +235,7 @@ Pages
   padding-top: 65px;
   .logo {
     margin-bottom: 100px;
-  }  
+  }
 }
 
 /* --------------------------------------------------
@@ -253,7 +253,7 @@ html, body {
 .wrapper {
   min-height: 100%;
   margin-bottom: -179px;
-  
+
   &:after {
     content: "";
     display: block;
