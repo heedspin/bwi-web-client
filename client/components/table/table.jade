@@ -9,13 +9,10 @@
           .table-expand
             i.icon-popup
           .input--field-inline
-            ui-select(ng-model="filter.$", ng-disabled="disabled")
-              ui-select-match(placeholder="Search by Name") {{$select.selected.start}}
-              ui-select-choices(repeat="year in years | filter: $select.search")
-                span(ng-bind-html="year.start | highlight: $select.search")
+              input(ng-model="searchText", placeholder="Search by Name")
   table(ng-table="tableParams")
-    tr(ng-repeat="pac in $data")
-      td(data-title="'Pac Name'") {{pac.name}}
-      td(data-title="'Industry'") {{pac.industry}}
-      td(data-title="'Sector'") {{pac.sector}}
-      td(data-title="'Amount'") {{pac.amount | currency : symbol}}
+    tr(ng-repeat="receipt in $data | filter:searchText")
+      td(data-title="'Pac Name'") {{receipt.pac.name}}
+      td(data-title="'Industry'") {{receipt.pac.industry}}
+      td(data-title="'Sector'") {{receipt.pac.sector}}
+      td(data-title="'Amount'") {{receipt.amount | currency : symbol}}

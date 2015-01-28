@@ -2,7 +2,6 @@
 
 angular.module('bwi-web-client')
   .controller 'TableCtrl', ($scope, $filter, ngTableParams, Settings) ->
-
     $scope.tableTitle = 'Pacs (Cumulative)'
 
     data = [

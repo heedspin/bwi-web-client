@@ -1,10 +1,10 @@
 section
-  .sup-header(ng-class="position")
+  .sup-header(ng-class="elected_official.affiliation")
     .container
       .row
         .seven.columns
           .profile
-            h2 {{title}}
+            h2 {{elected_official.name}}
             .row
               .two.columns
                 img(src="http://placehold.it/105x100")
@@ -14,22 +14,25 @@ section
                 p Lorem Ipsum: Test
                 p Lorem Ipsum: Test
         .five.columns
-          .select
-            label Start
-            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
-              ui-select-match(placeholder="Start") {{$select.selected.start}}
-              ui-select-choices(repeat="year in years | filter: $select.search")
-                span(ng-bind-html="year.start | highlight: $select.search")
-          .select
-            label End
-            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
-              ui-select-match(placeholder="End") {{$select.selected.end}}
-              ui-select-choices(repeat="year in years | filter: $select.search")
-                span(ng-bind-html="year.end | highlight: $select.search")                
+          form(name="yearSelect", ng-submit="yearSubmit()")
+            .select
+              label Start
+              ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
+                ui-select-match(placeholder="Start") {{$select.selected.start}}
+                ui-select-choices(repeat="year in years | filter: $select.search")
+                  span(ng-bind-html="year.start | highlight: $select.search")
+            .select
+              label End
+              ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled")
+                ui-select-match(placeholder="End") {{$select.selected.end}}
+                ui-select-choices(repeat="year in years | filter: $select.search")
+                  span(ng-bind-html="year.end | highlight: $select.search")                
+            .year-submit
+              button.button.button--medium Submit
 .tab-wrapper
-  .container(ng-if="electedOfficial")
+  .container(ng-if="elected_official")
     nav.row
-      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active") Pac
+      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active", ng-click="loadPac()") Pac
       li.four.columns(ui-sref="elected-official.party", ui-sref-active="active") Party
       li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active") Individual
   .container(ng-if="pac")

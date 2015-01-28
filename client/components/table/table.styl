@@ -4,6 +4,12 @@ lightGrey = #a3a3a3;
 
 .table {
   height: 500px;
+  overflow: scroll;
+  position: realative;
+
+  header {
+    position: absolute;
+  }
 }
 
 .table__actions {
@@ -51,6 +57,7 @@ lightGrey = #a3a3a3;
 
 .ng-table {
   width: 100%;
+  margin-top: 100px;
 
   th {
     text-align: left;
@@ -69,7 +76,7 @@ tr {
 
 .table__actions {
   .input--field-inline {
-    float: left;
+    float: right;
   }
   .table-expand {
     display: inline-block;

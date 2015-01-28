@@ -8,6 +8,7 @@ app = angular.module("bwi-web-client", [
   "ui.router"
   "ui.select"
   "ngSanitize"
+  "ngTable"
 ])
 .config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig',
 ($stateProvider, $urlRouterProvider, uiSelectConfig) ->
@@ -28,7 +29,7 @@ app = angular.module("bwi-web-client", [
     ).state("elected-official.pac",
       templateUrl:         "elected-official/pac/pac.html"
       url:                 "/pac"
-      controller:          "PacCtrl"
+      controller:          "ElectedOfficialCtrl"
     ).state("elected-official.party",
       templateUrl:         "elected-official/party/party.html"
       url:                 "/party"

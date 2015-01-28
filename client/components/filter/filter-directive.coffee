@@ -3,6 +3,6 @@
 angular.module('bwi-web-client')
   .directive('bwiFilter', ->
     templateUrl: 'components/filter/filter.html'
-    controller: 'FilterCtrl'
+    controller: 'ElectedOfficialCtrl'
     restrict: 'E'
   )
