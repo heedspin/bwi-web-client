@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+rsync -av -e ssh build/ bwi_preproduction:bwi-web-client/build/
