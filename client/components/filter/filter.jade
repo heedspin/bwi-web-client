@@ -1,10 +1,10 @@
 section
-  .sup-header(ng-class="position")
+  .sup-header(ng-class="data.affiliation || 'neutral'")
     .container
       .row
         .seven.columns
           .profile
-            h2 {{title}}
+            h2 {{ data.name }}
             .row
               .two.columns
                 img(src="http://placehold.it/105x100")
@@ -14,29 +14,29 @@ section
                 p Lorem Ipsum: Test
                 p Lorem Ipsum: Test
         .five.columns
-          .year-filter
-            form
-              .input--field-horizontal
-                label Start
-                .select
-                  select
-                    option 2010
-                    option 2011
-                    option 2012
-                    option 2013
-                    option 2014
-              .input--field-horizontal
-                label End
-                .select
-                  select
-                    option 2010
-                    option 2011
-                    option 2012
-                    option 2013
-                    option 2014
-              button.button.button--red Find
+          .select
+            label Start
+            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled", on-select="setStartYear($item, $model)")
+              ui-select-match(placeholder="Start") {{$select.selected}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year | highlight: $select.search")
+          .select
+            label End
+            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled", on-select="setEndYear($item, $model)")
+              ui-select-match(placeholder="End") {{$select.selected}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year | highlight: $select.search")
 .tab-wrapper
-  .container
+  .container(ng-if="elected_official")
     nav.row
-      li.six.columns Expenditures
-      li.six.columns Receipts
+      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active", ng-click="loadPac()") Pac
+      li.four.columns(ui-sref="elected-official.party", ui-sref-active="active", ng-click="loadParty()") Party
+      li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active", ng-click="loadInd()") Individual
+  .container(ng-if="pac")
+    nav.row
+      li.six.columns(ui-sref="pac.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="pac.receipts", ui-sref-active="active") Receipts
+  .container(ng-if="party")
+    nav.row
+      li.six.columns(ui-sref="party.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="party.receipts", ui-sref-active="active") Receipts      

@@ -1,6 +1,7 @@
 red = #b12025;
 blue = #254669;
-grey = #6e6e6e;
+grey = #333333;
+
 
 .year-filter {
   button {
@@ -12,11 +13,11 @@ grey = #6e6e6e;
   padding: 50px 0 20px 0;
   color: white;
 
-  &.democrat {
+  &.Democratic {
     background: red;
   }
 
-  &.repub {
+  &.Republican {
     background: blue;
   }
 
@@ -50,7 +51,7 @@ grey = #6e6e6e;
       height: 25px;
       margin: auto;
       position: absolute;
-      top: -52px;
+      top: -49px;
       left: 0;
       bottom: 0;
       right: 0;
@@ -62,7 +63,6 @@ grey = #6e6e6e;
         display: block;
       }
     }
-
     &.active {
       &:after {
         display: block;
@@ -74,4 +74,8 @@ grey = #6e6e6e;
     text-decoration: none;
     color: white;
   }
+}
+
+.year-submit {
+  text-align: center;
 }

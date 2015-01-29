@@ -1,6 +1,74 @@
-navy-blue = #414959;
+navyBlue = #414959;
 blue = #19334e;
 lightGrey = #a3a3a3;
+
+.table {
+  height: 500px;
+  overflow: scroll;
+  position: realative;
+
+  header {
+    position: absolute;
+  }
+}
+
+.table__actions {
+  .input--field-inline {
+    float: right;
+  }
+
+  .ui-select-container {
+    width: 213px;
+  }
+
+  .table-expand {
+    float: right;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .selectize-control.single .selectize-input:after {
+    content: "\e986";
+    font-family: 'icomoon';
+    width: 42px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 0 11px 11px 0;
+    margin-top: 0;
+    border: none;
+    right: 0px;
+    border-left: 1px solid #dadbdb;
+    color: lightGrey;
+    font-size: 1.5em;
+    height: 47px;
+    top: 0;
+  }
+}
+
+.icon-popup {
+  font-size: 1.9em;
+  color: blue;
+  cursor: pointer;
+
+  &:hover {
+    color: lightGrey;
+  }
+}
+
+.ng-table {
+  width: 100%;
+  margin-top: 100px;
+
+  th {
+    text-align: left;
+    padding: 20px 0;
+    color: navyBlue;
+  }
+}
+
+tr {
+  border-bottom: 1px solid #c7c5c5;
+}
 
 .table {
   height: 500px;
@@ -11,25 +79,13 @@ lightGrey = #a3a3a3;
     float: right;
   }
   .table-expand {
-    float: right;
-    margin-top: 10px;
-    margin-left: 20px;
+    display: inline-block;
   }
-}
-
-.icon-popup {
-  font-size: 1.9em;
-  color: blue;
-  cursor: pointer;
-  &:hover {
-    color: lightGrey;
-  }
-  
 }
 
 .ng-table {
   width: 100%;
-  
+
   th {
     text-align: left;
     padding: 20px 0;
@@ -43,5 +99,5 @@ tr {
 
 td {
   padding: 20px 0;
-  color: navy-blue;
+  color: navyBlue;
 }
