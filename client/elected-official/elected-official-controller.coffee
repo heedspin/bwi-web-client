@@ -1,34 +1,54 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'ElectedOfficialCtrl', ($scope, $filter, Settings, $http, ngTableParams) ->
-    API_BASE_URL = 'http://preprod.bellwetherinsights.com/api/v1/elected_officials/1'
-    $scope.tableTitle = 'Pacs (Cumulative)'
+  .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Auth) ->
+    if urlService.id
+      API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
+    else
+      $state.go "search"
 
-    $http.get(API_BASE_URL)
+    console.log Auth.isLoggedIn
+
+    $scope.years = [ '2013', '2014' ]
+    $scope.selectedStartYear = ''
+    $scope.selectedEndYear = ''
+
+    $scope.setStartYear = ($item, $model) ->
+      $scope.selectedStartYear = $item
+
+    $scope.setEndYear = ($item, $model) ->
+      $scope.selectedEndYear = $item
+
+    $http.get(API_URL)
       .then (response) ->
-        elected_official = response.data.elected_official
-        $scope.elected_official = elected_official
+        $scope.data = response.data.elected_official
+        $scope.elected_official = true
 
     $scope.loadPac = ->
-      $http.get(API_BASE_URL + '/receipts_from_pacs')
+      $scope.tableTitle = 'Pacs (Cumulative)'
+
+      $http.get("#{API_URL}/receipts_from_pacs")
         .then (response) ->
           data = response.data.receipts_from_pacs
+          $scope.tableData = data
 
-          $scope.$watch "filter.$", ->
-            $scope.tableParams.reload()
-            $scope.tableParams.page 1
+    $scope.loadParty = ->
+      $scope.tableTitle = 'Party'
 
-          $scope.tableParams = new ngTableParams(
-            count: data.length
-            sorting:
-              name: "asc"
-          ,
-            counts: []
-            getData: ($defer, params) ->
-              filteredData = $filter("filter")(data, $scope.filter)
-              orderedData = (if params.sorting() then $filter("orderBy")(filteredData, params.orderBy()) else filteredData)
-              $defer.resolve orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count())
+      $http.get("#{API_URL}/receipts_from_parties")
+        .then (response) ->
+          data = response.data.receipts_from_pacs
+          $scope.tableData = data
 
-            $scope: $scope
-          )
+    $scope.loadInd = ->
+      $scope.tableTitle = 'Individual'
+
+      $http.get("#{API_URL}/receipts_from_individuals")
+        .then (response) ->
+          data = response.data.receipts_from_pacs
+          $scope.tableData = data
+
+    switch $state.current.name
+      when "elected-official.pac" then $scope.loadPac()
+      when "elected-official.party" then $scope.loadParty()
+      when "elected-official.individual" then $scope.loadInd()

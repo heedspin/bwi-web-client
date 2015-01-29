@@ -1,6 +1,6 @@
 .page.page--search
   h1.logo: img(src="/data/images/logo.png")
-  ui-select(ng-model="users.selected", ng-disabled="ng-disabled", reset-search-input="false")
+  ui-select(ng-model="selectionModel", data-ng-disabled="disabled", reset-search-input="false", on-select="test($item)")
     ui-select-match(placeholder="Search") {{$select.selected.name}}
-    ui-select-choices(repeat="user in users")
-      div(ng-bind-html="user.name | highlight: $select.search")
+    ui-select-choices(refresh="searchMedia($select)", repeat="searchRes in SearchRes", refresh-delay="300")
+      div(ng-bind-html="searchRes.name | highlight: $select.search")

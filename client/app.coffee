@@ -9,8 +9,9 @@ app = angular.module("bwi-web-client", [
   "ui.select"
   "ngSanitize"
   "ngTable"
+  "ngCookies"
 ])
-.config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig',
+.config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig', '$httpProvider',
 ($stateProvider, $urlRouterProvider, uiSelectConfig) ->
 
   $stateProvider
@@ -29,7 +30,6 @@ app = angular.module("bwi-web-client", [
     ).state("elected-official.pac",
       templateUrl:         "elected-official/pac/pac.html"
       url:                 "/pac"
-      controller:          "ElectedOfficialCtrl"
     ).state("elected-official.party",
       templateUrl:         "elected-official/party/party.html"
       url:                 "/party"
@@ -45,11 +45,11 @@ app = angular.module("bwi-web-client", [
     ).state("pac.receipts",
       templateUrl:         "organization/receipts/receipts.html"
       url:                 "/receipts"
-      controller:          "ReceiptsCtrl"
+      controller:          "OrganizationCtrl"
     ).state("pac.expenditures",
-      templateUrl:         "organization/receipts/receipts.html"
+      templateUrl:         "organization/expenditures/expenditures.html"
       url:                 "/expenditures"
-      controller:          "ExpendituresCtrl"
+      controller:          "OrganizationCtrl"
     ).state("party",
       templateUrl:         "organization/organization.html"
       url:                 "/party"
@@ -57,11 +57,11 @@ app = angular.module("bwi-web-client", [
     ).state("party.receipts",
       templateUrl:         "organization/receipts/receipts.html"
       url:                 "/receipts"
-      controller:          "ReceiptsCtrl"
+      controller:          "OrganizationCtrl"
     ).state("party.expenditures",
-      templateUrl:         "organization/receipts/receipts.html"
+      templateUrl:         "organization/expenditures/expenditures.html"
       url:                 "/expenditures"
-      controller:          "ExpendituresCtrl"
+      controller:          "OrganizationCtrl"
     )
 
   $urlRouterProvider.otherwise "/"
@@ -69,6 +69,12 @@ app = angular.module("bwi-web-client", [
   uiSelectConfig.theme = 'selectize'
 
 ])
-.run ($rootScope, $state) ->
+
+.constant "bwiConfig",
+  BASE_URL: "https://stagingapi.bellwetherinsights.com"
+  API_URL: "https://stagingapi.bellwetherinsights.com/api/v1"
+
+.run ($rootScope, $state, $cookieStore, $http, Auth) ->
   $rootScope.$state = $state
+  $http.defaults.headers.common["BWI_AUTH_TOKEN"] = $cookieStore.get "BWI_AUTH_TOKEN"
 
