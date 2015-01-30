@@ -1,7 +1,7 @@
 'use strict'
 angular.module('bwi-web-client')
   .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Auth) ->
-    
+
     if urlService.id
       API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
     else

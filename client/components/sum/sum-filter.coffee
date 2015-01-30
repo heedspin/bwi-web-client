@@ -8,4 +8,3 @@ app.filter "sumOfValue", ->
       sum = sum + data[i][key]
       i++
     sum
-

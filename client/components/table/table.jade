@@ -13,7 +13,7 @@
       .six.columns
         .table__title
           h3 {{tableTitle}}
-          h4 {{tableData | sumOfValue:'amount' | currency : symbol}}
+          h4 {{ tableResults | sumOfValue: 'amount' | currency : symbol }}
       .six.columns
         .table__actions
           .table-expand
@@ -21,8 +21,12 @@
           .input--field-inline
               input(ng-model="searchText", placeholder="Search by Name")
               i.icon-search
+
+  {{ tableResults.length }}
+  //- div(ng-repeat="data in tableResults = (tableData | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
+  //-   {{ data }}
   table(ng-table="tableParams")
-    tr(ng-repeat="data in tableData | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name")
+    tr(ng-repeat="data in $parent.tableResults = (tableData | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
       td(data-title="'Pac Name'") {{data.pac.name || data.donor.name}}
       td(data-title="'Industry'") {{data.pac.industry || data.donor.profession}}
       td(data-title="'Sector'") {{data.pac.sector || data.donor.employer}}
