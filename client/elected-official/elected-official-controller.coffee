@@ -8,6 +8,23 @@ angular.module('bwi-web-client')
       $state.go "search"
 
     $scope.years = [ '2013', '2014' ]
+    $scope.industries = [
+      ""
+      "Agribuisiness"
+      "Communications/Electronics"
+      "Construction"
+      "Energy & Natural Resources"
+      "Finance, Insurance & Real Estate"
+      "Health"
+      "Ideological/Single-Issue"
+      "Labor"
+      "Lawyers & Lobbyist"
+      "Misc Business"
+      "Other"
+      "PAC"
+      "Transportation"
+    ]
+
     $scope.selectedStartYear = ''
     $scope.selectedEndYear = ''
 
@@ -22,7 +39,6 @@ angular.module('bwi-web-client')
         $scope.data = response.data.elected_official
         $scope.elected_official = true
 
-
     $scope.loadPac = ->
       $scope.tableTitle = 'Pacs (Cumulative)'
 
@@ -36,15 +52,16 @@ angular.module('bwi-web-client')
 
       $http.get("#{API_URL}/receipts_from_parties")
         .then (response) ->
-          data = response.data.receipts_from_pacs
+          data = response.data.receipts_from_parties
           $scope.tableData = data
+          console.log data
 
     $scope.loadInd = ->
       $scope.tableTitle = 'Individual'
 
       $http.get("#{API_URL}/receipts_from_individuals")
         .then (response) ->
-          data = response.data.receipts_from_pacs
+          data = response.data.receipts_from_individuals
           $scope.tableData = data
 
     switch $state.current.name

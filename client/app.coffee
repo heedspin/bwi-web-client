@@ -32,16 +32,17 @@ app = angular.module("bwi-web-client", [
     ).state("elected-official.pac",
       templateUrl:         "elected-official/pac/pac.html"
       url:                 "/pac"
+      controller:          "ElectedOfficialCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official.party",
       templateUrl:         "elected-official/party/party.html"
       url:                 "/party"
-      controller:          "PartyCtrl"
+      controller:          "ElectedOfficialCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official.individual",
       templateUrl:         "elected-official/individual/individual.html"
       url:                 "/individual"
-      controller:          "IndividualCtrl"
+      controller:          "ElectedOfficialCtrl"
       data:                 {requiresLogin: true}
     ).state("pac",
       templateUrl:         "organization/organization.html"

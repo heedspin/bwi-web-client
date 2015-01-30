@@ -1,5 +1,5 @@
 section
-  .sup-header(ng-class="data.affiliation || 'neutral'")
+  .sup-header(ng-class="data.affiliation || 'Neutral'")
     .container
       .row
         .seven.columns
@@ -7,7 +7,7 @@ section
             h2 {{ data.name }}
             .row
               .two.columns
-                img(src="http://placehold.it/105x100")
+                img(ng-src="/data/images/{{data.affiliation || 'Neutral'}}.png")
               .five.columns.collapse
                 p Lorem Ipsum: Test
                 p Lorem Ipsum: Test
@@ -34,9 +34,9 @@ section
       li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active", ng-click="loadInd()") Individual
   .container(ng-if="pac")
     nav.row
-      li.six.columns(ui-sref="pac.expenditures", ui-sref-active="active") Expenditures
-      li.six.columns(ui-sref="pac.receipts", ui-sref-active="active") Receipts
+      li.six.columns(ui-sref="pac.expenditures", ui-sref-active="active", ng-click="loadExp()") Expenditures
+      li.six.columns(ui-sref="pac.receipts", ui-sref-active="active", ng-click="loadReceipts()") Receipts
   .container(ng-if="party")
     nav.row
-      li.six.columns(ui-sref="party.expenditures", ui-sref-active="active") Expenditures
-      li.six.columns(ui-sref="party.receipts", ui-sref-active="active") Receipts      
+      li.six.columns(ui-sref="party.expenditures", ui-sref-active="active", ng-click="loadExp()") Expenditures
+      li.six.columns(ui-sref="party.receipts", ui-sref-active="active", ng-click="loadReceipts()") Receipts      

@@ -1,19 +1,29 @@
-h1 {{tableData | sumOfValue:'amount'}}
-.table
+.row
+  .seven.columns
+    h3 Filter
+  .five.columns
+    ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+      ui-select-match(placeholder="Sort by:") {{$select.selected}}
+      ui-select-choices(repeat="industry in industries | filter: $select.search")
+        span(ng-bind-html="industry | highlight: $select.search")
+
+.table(ng-cloak)
   header
     .row
       .six.columns
         .table__title
           h3 {{tableTitle}}
+          h4 {{tableData | sumOfValue:'amount' | currency : symbol}}
       .six.columns
         .table__actions
           .table-expand
             i.icon-popup
           .input--field-inline
               input(ng-model="searchText", placeholder="Search by Name")
+              i.icon-search
   table(ng-table="tableParams")
-    tr(ng-repeat="receipt in tableData | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear")
-      td(data-title="'Pac Name'") {{receipt.pac.name}}
-      td(data-title="'Industry'") {{receipt.pac.industry}}
-      td(data-title="'Sector'") {{receipt.pac.sector}}
-      td(data-title="'Amount'") {{receipt.amount | currency : symbol}}
+    tr(ng-repeat="data in tableData | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected")
+      td(data-title="'Pac Name'") {{data.pac.name || data.donor.name}}
+      td(data-title="'Industry'") {{data.pac.industry || data.donor.profession}}
+      td(data-title="'Sector'") {{data.pac.sector || data.donor.employer}}
+      td(data-title="'Amount'") {{data.amount | currency : symbol}}
