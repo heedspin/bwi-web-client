@@ -1,29 +1,17 @@
 'use strict'
-
 angular.module('bwi-web-client')
   .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Auth) ->
+    
     if urlService.id
       API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
     else
       $state.go "search"
 
     $scope.years = [ '2013', '2014' ]
-    $scope.industries = [
-      ""
-      "Agribuisiness"
-      "Communications/Electronics"
-      "Construction"
-      "Energy & Natural Resources"
-      "Finance, Insurance & Real Estate"
-      "Health"
-      "Ideological/Single-Issue"
-      "Labor"
-      "Lawyers & Lobbyist"
-      "Misc Business"
-      "Other"
-      "PAC"
-      "Transportation"
-    ]
+
+    $http.get("#{bwiConfig.API_URL}/classifications?only_industries")
+      .then (response) ->
+        $scope.industries = response.data.classifications
 
     $scope.selectedStartYear = ''
     $scope.selectedEndYear = ''
@@ -53,7 +41,7 @@ angular.module('bwi-web-client')
       $http.get("#{API_URL}/receipts_from_parties")
         .then (response) ->
           data = response.data.receipts_from_parties
-          $scope.tableData = data
+          $scope.items = data
           console.log data
 
     $scope.loadInd = ->
