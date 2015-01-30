@@ -27,10 +27,3 @@ angular.module('bwi-web-client')
         when 'pacs' then $state.go 'pac'
         when 'elected_officials' then $state.go 'elected-official'
         when 'parties' then $state.go 'party'
-
-    $scope.clearLogin = ->
-      $state.go $state.current, {},
-        reload: true
-      $cookieStore.remove 'X-BWI-AUTH-TOKEN'
-      console.log 'removed'
-

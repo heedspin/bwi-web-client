@@ -4,4 +4,3 @@
     ui-select-match(placeholder="Search") {{$select.selected.name}}
     ui-select-choices(refresh="searchMedia($select)", repeat="searchRes in SearchRes", refresh-delay="300")
       div(ng-bind-html="searchRes.name | highlight: $select.search")
-  button(ng-click="clearLogin()") Log Out
