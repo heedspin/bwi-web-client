@@ -5,7 +5,3 @@ module.exports =
     'styl'
   ]
 
-  overrides:
-    assets:
-      images:
-        path: 'images'

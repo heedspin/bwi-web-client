@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'SearchCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig) ->
+  .controller 'SearchCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, $cookieStore) ->
     API_URL = bwiConfig.API_URL
     $scope.disabled = undefined
     $scope.searchEnabled = undefined
@@ -12,8 +12,7 @@ angular.module('bwi-web-client')
         params:
           term: $select.search
       ).then (response) ->
-        # $scope.SearchRes = response.data
-        console.log response
+        $scope.SearchRes = response.data
 
     $scope.test = (item) ->
       switch item.type
@@ -28,3 +27,10 @@ angular.module('bwi-web-client')
         when 'pacs' then $state.go 'pac'
         when 'elected_officials' then $state.go 'elected-official'
         when 'parties' then $state.go 'party'
+
+    $scope.clearLogin = ->
+      $state.go $state.current, {},
+        reload: true
+      $cookieStore.remove 'X-BWI-AUTH-TOKEN'
+      console.log 'removed'
+

@@ -7,8 +7,6 @@ angular.module('bwi-web-client')
     else
       $state.go "search"
 
-    console.log Auth.isLoggedIn
-
     $scope.years = [ '2013', '2014' ]
     $scope.selectedStartYear = ''
     $scope.selectedEndYear = ''
@@ -23,6 +21,7 @@ angular.module('bwi-web-client')
       .then (response) ->
         $scope.data = response.data.elected_official
         $scope.elected_official = true
+
 
     $scope.loadPac = ->
       $scope.tableTitle = 'Pacs (Cumulative)'

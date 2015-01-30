@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'LoginCtrl', ($scope, Settings, $http, bwiConfig, $cookieStore, $cookies) ->
+  .controller 'LoginCtrl', ($scope, Settings, $http, bwiConfig, $cookieStore, $cookies, $state) ->
     user = []
 
     $scope.login = ->
@@ -13,4 +13,7 @@ angular.module('bwi-web-client')
         {email: user.email, password: user.password}
       )
       .then (response) ->
-        $cookieStore.put 'BWI_AUTH_TOKEN', response.data.BWI_AUTH_TOKEN
+        $http.defaults.headers.common['X-BWI-AUTH-TOKEN'] = response.data.bwi_auth_token
+        $cookieStore.put 'X-BWI-AUTH-TOKEN', response.data.bwi_auth_token
+
+        $state.go "search"

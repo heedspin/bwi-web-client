@@ -1,3 +1,4 @@
+h1 {{tableData | sumOfValue:'amount'}}
 .table
   header
     .row
@@ -12,7 +13,7 @@
               input(ng-model="searchText", placeholder="Search by Name")
   table(ng-table="tableParams")
     tr(ng-repeat="receipt in tableData | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear")
-      td(data-title="'Pac Name'") {{receipt.date}}
+      td(data-title="'Pac Name'") {{receipt.pac.name}}
       td(data-title="'Industry'") {{receipt.pac.industry}}
       td(data-title="'Sector'") {{receipt.pac.sector}}
       td(data-title="'Amount'") {{receipt.amount | currency : symbol}}

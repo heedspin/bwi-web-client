@@ -3,7 +3,7 @@
 angular.module('bwi-web-client')
   .factory "Auth", ($cookieStore) ->
     signOut: ->
-      $cookieStore.remove BWI_AUTH_TOKEN
+      $cookieStore.remove "X-BWI-AUTH-TOKEN"
       
     isLoggedIn: ->
-      typeof($cookieStore.get(BWI_AUTH_TOKEN)) != 'undefined'
+      typeof($cookieStore.get("X-BWI-AUTH-TOKEN")) != 'undefined'

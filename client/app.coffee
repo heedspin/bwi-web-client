@@ -23,45 +23,56 @@ app = angular.module("bwi-web-client", [
       templateUrl:         "search/search.html"
       url:                 "/search"
       controller:           "SearchCtrl"
+      data:                 {requiresLogin: true}
     ).state("elected-official",
       templateUrl:         "elected-official/elected-official.html"
       url:                 "/elected-official"
       controller:          "ElectedOfficialCtrl"
+      data:                 {requiresLogin: true}
     ).state("elected-official.pac",
       templateUrl:         "elected-official/pac/pac.html"
       url:                 "/pac"
+      data:                 {requiresLogin: true}
     ).state("elected-official.party",
       templateUrl:         "elected-official/party/party.html"
       url:                 "/party"
       controller:          "PartyCtrl"
+      data:                 {requiresLogin: true}
     ).state("elected-official.individual",
       templateUrl:         "elected-official/individual/individual.html"
       url:                 "/individual"
       controller:          "IndividualCtrl"
+      data:                 {requiresLogin: true}
     ).state("pac",
       templateUrl:         "organization/organization.html"
       url:                 "/pac"
       controller:          "OrganizationCtrl"
+      data:                 {requiresLogin: true}
     ).state("pac.receipts",
       templateUrl:         "organization/receipts/receipts.html"
       url:                 "/receipts"
       controller:          "OrganizationCtrl"
+      data:                 {requiresLogin: true}
     ).state("pac.expenditures",
       templateUrl:         "organization/expenditures/expenditures.html"
       url:                 "/expenditures"
       controller:          "OrganizationCtrl"
+      data:                 {requiresLogin: true}
     ).state("party",
       templateUrl:         "organization/organization.html"
       url:                 "/party"
       controller:          "OrganizationCtrl"
+      data:                 {requiresLogin: true}
     ).state("party.receipts",
       templateUrl:         "organization/receipts/receipts.html"
       url:                 "/receipts"
       controller:          "OrganizationCtrl"
+      data:                 {requiresLogin: true}
     ).state("party.expenditures",
       templateUrl:         "organization/expenditures/expenditures.html"
       url:                 "/expenditures"
       controller:          "OrganizationCtrl"
+      data:                 {requiresLogin: true}
     )
 
   $urlRouterProvider.otherwise "/"
@@ -76,5 +87,12 @@ app = angular.module("bwi-web-client", [
 
 .run ($rootScope, $state, $cookieStore, $http, Auth) ->
   $rootScope.$state = $state
-  $http.defaults.headers.common["BWI_AUTH_TOKEN"] = $cookieStore.get "BWI_AUTH_TOKEN"
+  $http.defaults.headers.common['X-BWI-AUTH-TOKEN'] = $cookieStore.get 'X-BWI-AUTH-TOKEN'
+
+  $rootScope.$on '$stateChangeStart', (e, toState, toParams, fromState, fromParams) ->
+    isAuthenticationRequired = toState.data and toState.data.requiresLogin and not Auth.isLoggedIn()
+
+    if isAuthenticationRequired
+      $state.go "login"
+      e.preventDefault()
 
