@@ -1,5 +1,5 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'PacCtrl', ($scope, Settings) ->
-    
+  .controller 'PacCtrl', ($scope) ->
+    $scope.loadPac()

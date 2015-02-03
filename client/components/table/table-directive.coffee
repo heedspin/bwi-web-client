@@ -6,4 +6,5 @@ angular.module('bwi-web-client')
     restrict: 'E'
     scope:
       options: "="
+      filterText: "="
   )
