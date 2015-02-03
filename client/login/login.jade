@@ -2,8 +2,8 @@
   h1.logo: img(src="/data/images/logo.png")
   form(ng-submit="login()")
     .input-field
-      input.input--large(placeholder="Email Address", type="email", ng-model="user.email")
+      input.input--large(placeholder="Email Address", type="email", ng-model="user.email", name="email", autocomplete="on")
     .input-field
-      input.input--large(placeholder="Password", type="password", ng-model="user.password")
+      input.input--large(placeholder="Password", type="password", ng-model="user.password", name="password", autocomplete="on")
     .input-field
       button.button.button--blue.button--large Log In

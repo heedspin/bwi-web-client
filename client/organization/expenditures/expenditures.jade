@@ -1,53 +1,26 @@
 .row
-  .three.columns
+  .three.columns(ng-repeat="party in parties")
     .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Republican-small.png")
-        .two.columns
-          p Republican
-  .three.columns
-    .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Democratic-small.png")
-        .two.columns
-          p Democrat
-  .three.columns
-    .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Non-partisan.png")
-        .two.columns
-          p Non-partisan
-  .three.columns
-    .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Libertarian-small.png")
-        .two.columns
-          p Libertarian
+      .image
+        img(ng-src="/data/images/{{party.elected_official.affiliation}}-small.png")
+      .meta
+        p Republican
+        p {{parties | sumOfValue:'amount' | currency:symbol}}
 .row
-  .four.columns
-    .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Republican-small.png")
-        .two.columns
-          p Republican
-  .four.columns
-    .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Democratic-small.png")
-        .two.columns
-          p Democrat
-  .four.columns
-    .group
-      .row
-        .one.columns
-          img(ng-src="/data/images/Non-partisan.png")
-        .two.columns
-          p Non-partisan
-bwi-table
+  .seven.columns
+    h3 Contributions By Chamber
+  .five.columns
+    ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+      ui-select-match(placeholder="Sort by:") {{$select.selected.name}}
+      ui-select-choices(repeat="industry in industries | filter: $select.search")
+        span(ng-bind-html="industry.name | highlight: $select.search")
 
+.row
+  .three.columns(ng-repeat="party in parties | unique: 'affiliation'")
+    .group
+      .image
+        img(ng-src="/data/images/{{party.elected_official.affiliation}}-small.png")
+      .meta
+        p Republican
+        p {{party.amount || total | currency:symbol}}
+bwi-table

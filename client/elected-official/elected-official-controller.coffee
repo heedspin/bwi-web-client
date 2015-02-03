@@ -1,7 +1,6 @@
 'use strict'
 angular.module('bwi-web-client')
   .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Auth) ->
-
     if urlService.id
       API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
     else
@@ -28,12 +27,20 @@ angular.module('bwi-web-client')
         $scope.elected_official = true
 
     $scope.loadPac = ->
-      $scope.tableTitle = 'Pacs (Cumulative)'
+      cumulative = []
+      individual = []
 
       $http.get("#{API_URL}/receipts_from_pacs")
         .then (response) ->
           data = response.data.receipts_from_pacs
-          $scope.tableData = data
+          cumulative.data = data
+          cumulative.title = 'Pacs (Cumulative)'
+
+          # individual.title = 'Pacs (Individual)'
+          # individual.data = data
+
+          $scope.cumulative = cumulative
+          $scope.individual = individual
 
     $scope.loadParty = ->
       $scope.tableTitle = 'Party'
