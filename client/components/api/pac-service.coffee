@@ -26,7 +26,20 @@ angular.module('bwi-web-client')
   get: (params) ->
     deferred = $q.defer()
 
-    $http.get "#{bwiConfig.API_URL}/elected_officials/#{params.id}/receipts_from_pacs"
+    requestParams = {}
+
+    if params.startYear
+      requestParams.start_date = params.startYear + '-01-01'
+
+    if params.endYear
+      requestParams.end_date = params.endYear + '-12-31'
+
+    requestUrl = "#{bwiConfig.API_URL}/elected_officials/#{params.id}/receipts_from_pacs"
+
+    if requestParams.start_date || requestParams.end_date
+      requestUrl += ('?' + jQuery.param requestParams)
+
+    $http.get requestUrl
     .then (response) ->
       data = response.data.receipts_from_pacs
       cumulativeData = aggregatePacData data

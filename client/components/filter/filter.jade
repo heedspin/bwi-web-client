@@ -16,13 +16,13 @@ section
         .five.columns
           .select
             label Start
-            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled", on-select="setStartYear($item, $model)")
+            ui-select(ng-model="yearFilters.startYear", theme="selectize", ng-disabled="disabled")
               ui-select-match(placeholder="Start") {{$select.selected}}
               ui-select-choices(repeat="year in years | filter: $select.search")
                 span(ng-bind-html="year | highlight: $select.search")
           .select
             label End
-            ui-select(ng-model="year.selected", theme="selectize", ng-disabled="disabled", on-select="setEndYear($item, $model)")
+            ui-select(ng-model="yearFilters.endYear", theme="selectize", ng-disabled="disabled")
               ui-select-match(placeholder="End") {{$select.selected}}
               ui-select-choices(repeat="year in years | filter: $select.search")
                 span(ng-bind-html="year | highlight: $select.search")
