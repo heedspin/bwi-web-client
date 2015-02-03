@@ -30,13 +30,35 @@ angular.module('bwi-web-client')
         endYear: $scope.yearFilters.endYear
       .then (response) ->
 
+        columnConfig = [
+          {
+            title: 'Pac Name'
+            key: 'pac.name'
+          }
+          {
+            title: 'Industry'
+            key: 'pac.industry'
+          }
+          {
+            title: 'Sector'
+            key: 'pac.sector'
+          }
+          {
+            title: 'Amount'
+            key: 'amount'
+            filter: 'currency'
+          }
+        ]
+
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Pacs (Cumulative)'
+          columns: columnConfig
 
         $scope.individualOptions =
           data: response.individual
           title: 'Pacs (Individual)'
+          columns: columnConfig
 
     $scope.loadParty = ->
       $scope.tableTitle = 'Party'
