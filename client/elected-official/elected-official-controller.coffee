@@ -1,9 +1,6 @@
 'use strict'
 angular.module('bwi-web-client')
   .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, $stateParams, bwiConfig, Pac, Auth) ->
-    # if urlService.id
-    #   API_URL = "#{bwiConfig.API_URL}/elected_officials/#{urlService.id}"
-
     $scope.years = [ '2013', '2014' ]
 
     $http.get("#{bwiConfig.API_URL}/classifications?only_industries")

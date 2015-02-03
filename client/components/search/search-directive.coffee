@@ -22,8 +22,6 @@ angular.module('bwi-web-client')
         when 'elected_official'
           $state.go 'elected-official.pac', { id: item.id }
         when 'party'
-          # TODO: implement $stateParams
-          $state.go 'party'
+          $state.go 'parties.expenditures', { id: item.id }
         when 'pac'
-          # TODO: implement $stateParams
-          $state.go 'pac'
+          $state.go 'pacs.expenditures', { id: item.id }
