@@ -1,26 +1,40 @@
-.row
-  .three.columns(ng-repeat="party in parties")
-    .group
-      .image
-        img(ng-src="/data/images/{{party.elected_official.affiliation}}-small.png")
-      .meta
-        p Republican
-        p {{parties | sumOfValue:'amount' | currency:symbol}}
-.row
-  .seven.columns
-    h3 Contributions By Chamber
-  .five.columns
-    ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
-      ui-select-match(placeholder="Sort by:") {{$select.selected.name}}
-      ui-select-choices(repeat="industry in industries | filter: $select.search")
-        span(ng-bind-html="industry.name | highlight: $select.search")
-
-.row
-  .three.columns(ng-repeat="party in parties | unique: 'affiliation'")
-    .group
-      .image
-        img(ng-src="/data/images/{{party.elected_official.affiliation}}-small.png")
-      .meta
-        p Republican
-        p {{party.amount || total | currency:symbol}}
-bwi-table
+section
+  .row
+    .seven.columns
+      h3 Contributions By Party
+    .five.columns
+      ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+        ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+        ui-select-choices(repeat="industry in industries | filter: $select.search")
+          span(ng-bind-html="industry.name | highlight: $select.search")
+              
+  .row
+    .three.columns(ng-repeat="party in parties")
+      .group
+        .image
+          img(ng-src="/data/images/{{ party.image }}.png")
+        .meta
+          p {{ party.name }}
+          p {{ party.amount | currency:symbol }}
+          
+section        
+  .row
+    .seven.columns
+      h3 Contributions By Chamber
+    .five.columns
+      ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+        ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+        ui-select-choices(repeat="industry in industries | filter: $select.search")
+          span(ng-bind-html="industry.name | highlight: $select.search")
+      
+  .row
+    .chambers
+      .three.columns(ng-repeat="chamber in chambers")
+        .group
+          .image
+            img(ng-src="/data/images/{{ chamber.image }}.png")
+          .meta
+            p {{ chamber.name }}
+            p {{ chamber.amount | currency:symbol }}
+        
+bwi-table(options="cumulative")

@@ -2,6 +2,50 @@
 
 angular.module('bwi-web-client')
   .controller 'OrganizationCtrl', ($scope, Settings, $stateParams, $http, $state, urlService, bwiConfig) ->
+
+    parties = [
+      {
+        name: 'Republican'
+        image: 'Republican-small'
+        amount: 0
+      }
+      {
+        name: 'Democratic'
+        image: 'Democratic-small'
+        amount: 0
+      }
+      {
+        name: 'Non-partisan'
+        image: 'Non-partisan-small'
+        amount: 0
+      }
+      {
+        name: 'Libertarian'
+        image: 'Libertarian-small'
+        amount: 0
+      }
+    ]
+
+    chambers = [
+      {
+        name: 'Council of State'
+        image: 'Council-of-State'
+        amount: 0
+      }
+      {
+        name: 'House'
+        image: 'House'
+        amount: 0
+      }
+      {
+        name: 'Senate'
+        image: 'Senate'
+        amount: 0
+      }
+    ]
+
+    $scope.chambers = chambers
+
     if urlService.id
       API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
     else
@@ -28,11 +72,13 @@ angular.module('bwi-web-client')
         $scope.data = data.pac || data.party
 
     $scope.loadExp = ->
-      $scope.tableTitle = 'Cumulative Campaign Contributions'
-
       $http.get("#{API_URL}/expenditures")
         .then (response) ->
           data = response.data.expenditures
-          $scope.tableData = data
-          $scope.parties = data
-          console.log data
+
+          for i in data
+            party = _.where $scope.parties, { name: data.elected_official.affiliation }
+            if party.length is 1
+              party[0].amount += i.amount
+
+          $scope.parties = parties

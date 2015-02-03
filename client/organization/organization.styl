@@ -1,3 +1,15 @@
-body {
-  display: block;
+.chambers {
+  width: 720px;
+  margin: 0 auto;
+  *zoom: 1;
+
+  &:after {
+    clear: both;
+  }
+
+  &:after,
+  &:before {
+    content: " ";
+    display: table;
+  }
 }
