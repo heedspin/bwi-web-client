@@ -22,16 +22,16 @@ app = angular.module("bwi-web-client", [
     ).state("search",
       templateUrl:         "search/search.html"
       url:                 "/search"
-      controller:           "SearchCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official",
       templateUrl:         "elected-official/elected-official.html"
-      url:                 "/elected-official"
+      abstract:            true
+      url:                 "/elected-official/:id"
       controller:          "ElectedOfficialCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official.pac",
       templateUrl:         "elected-official/pac/pac.html"
-      url:                 "/pac"
+      url:                 ""
       controller:          "PacCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official.party",
@@ -42,35 +42,37 @@ app = angular.module("bwi-web-client", [
       templateUrl:         "elected-official/individual/individual.html"
       url:                 "/individual"
       data:                 {requiresLogin: true}
-    ).state("pac",
+    ).state("pacs",
       templateUrl:         "organization/organization.html"
-      url:                 "/pac"
+      url:                 "/pacs/:id"
       controller:          "OrganizationCtrl"
       data:                 {requiresLogin: true}
-    ).state("pac.receipts",
+      abstract: true
+    ).state("pacs.receipts",
       templateUrl:         "organization/receipts/receipts.html"
       url:                 "/receipts"
-      controller:          "OrganizationCtrl"
+      controller:          "ReceiptsCtrl"
       data:                 {requiresLogin: true}
-    ).state("pac.expenditures",
+    ).state("pacs.expenditures",
       templateUrl:         "organization/expenditures/expenditures.html"
-      url:                 "/expenditures"
-      controller:          "OrganizationCtrl"
+      url:                 ""
+      controller:          "ExpendituresCtrl"
       data:                 {requiresLogin: true}
-    ).state("party",
+    ).state("parties",
       templateUrl:         "organization/organization.html"
-      url:                 "/party"
+      url:                 "/parties/:id"
       controller:          "OrganizationCtrl"
       data:                 {requiresLogin: true}
-    ).state("party.receipts",
+      abstract:            true
+    ).state("parties.receipts",
       templateUrl:         "organization/receipts/receipts.html"
       url:                 "/receipts"
-      controller:          "OrganizationCtrl"
+      controller:          "ReceiptsCtrl"
       data:                 {requiresLogin: true}
-    ).state("party.expenditures",
+    ).state("parties.expenditures",
       templateUrl:         "organization/expenditures/expenditures.html"
       url:                 "/expenditures"
-      controller:          "OrganizationCtrl"
+      controller:          "ExpendituresCtrl"
       data:                 {requiresLogin: true}
     )
 

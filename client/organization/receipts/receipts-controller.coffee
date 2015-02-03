@@ -2,3 +2,4 @@
 
 angular.module('bwi-web-client')
   .controller 'ReceiptsCtrl', ($scope, Settings) ->
+    $scope.loadReceipts()

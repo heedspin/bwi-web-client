@@ -1,11 +1,6 @@
 'use strict'
 angular.module('bwi-web-client')
-  .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Pac, Auth) ->
-    if urlService.id
-      API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
-    else
-      $state.go "search"
-
+  .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, $stateParams, bwiConfig, Pac, Auth) ->
     $scope.years = [ '2013', '2014' ]
 
     $http.get("#{bwiConfig.API_URL}/classifications?only_industries")
@@ -23,13 +18,16 @@ angular.module('bwi-web-client')
     $scope.setEndYear = ($item, $model) ->
       $scope.selectedEndYear = $item
 
-    $http.get(API_URL)
+    $http.get "#{bwiConfig.API_URL}/elected_officials/#{$stateParams.id}"
       .then (response) ->
         $scope.data = response.data.elected_official
         $scope.elected_official = true
 
     $scope.loadPac = ->
-      Pac.get(API_URL, $scope.selectedStartYear, $scope.selectedEndYear)
+      Pac.get
+        id: $stateParams.id
+        startYear: $scope.selectedStartYear
+        endYear: $scope.selectedEndYear
       .then (response) ->
 
         $scope.cumulativeOptions =
