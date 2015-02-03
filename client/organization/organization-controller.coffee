@@ -47,6 +47,7 @@ angular.module('bwi-web-client')
     ]
 
     $scope.chambers = chambers
+    $scope.parties = parties
 
     $scope.years = [ '2013', '2014' ]
     $scope.selectedStartYear = ''
@@ -68,18 +69,26 @@ angular.module('bwi-web-client')
       $scope.data = data.pac || data.party
 
     $scope.loadReceipts = ->
-      console.log 'TODO'
+      $http.get("#{BASE_URL}/receipts_from_individuals")
+      .then (response) ->
+        data = response.data.receipts_from_individuals
+
+        $scope.cumulativeOptions =
+          data: data
+          title: 'Cumulative Receipts'
+
+        $scope.individualOptions =
+          data: data
+          title: 'Individual Receipts'
 
     $scope.loadExp = ->
       $scope.tableTitle = 'Cumulative Campaign Contributions'
       $http.get("#{BASE_URL}/expenditures")
+      .then (response) ->
+        data = response.data.expenditures
 
-        .then (response) ->
-          data = response.data.expenditures
-
-          for i in data
-            party = _.where $scope.parties, { name: data.elected_official.affiliation }
-            if party.length is 1
-              party[0].amount += i.amount
-
-          $scope.parties = parties
+        for i in data
+          party = _.where parties, { name: data.elected_official.affiliation }
+          console.log party
+          if party.length is 1
+            party[0].amount += i.amount

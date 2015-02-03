@@ -10,6 +10,7 @@ app = angular.module("bwi-web-client", [
   "ngSanitize"
   "ngTable"
   "ngCookies"
+  "angularSpinner"
 ])
 .config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig', '$httpProvider',
 ($stateProvider, $urlRouterProvider, uiSelectConfig) ->
