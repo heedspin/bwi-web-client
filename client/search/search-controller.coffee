@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'SearchCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, $cookieStore) ->
+  .controller 'SearchCtrl', ($scope, Settings, $http, $state, bwiConfig, $cookieStore) ->
     API_URL = bwiConfig.API_URL
     $scope.disabled = undefined
     $scope.searchEnabled = undefined
@@ -14,20 +14,13 @@ angular.module('bwi-web-client')
       ).then (response) ->
         $scope.SearchRes = response.data
 
-    $scope.test = (item) ->
-
+    $scope.navigate = (item) ->
       switch item.type
         when 'elected_official'
           $state.go 'elected-official.pac', { id: item.id }
-
-        # when 'party' then item.type = 'parties'
-        # when 'pac' then item.type = 'pacs'
-
-      #
-      # urlService.id = item.id
-      # urlService.type = item.type
-      #
-      # switch urlService.type
-      #   when 'pacs' then $state.go 'pac'
-      #   when 'elected_officials' then $state.go 'elected-official.pac'
-      #   when 'parties' then $state.go 'party'
+        when 'party'
+          # TODO: implement $stateParams
+          $state.go 'party'
+        when 'pac'
+          # TODO: implement $stateParams
+          $state.go 'pac'
