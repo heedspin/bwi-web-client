@@ -86,9 +86,9 @@ angular.module('bwi-web-client')
       $http.get("#{BASE_URL}/expenditures")
       .then (response) ->
         data = response.data.expenditures
-
+        
         for i in data
-          party = _.where parties, { name: data.elected_official.affiliation }
-          console.log party
+          party = _.where $scope.parties, { name: i.elected_official.affiliation }
+
           if party.length is 1
             party[0].amount += i.amount
