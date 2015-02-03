@@ -1,6 +1,8 @@
 app.filter "sumOfValue", ->
   (data, key) ->
-    return 0  if typeof (data) is "undefined" and typeof (key) is "undefined"
+    if (typeof(data) is "undefined") or (typeof(key) is "undefined")
+      return 0
+
     sum = 0
     i = 0
 

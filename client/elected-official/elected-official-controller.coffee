@@ -1,6 +1,6 @@
 'use strict'
 angular.module('bwi-web-client')
-  .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Auth) ->
+  .controller 'ElectedOfficialCtrl', ($scope, Settings, $http, $state, urlService, bwiConfig, Pac, Auth) ->
     if urlService.id
       API_URL = "#{bwiConfig.API_URL}/#{urlService.type}/#{urlService.id}"
     else
@@ -9,11 +9,13 @@ angular.module('bwi-web-client')
     $scope.years = [ '2013', '2014' ]
 
     $http.get("#{bwiConfig.API_URL}/classifications?only_industries")
-      .then (response) ->
-        $scope.industries = response.data.classifications
+    .then (response) ->
+      $scope.industries = response.data.classifications
 
     $scope.selectedStartYear = ''
     $scope.selectedEndYear = ''
+    $scope.textFilters =
+      pac: ''
 
     $scope.setStartYear = ($item, $model) ->
       $scope.selectedStartYear = $item
@@ -27,20 +29,16 @@ angular.module('bwi-web-client')
         $scope.elected_official = true
 
     $scope.loadPac = ->
-      cumulative = []
-      individual = []
+      Pac.get(API_URL, $scope.selectedStartYear, $scope.selectedEndYear)
+      .then (response) ->
 
-      $http.get("#{API_URL}/receipts_from_pacs")
-        .then (response) ->
-          data = response.data.receipts_from_pacs
-          cumulative.data = data
-          cumulative.title = 'Pacs (Cumulative)'
+        $scope.cumulativeOptions =
+          data: response.cumulative
+          title: 'Pacs (Cumulative)'
 
-          # individual.title = 'Pacs (Individual)'
-          # individual.data = data
-
-          $scope.cumulative = cumulative
-          $scope.individual = individual
+        $scope.individualOptions =
+          data: response.individual
+          title: 'Pacs (Individual)'
 
     $scope.loadParty = ->
       $scope.tableTitle = 'Party'
@@ -60,6 +58,5 @@ angular.module('bwi-web-client')
           $scope.tableData = data
 
     switch $state.current.name
-      when "elected-official.pac" then $scope.loadPac()
       when "elected-official.party" then $scope.loadParty()
       when "elected-official.individual" then $scope.loadInd()
