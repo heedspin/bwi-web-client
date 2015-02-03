@@ -1,18 +1,21 @@
-'use strict'
-
 angular.module('bwi-web-client')
-  .controller 'SearchCtrl', ($scope, Settings, $http, $state, bwiConfig, $cookieStore) ->
-    API_URL = bwiConfig.API_URL
+.directive 'bwiSearch', (bwiConfig, $state, $http) ->
+  templateUrl: 'components/search/search.html'
+  replace: true
+  restrict: 'E'
+  scope: {}
+  controller: ($scope, $element, $attrs) ->
     $scope.disabled = undefined
-    $scope.searchEnabled = undefined
-    $scope.searchRes = []
+    $scope.enabled = undefined
+    $scope.results = []
+    API_URL = bwiConfig.API_URL
 
     $scope.searchMedia = ($select) ->
-      return $http.get("#{API_URL}/entities",
+      $http.get "#{API_URL}/entities",
         params:
           term: $select.search
-      ).then (response) ->
-        $scope.SearchRes = response.data
+      .then (response) ->
+        $scope.results = response.data
 
     $scope.navigate = (item) ->
       switch item.type
