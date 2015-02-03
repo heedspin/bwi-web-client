@@ -15,15 +15,19 @@ angular.module('bwi-web-client')
         $scope.SearchRes = response.data
 
     $scope.test = (item) ->
+
       switch item.type
-        when 'elected_official' then item.type = 'elected_officials'
-        when 'party' then item.type = 'parties'
-        when 'pac' then item.type = 'pacs'
+        when 'elected_official'
+          $state.go 'elected-official.pac', { id: item.id }
 
-      urlService.id = item.id
-      urlService.type = item.type
+        # when 'party' then item.type = 'parties'
+        # when 'pac' then item.type = 'pacs'
 
-      switch urlService.type
-        when 'pacs' then $state.go 'pac'
-        when 'elected_officials' then $state.go 'elected-official.pac'
-        when 'parties' then $state.go 'party'
+      #
+      # urlService.id = item.id
+      # urlService.type = item.type
+      #
+      # switch urlService.type
+      #   when 'pacs' then $state.go 'pac'
+      #   when 'elected_officials' then $state.go 'elected-official.pac'
+      #   when 'parties' then $state.go 'party'

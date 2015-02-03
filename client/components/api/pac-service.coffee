@@ -1,7 +1,7 @@
 'user strict'
 
 angular.module('bwi-web-client')
-.factory "Pac", ($q, $http) ->
+.factory "Pac", ($q, $http, bwiConfig) ->
 
   aggregatePacData = (collection)->
     aggregateCollection = []
@@ -23,10 +23,10 @@ angular.module('bwi-web-client')
 
     aggregateCollection
 
-  get: (url, startDate, endDate) ->
+  get: (params) ->
     deferred = $q.defer()
 
-    $http.get "#{url}/receipts_from_pacs"
+    $http.get "#{bwiConfig.API_URL}/elected_officials/#{params.id}/receipts_from_pacs"
     .then (response) ->
       data = response.data.receipts_from_pacs
       cumulativeData = aggregatePacData data

@@ -27,7 +27,7 @@ app = angular.module("bwi-web-client", [
     ).state("elected-official",
       templateUrl:         "elected-official/elected-official.html"
       abstract:            true
-      url:                 "/elected-official"
+      url:                 "/elected-official/:id"
       controller:          "ElectedOfficialCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official.pac",
