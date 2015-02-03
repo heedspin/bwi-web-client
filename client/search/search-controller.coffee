@@ -25,5 +25,5 @@ angular.module('bwi-web-client')
 
       switch urlService.type
         when 'pacs' then $state.go 'pac'
-        when 'elected_officials' then $state.go 'elected-official'
+        when 'elected_officials' then $state.go 'elected-official.pac'
         when 'parties' then $state.go 'party'
