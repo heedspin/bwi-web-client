@@ -1,6 +1,7 @@
 'use strict'
 
 angular.module('bwi-web-client')
+<<<<<<< HEAD
   .controller 'OrganizationCtrl', ($scope, Settings, $stateParams, $http, $state, urlService, bwiConfig) ->
 
     parties = [
@@ -51,6 +52,11 @@ angular.module('bwi-web-client')
     else
       $state.go "search"
 
+=======
+  .controller 'OrganizationCtrl', ($scope, Settings, $stateParams, $http, $state, bwiConfig) ->
+    organizationType = $state.current.name.substring(0, $state.current.name.indexOf('.'))
+    BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
+>>>>>>> FETCH_HEAD
     $scope.years = [ '2013', '2014' ]
     $scope.selectedStartYear = ''
     $scope.selectedEndYear = ''
@@ -61,18 +67,25 @@ angular.module('bwi-web-client')
     $scope.setEndYear = ($item, $model) ->
       $scope.selectedEndYear = $item
 
-    $http.get(API_URL)
-      .then (response) ->
-        data = response.data
-        if data.pac
-          $scope.pac = true
-        else
-          $scope.party = true
+    $http.get(BASE_URL).then (response) ->
+      data = response.data
+      if data.pac
+        $scope.pac = true
+      else
+        $scope.party = true
 
-        $scope.data = data.pac || data.party
+      $scope.data = data.pac || data.party
+
+    $scope.loadReceipts = ->
+      console.log 'TODO'
 
     $scope.loadExp = ->
+<<<<<<< HEAD
       $http.get("#{API_URL}/expenditures")
+=======
+      $scope.tableTitle = 'Cumulative Campaign Contributions'
+      $http.get("#{BASE_URL}/expenditures")
+>>>>>>> FETCH_HEAD
         .then (response) ->
           data = response.data.expenditures
 

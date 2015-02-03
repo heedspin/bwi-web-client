@@ -10,10 +10,10 @@
           .table-expand
             i.icon-popup
           .input--field-inline
-              input(ng-model="searchText", placeholder="Search by Name")
+              input(ng-model="filterText", placeholder="Search by Name")
               i.icon-search
   table(ng-table="tableParams")
-    tr(ng-repeat="data in $parent.filteredResults = (options.data | filter:searchText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
+    tr(ng-repeat="data in $parent.filteredResults = (options.data | filter:filterText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
       td(data-title="'Pac Name'") {{data.pac.name || data.donor.name}}
       td(data-title="'Industry'") {{data.pac.industry || data.donor.profession}}
       td(data-title="'Sector'") {{data.pac.sector || data.donor.employer}}

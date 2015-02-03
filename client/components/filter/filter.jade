@@ -29,14 +29,14 @@ section
 .tab-wrapper
   .container(ng-if="elected_official")
     nav.row
-      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active", ng-click="loadPac()") Pac
-      li.four.columns(ui-sref="elected-official.party", ui-sref-active="active", ng-click="loadParty()") Party
-      li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active", ng-click="loadInd()") Individual
+      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active") Pac
+      li.four.columns(ui-sref="elected-official.party", ui-sref-active="active") Party
+      li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active") Individual
   .container(ng-if="pac")
     nav.row
-      li.six.columns(ui-sref="pac.expenditures", ui-sref-active="active", ng-click="loadExp()") Expenditures
-      li.six.columns(ui-sref="pac.receipts", ui-sref-active="active", ng-click="loadReceipts()") Receipts
+      li.six.columns(ui-sref="pacs.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="pacs.receipts", ui-sref-active="active") Receipts
   .container(ng-if="party")
     nav.row
-      li.six.columns(ui-sref="party.expenditures", ui-sref-active="active", ng-click="loadExp()") Expenditures
-      li.six.columns(ui-sref="party.receipts", ui-sref-active="active", ng-click="loadReceipts()") Receipts      
+      li.six.columns(ui-sref="parties.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="parties.receipts", ui-sref-active="active") Receipts
