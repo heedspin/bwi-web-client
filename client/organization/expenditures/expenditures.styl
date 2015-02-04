@@ -1,7 +1,9 @@
 .contributions {
   margin-bottom: 70px;
 }
+
 .group {
+  transition: opacity .2s linear;
 
   .image {
     display: inline-block;
@@ -17,5 +19,9 @@
   img {
     max-width: 50px;
     display: inline;
+  }
+
+  &.disabled {
+    opacity: 0.5;
   }
 }

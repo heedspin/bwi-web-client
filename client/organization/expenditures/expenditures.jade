@@ -3,14 +3,14 @@ section.contributions
     .seven.columns
       h3 Contributions By Party
     .five.columns
-      ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+      ui-select(ng-model="$parent.party.selected", theme="selectize", ng-disabled="disabled")
         ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
-        ui-select-choices(repeat="industry in industries | filter: $select.search")
-          span(ng-bind-html="industry.name | highlight: $select.search")
+        ui-select-choices(repeat="party in parties | filter: $select.search")
+          span(ng-bind-html="party.name | highlight: $select.search")
               
   .row
     .three.columns(ng-repeat="party in parties")
-      .group
+      .group(ng-class="{ 'disabled' : party.isDisabled }")
         .image
           img(ng-src="/data/images/{{ party.image }}.png")
         .meta
@@ -22,19 +22,20 @@ section.contributions
     .seven.columns
       h3 Contributions By Chamber
     .five.columns
-      ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+      ui-select(ng-model="$parent.chamber.selected", theme="selectize", ng-disabled="disabled")
         ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
-        ui-select-choices(repeat="industry in industries | filter: $select.search")
-          span(ng-bind-html="industry.name | highlight: $select.search")
+        ui-select-choices(repeat="chamber in chambers | filter: $select.search")
+          span(ng-bind-html="chamber.name | highlight: $select.search")
       
   .row
     .chambers
       .three.columns(ng-repeat="chamber in chambers")
-        .group
+        .group(ng-class="{ 'disabled' : chamber.isDisabled }")
           .image
             img(ng-src="/data/images/{{ chamber.image }}.png")
           .meta
             p {{ chamber.name }}
             p {{ chamber.amount | currency:symbol }}
         
-bwi-table(options="cumulative")
+bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.pac")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.pac")

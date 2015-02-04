@@ -14,6 +14,5 @@ angular.module('bwi-web-client')
       itemDate = new Date(item.date)
       if itemDate > startYear
         filtered.push item
-        console.log itemDate
 
     filtered

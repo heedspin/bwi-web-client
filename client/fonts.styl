@@ -39,7 +39,7 @@
 }
 
 font-smoothing($smoothing = auto) {
-  -webkit-font-smoothing $smoothing 
+  -webkit-font-smoothing $smoothing
   if $smoothing == antialiased {
     -moz-osx-font-smoothing grayscale
   }
@@ -60,12 +60,15 @@ h1 {
 h2 {
   font-weight: 700;
   font-smoothing: antialiased;
+  font-size: 2em;
+  color: white;
 }
 
 h3 {
   font-weight: 700;
   font-smoothing: antialiased;
   font-size: 2em;
+  color: #414959;
 }
 
 h4 {
@@ -75,6 +78,12 @@ h4 {
   font-style: italic;
   font-size: 2em;
   color: #b51d2a;
+}
+
+h5 {
+  font-weight: 300;
+  font-size: 1.375em;
+  color: #414959;
 }
 
 th {

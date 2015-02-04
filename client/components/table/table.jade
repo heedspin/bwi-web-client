@@ -4,7 +4,6 @@
       .seven.columns
         .table__title
           h3 {{ options.title }}
-          h4 {{ filteredResults | sumOfValue:'amount' | currency : symbol }}
       .five.columns
         .table__actions
           .table-expand
@@ -16,5 +15,5 @@
     table(ng-table="tableParams")
       tr
         th(ng-repeat="col in options.columns") {{ col.title }}
-      tr(ng-repeat="data in $parent.filteredResults = (options.data | filter:filterText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
+      tr(ng-repeat="data in options.filteredResults = (options.data | filter:filterText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
         td(ng-repeat="col in options.columns") {{ getDataForCol(data, col.key, col.filter) }}

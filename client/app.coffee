@@ -38,6 +38,7 @@ app = angular.module("bwi-web-client", [
     ).state("elected-official.party",
       templateUrl:         "elected-official/party/party.html"
       url:                 "/party"
+      controller:          "PartyCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official.individual",
       templateUrl:         "elected-official/individual/individual.html"

@@ -1,0 +1,8 @@
+.industries(ng-repeat="groupRow in groupedData | filter: $parent.industry.selected.name")
+  .industry-data
+    .industry__header
+      h5 {{ groupRow.industry }}
+    .industry__total
+      h5 {{ groupRow.amount | currency }}
+  .industry-graph
+    .bar(ng-style="getBarWidth(groupRow)")
