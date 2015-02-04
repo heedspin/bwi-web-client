@@ -1,0 +1,22 @@
+section.contributions      
+  .row
+    .seven.columns
+      h3 Contributions By Chamber
+    .five.columns
+      ui-select(ng-model="$parent.chamber.selected", theme="selectize", ng-disabled="disabled")
+        ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+        ui-select-choices(repeat="chamber in chambers | filter: $select.search")
+          span(ng-bind-html="chamber.name | highlight: $select.search")
+      
+  .row
+    .chambers
+      .three.columns(ng-repeat="chamber in chambers")
+        .group(ng-class="{ 'disabled' : chamber.isDisabled }")
+          .image
+            img(ng-src="/data/images/{{ chamber.image }}.png")
+          .meta
+            p {{ chamber.name }}
+            p {{ chamber.amount | currency:symbol }}
+            
+bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.pac")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.pac")
