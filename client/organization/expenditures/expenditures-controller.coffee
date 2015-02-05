@@ -7,8 +7,6 @@ angular.module('bwi-web-client')
 
     type =  $state.current.name.split '.'
 
-
-
     $scope.parties = [
       {
         name: 'Republican'
@@ -71,8 +69,7 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
-        
-        debugger
+
         cumulativeColumnConfig = [
           {
             title: 'Name'
@@ -90,7 +87,6 @@ angular.module('bwi-web-client')
             title: 'Total'
             key: 'amount'
             filter: 'currency'
-
           }
         ]
 
@@ -116,31 +112,47 @@ angular.module('bwi-web-client')
             title: 'Total'
             key: 'amount'
             filter: 'currency'
-
           }
         ]
+
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Cumulative Campaign Contributions'
           columns: cumulativeColumnConfig
+          filteredResults: []
 
         $scope.individualOptions =
           data: response.individual
           title: 'Campaign Contributions'
           columns: individualColumnConfig
-
-        for i in response.individual
-
-          party = _.where $scope.parties, { name: i.elected_official.affiliation }
-          chamber = _.where $scope.chambers, { name: i.elected_official.office_chamber }
-
-          if party.length is 1
-            party[0].amount += i.amount
-
-          if chamber.length is 1
-            chamber[0].amount += i.amount
+          filteredResults: []
 
     $scope.loadExp()
+
+    $scope.$watchCollection 'cumulativeOptions.filteredResults', (newVal, oldVal) ->
+      if newVal
+        clearPartyAmounts()
+        clearChamberAmounts()
+        setPartyAmounts newVal
+        setChamberAmounts newVal
+
+    clearPartyAmounts = ->
+      for party in $scope.parties
+        party.amount = 0
+
+    setPartyAmounts = (results) ->
+      for result in results
+        party = _.where $scope.parties, { name: result.elected_official.affiliation }
+        if party.length is 1 then party[0].amount += result.amount
+
+    clearChamberAmounts = ->
+      for chamber in $scope.chambers
+        chamber.amount = 0
+
+    setChamberAmounts = (results) ->
+      for result in results
+        chamber = _.where $scope.chambers, { name: result.elected_official.office_chamber }
+        if chamber.length is 1 then chamber[0].amount += result.amount
 
     $scope.$watch "party.selected", (val) ->
       if val

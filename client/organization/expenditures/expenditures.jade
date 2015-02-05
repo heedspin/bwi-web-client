@@ -17,8 +17,8 @@ section.contributions
         .meta
           p {{ party.name }}
           p {{ party.amount | currency:symbol }}
-          
-section.contributions      
+
+section.contributions
   .row
     .seven.columns
       h3 Contributions By Chamber
@@ -37,6 +37,6 @@ section.contributions
           .meta
             p {{ chamber.name }}
             p {{ chamber.amount | currency:symbol }}
-        
+
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text", search-attribute="party.selected.name", search-attribute2="chamber.selected.name")
 bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", search-attribute="party.selected.name", search-attribute2="chamber.selected.name")
