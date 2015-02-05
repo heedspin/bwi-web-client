@@ -1,22 +1,22 @@
 'user strict'
 
 angular.module('bwi-web-client')
-.factory "Pac", ($q, $http, bwiConfig) ->
+.factory "Receipt", ($q, $http, bwiConfig) ->
 
-  aggregatePacData = (collection)->
+  aggregateReceiptData = (collection)->
     aggregateCollection = []
 
     for item in collection
-      pac = item.pac
+      donor = item.donor
 
       existing = _.where aggregateCollection,
-        id: pac.id
+        name: donor.name
 
       if not existing.length
         aggregateCollection.push
-          id: pac.id
+          name: donor.name
           amount: item.amount
-          pac: pac
+          donor: donor
 
       if existing.length is 1
         existing[0].amount += item.amount
@@ -37,15 +37,15 @@ angular.module('bwi-web-client')
     if params.endYear
       requestParams.end_date = params.endYear + '-12-31'
 
-    requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/receipts_from_pacs"
+    requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/receipts_from_individuals"
 
     if requestParams.start_date || requestParams.end_date
       requestUrl += ('?' + jQuery.param requestParams)
 
     $http.get requestUrl
     .then (response) ->
-      data = response.data.receipts_from_pacs
-      cumulativeData = aggregatePacData data
+      data = response.data.receipts_from_individuals
+      cumulativeData = aggregateReceiptData data
 
       deferred.resolve
         cumulative: cumulativeData

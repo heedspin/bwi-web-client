@@ -1,4 +1,4 @@
-.industries(ng-repeat="groupRow in groupedData | filter: $parent.industry.selected.name")
+.industries(ng-repeat="groupRow in groupedData | filter: $parent.industry.selected.name | orderBy: 'amount':'reverse'")
   .industry-data
     .industry__header
       h5 {{ groupRow.industry }}

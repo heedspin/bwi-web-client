@@ -4,14 +4,14 @@ angular.module('bwi-web-client')
 
     $http.get("#{bwiConfig.API_URL}/classifications?only_industries")
     .then (response) ->
-      $scope.industries = response.data.classifications
+      $scope.industries = [""].concat response.data.classifications
 
     $scope.yearFilters =
       startYear: '2014'
       endYear: '2014'
 
     $scope.textFilters =
-      pac: ''
+      text: ''
 
     $http.get "#{bwiConfig.API_URL}/elected_officials/#{$stateParams.id}"
       .then (response) ->
@@ -20,8 +20,6 @@ angular.module('bwi-web-client')
 
 
     $scope.loadInd = ->
-      $scope.tableTitle = 'Individual'
-
       $http.get("#{API_URL}/receipts_from_individuals")
         .then (response) ->
           data = response.data.receipts_from_individuals

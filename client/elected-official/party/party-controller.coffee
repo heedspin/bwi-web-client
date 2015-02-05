@@ -1,30 +1,53 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'PartyCtrl', ($scope, Party, $stateParams, usSpinnerService) ->
-    usSpinnerService.spin 'spinner-1'
-
+  .controller 'PartyCtrl', ($scope, Party, $stateParams, $state) ->
+    type =  $state.current.name.split '.'
     $scope.loadParty = ->
       Party.get
+        type: type
         id: $stateParams.id
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
 
-        usSpinnerService.stop 'spinner-1'
-        
-        columnConfig = [
+        cumulativeColumnConfig = [
           {
-            title: 'Party Name'
-            key: 'party.name'
+            title: 'Pac Name'
+            key: 'pac.name'
           }
           {
             title: 'Industry'
-            key: 'party.industry'
+            key: 'pac.industry'
           }
           {
             title: 'Sector'
-            key: 'party.sector'
+            key: 'pac.sector'
+          }
+          {
+            title: 'Amount'
+            key: 'amount'
+            filter: 'currency'
+          }
+        ]
+
+        individualColumnConfig = [
+          {
+            title: 'Pac Name'
+            key: 'pac.name'
+          }
+          {
+            title: 'Industry'
+            key: 'pac.industry'
+          }
+          {
+            title: 'Sector'
+            key: 'pac.sector'
+          }
+          {
+            title: 'Date'
+            key: 'date'
+            filter: 'date'
           }
           {
             title: 'Amount'
@@ -36,12 +59,12 @@ angular.module('bwi-web-client')
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Parties (Cumulative)'
-          columns: columnConfig
+          columns: cumulativeColumnConfig
 
         $scope.individualOptions =
           data: response.individual
           title: 'Parties (Individual)'
-          columns: columnConfig
+          columns: individualColumnConfig
 
     $scope.loadParty()
 

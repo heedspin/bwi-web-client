@@ -14,6 +14,6 @@
   .table-wrapper
     table(ng-table="tableParams")
       tr
-        th(ng-repeat="col in options.columns") {{ col.title }}
-      tr(ng-repeat="data in options.filteredResults = (options.data | filter:filterText | startYear:selectedStartYear | endYear:selectedEndYear | filter:industry.selected.name)")
+        th(ng-repeat="col in options.columns", ng-class="col.title") {{ col.title }}
+      tr(ng-click="linkTo(data)", ng-repeat="data in options.filteredResults = (options.data | filter:searchAttribute2 | filter:filterText | startYear:selectedStartYear | endYear:selectedEndYear | filter:searchAttribute)")
         td(ng-repeat="col in options.columns") {{ getDataForCol(data, col.key, col.filter) }}

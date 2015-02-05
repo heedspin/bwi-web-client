@@ -1,13 +1,14 @@
 .row
   .seven.columns
     h3 Top 10 Industry Donations
-    h4 {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
+    h5 All Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
   .five.columns
     ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
       ui-select-match(placeholder="Start") {{ $select.selected.name }}
       ui-select-choices(repeat="industry in industries | filter: $select.search")
         span(ng-bind-html="industry.name | highlight: $select.search")
+    span.clear(ng-click="clear()") Clear
 
 bwi-graph(graph-data="graphData")
-bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.pac")
-bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.pac")
+bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text", search-attribute="industry.selected.name")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", search-attribute="industry.selected.name")

@@ -1,22 +1,22 @@
 'user strict'
 
 angular.module('bwi-web-client')
-.factory "Pac", ($q, $http, bwiConfig) ->
+.factory "Expenditures", ($q, $http, bwiConfig) ->
 
-  aggregatePacData = (collection)->
+  aggregateExpendituresData = (collection)->
     aggregateCollection = []
 
     for item in collection
-      pac = item.pac
+      elected_official = item.elected_official
 
       existing = _.where aggregateCollection,
-        id: pac.id
+        id: elected_official.id
 
       if not existing.length
         aggregateCollection.push
-          id: pac.id
+          id: elected_official.id
           amount: item.amount
-          pac: pac
+          elected_official: elected_official
 
       if existing.length is 1
         existing[0].amount += item.amount
@@ -28,24 +28,21 @@ angular.module('bwi-web-client')
 
     requestParams = {}
 
-    if params.type[0] is 'elected-official'
-      params.type[0] = 'elected_officials'
-
     if params.startYear
       requestParams.start_date = params.startYear + '-01-01'
 
     if params.endYear
       requestParams.end_date = params.endYear + '-12-31'
 
-    requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/receipts_from_pacs"
+    requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/expenditures"
 
     if requestParams.start_date || requestParams.end_date
       requestUrl += ('?' + jQuery.param requestParams)
 
     $http.get requestUrl
     .then (response) ->
-      data = response.data.receipts_from_pacs
-      cumulativeData = aggregatePacData data
+      data = response.data[params.type[1]]
+      cumulativeData = aggregateExpendituresData data
 
       deferred.resolve
         cumulative: cumulativeData

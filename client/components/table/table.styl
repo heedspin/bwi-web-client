@@ -50,7 +50,7 @@ lightGrey = #a3a3a3;
 }
 
 .table-wrapper {
-  height: 500px;
+  max-height: 500px;
   overflow: scroll;
 }
 
@@ -89,6 +89,12 @@ tr {
 
 tr {
   border-bottom: 1px solid #c7c5c5;
+  cursor: pointer;
+
+  &:hover {
+    background: #f2eada;
+  }
+
   td:first-of-type,
   th:first-of-type {
     padding-left: 0;
@@ -96,10 +102,15 @@ tr {
   td:last-of-type,
   td:last-of-type {
     padding-right: 0;
+    text-align: right;
   }
 }
 
 td {
   padding: 20px;
   color: navyBlue;
+}
+
+.Date {
+  width: 110px;
 }

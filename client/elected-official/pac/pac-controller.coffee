@@ -1,19 +1,18 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'PacCtrl', ($scope, Pac, $stateParams, usSpinnerService) ->
-    usSpinnerService.spin 'spinner-1'
+  .controller 'PacCtrl', ($scope, Pac, $stateParams, usSpinnerService, $state) ->
+    type =  $state.current.name.split '.'
 
     $scope.loadPac = ->
       Pac.get
+        type: type
         id: $stateParams.id
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
 
-        usSpinnerService.stop 'spinner-1'
-
-        columnConfig = [
+        cumulativeColumnConfig = [
           {
             title: 'Pac Name'
             key: 'pac.name'
@@ -33,16 +32,41 @@ angular.module('bwi-web-client')
           }
         ]
 
+        individualColumnConfig = [
+          {
+            title: 'Pac Name'
+            key: 'pac.name'
+          }
+          {
+            title: 'Industry'
+            key: 'pac.industry'
+          }
+          {
+            title: 'Sector'
+            key: 'pac.sector'
+          }
+          {
+            title: 'Date'
+            key: 'date'
+            filter: 'date'
+          }
+          {
+            title: 'Amount'
+            key: 'amount'
+            filter: 'currency'
+          }
+        ]
+
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Pacs (Cumulative)'
-          columns: columnConfig
+          columns: cumulativeColumnConfig
           filteredResults: []
 
         $scope.individualOptions =
           data: response.individual
           title: 'Pacs (Individual)'
-          columns: columnConfig
+          columns: individualColumnConfig
           filteredResults: []
 
     $scope.loadPac()
@@ -55,3 +79,6 @@ angular.module('bwi-web-client')
 
     $scope.$watchCollection 'individualOptions.filteredResults', (newData, oldData) ->
       $scope.graphData = newData
+
+    $scope.clear = ->
+      $scope.industry.selected = ''

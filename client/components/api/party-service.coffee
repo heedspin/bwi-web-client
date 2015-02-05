@@ -28,13 +28,16 @@ angular.module('bwi-web-client')
 
     requestParams = {}
 
+    if params.type[0] is 'elected-official'
+      params.type[0] = 'elected_officials'
+
     if params.startYear
       requestParams.start_date = params.startYear + '-01-01'
 
     if params.endYear
       requestParams.end_date = params.endYear + '-12-31'
 
-    requestUrl = "#{bwiConfig.API_URL}/elected_officials/#{params.id}/receipts_from_parties"
+    requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/receipts_from_parties"
 
     if requestParams.start_date || requestParams.end_date
       requestUrl += ('?' + jQuery.param requestParams)

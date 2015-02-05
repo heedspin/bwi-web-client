@@ -1,52 +1,67 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'ReceiptsCtrl', ($scope, Settings, bwiConfig, $state, $stateParams, $http) ->
+  .controller 'ReceiptsCtrl', ($scope, Settings, bwiConfig, $state, $stateParams, $http, Receipt) ->
     organizationType = $state.current.name.substring(0, $state.current.name.indexOf('.'))
     BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
-
-    $scope.chambers = [
-      {
-        name: 'Council of State'
-        image: 'Council-of-State'
-        amount: 0
-        isDisabled: false
-
-      }
-      {
-        name: 'House'
-        image: 'House'
-        amount: 0
-        isDisabled: false
-
-      }
-      {
-        name: 'Senate'
-        image: 'Senate'
-        amount: 0
-        isDisabled: false
-
-      }
-    ]
+    type =  $state.current.name.split '.'
 
     $scope.loadReceipts = ->
-      $http.get("#{BASE_URL}/receipts_from_individuals")
+      Receipt.get
+        type: type
+        id: $stateParams.id
+        startYear: $scope.yearFilters.startYear
+        endYear: $scope.yearFilters.endYear
       .then (response) ->
-        data = response.data.receipts_from_individuals
+
+        cumulativeColumnConfig = [
+          {
+            title: 'Donor'
+            key: 'donor.name'
+          }
+          {
+            title: 'Profession'
+            key: 'donor.profession'
+          }
+          {
+            title: 'Total'
+            key: 'amount'
+            filter: 'currency'
+
+          }
+        ]
+
+        individualColumnConfig = [
+          {
+            title: 'Donor'
+            key: 'donor.name'
+          }
+          {
+            title: 'Profession'
+            key: 'donor.profession'
+          }
+          {
+            title: 'Date'
+            key: 'date'
+            filter: 'date'
+          }
+          {
+            title: 'Total'
+            key: 'amount'
+            filter: 'currency'
+
+          }
+        ]
 
         $scope.cumulativeOptions =
-          data: data
+          data: response.cumulative
           title: 'Cumulative Receipts'
+          columns: cumulativeColumnConfig
 
         $scope.individualOptions =
-          data: data
+          data: response.individual
           title: 'Individual Receipts'
+          columns: individualColumnConfig
+
 
     $scope.loadReceipts()
-
-    $scope.$watch "chamber.selected", (val) ->
-      if val
-        for chamber in $scope.chambers
-          chamber.isDisabled = true
-
-        val.isDisabled = false

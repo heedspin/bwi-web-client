@@ -7,6 +7,7 @@ section.contributions
         ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
         ui-select-choices(repeat="party in parties | filter: $select.search")
           span(ng-bind-html="party.name | highlight: $select.search")
+      span.clear(ng-click="clearParty()") Clear
               
   .row
     .three.columns(ng-repeat="party in parties")
@@ -26,7 +27,7 @@ section.contributions
         ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
         ui-select-choices(repeat="chamber in chambers | filter: $select.search")
           span(ng-bind-html="chamber.name | highlight: $select.search")
-      
+      span.clear(ng-click="clearChamber()") Clear
   .row
     .chambers
       .three.columns(ng-repeat="chamber in chambers")
@@ -37,5 +38,5 @@ section.contributions
             p {{ chamber.name }}
             p {{ chamber.amount | currency:symbol }}
         
-bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.pac")
-bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.pac")
+bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text", search-attribute="party.selected.name", search-attribute2="chamber.selected.name")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", search-attribute="party.selected.name", search-attribute2="chamber.selected.name")
