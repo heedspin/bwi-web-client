@@ -23,12 +23,31 @@ angular.module('bwi-web-client')
       colData
 
     $scope.linkTo = (data) ->
-      id = data.id
-      types = Object.keys data
+      values = []
+      keys = Object.keys data
 
-      switch types[2]
-        when 'pac' then types[2] = 'pacs'
-        when 'elected_official' then types[2] = 'elected-official'
-        when 'party' then types[2] = 'parties'
+      types = [
+        {
+          name: 'pac'
+          value: 'pacs'
+        }
+        {
+          name: 'elected_official'
+          value: 'elected-official'
+        }
+        {
+          name: 'party'
+          value: 'parties'
+        }
+      ]
 
-      $location.path "#{types[2]}/#{id}"
+      for i in keys
+        values.push
+          name: i
+
+      for i in values
+        result = _.findWhere types, {name: i.name}
+
+        if result
+           id = data["#{result.name}"].id
+           $location.path "#{result.value}/#{id}"
