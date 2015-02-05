@@ -9,10 +9,10 @@ section
               .two.columns
                 img(ng-src="/data/images/{{data.affiliation || 'Neutral'}}.png")
               .five.columns.collapse
-                p Lorem Ipsum: Test
-                p Lorem Ipsum: Test
-                p Lorem Ipsum: Test
-                p Lorem Ipsum: Test
+                p(ng-if="data.street1") Street: {{ data.street1 }}
+                p(ng-if="data.city") City: {{ data.city }}
+                p(ng-if="data.state") State: {{ data.state }}
+                p(ng-if="data.zip") Zip: {{ data.zip }}
         .five.columns
           .select
             label Start

@@ -14,6 +14,7 @@ angular.module('bwi-web-client')
 
     $http.get(BASE_URL).then (response) ->
       data = response.data
+
       if data.pac
         $scope.pac = true
       else

@@ -17,10 +17,3 @@ angular.module('bwi-web-client')
       .then (response) ->
         $scope.data = response.data.elected_official
         $scope.elected_official = true
-
-
-    $scope.loadInd = ->
-      $http.get("#{API_URL}/receipts_from_individuals")
-        .then (response) ->
-          data = response.data.receipts_from_individuals
-          $scope.tableData = data
