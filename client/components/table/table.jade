@@ -15,5 +15,5 @@
     table(ng-table="tableParams")
       tr
         th(ng-repeat="col in options.columns", ng-class="col.title") {{ col.title }}
-      tr(ng-click="linkTo(data)", ng-repeat="data in options.filteredResults = (options.data | filter:searchAttribute2 | filter:filterText | startYear:selectedStartYear | endYear:selectedEndYear | filter:searchAttribute)")
+      tr(ng-click="linkTo(data)", ng-repeat="data in getFilteredData()")
         td(ng-repeat="col in options.columns") {{ getDataForCol(data, col.key, col.filter) }}

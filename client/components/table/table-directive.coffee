@@ -7,8 +7,6 @@ angular.module('bwi-web-client')
   scope:
     options: "="
     filterText: "="
-    searchAttribute: "="
-    searchAttribute2: "="
   controller: ($scope, $element, $attrs, $location) ->
 
     $scope.getDataForCol = (row, key, filterName) ->
@@ -21,6 +19,32 @@ angular.module('bwi-web-client')
         colData = $filter(filterName) colData
 
       colData
+
+    $scope.getFilteredData = ->
+      $scope.options.filteredResults = $scope.options.data
+
+      for filter in $scope.options.filters
+        filterArgs = [$scope.options.filteredResults]
+
+        for arg in filter.args
+          if arg.indexOf('$scope') > -1
+            # Strip out '$scope' from the string, and grab the
+            # scope property to pass in as an argument to $filter
+            value = $scope
+
+            for key in arg.split('.')[1..]
+              if value and typeof value[key] isnt 'undefined'
+                value = value[key]
+              else
+                value = ''
+
+            filterArgs.push value
+          else
+            filterArgs.push arg
+
+        $scope.options.filteredResults = $filter(filter.name).apply @, filterArgs
+
+      $scope.options.filteredResults
 
     $scope.linkTo = (data) ->
       values = []
@@ -49,5 +73,5 @@ angular.module('bwi-web-client')
         result = _.findWhere types, {name: i.name}
 
         if result
-           id = data["#{result.name}"].id
-           $location.path "#{result.value}/#{id}"
+          id = data["#{result.name}"].id
+          $location.path "#{result.value}/#{id}"
