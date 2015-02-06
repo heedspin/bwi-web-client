@@ -19,8 +19,12 @@ angular.module('bwi-web-client')
 
         if response.data.length < 1
           $scope.error = 'No Results'
+          $('.select .selectize-input').removeClass 'open'
+          $('.select').addClass "active"
         else
           $scope.error = ''
+          $('.select .selectize-input').addClass 'open'
+          $('.select').addClass "active"
 
     $scope.navigate = (item) ->
       switch item.type

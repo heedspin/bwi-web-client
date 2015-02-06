@@ -57,15 +57,35 @@ angular.module('bwi-web-client')
           }
         ]
 
+        filters = [
+          {
+            name: 'startYear'
+            args: [ '$scope.selectedStartYear' ]
+          }
+          {
+            name: 'endYear'
+            args: [ '$scope.selectedEndYear' ]
+          }
+          {
+            name: 'keyFilter'
+            args: [
+              'donor.name',
+              '$scope.filterText'
+            ]
+          }
+        ]
+
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Individual (Cumulative)'
           columns: cumulativeColumnConfig
+          filters: filters
 
         $scope.individualOptions =
           data: response.individual
           title: 'Individual (Individual)'
           columns: individualColumnConfig
+          filters: filters
 
     $scope.loadIndividual()
 

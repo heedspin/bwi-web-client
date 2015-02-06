@@ -56,15 +56,35 @@ angular.module('bwi-web-client')
           }
         ]
 
+        filters = [
+          {
+            name: 'startYear'
+            args: [ '$scope.selectedStartYear' ]
+          }
+          {
+            name: 'endYear'
+            args: [ '$scope.selectedEndYear' ]
+          }
+          {
+            name: 'keyFilter'
+            args: [
+              'pac.name',
+              '$scope.filterText'
+            ]
+          }
+        ]
+
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Parties (Cumulative)'
           columns: cumulativeColumnConfig
+          filters: filters
 
         $scope.individualOptions =
           data: response.individual
           title: 'Parties (Individual)'
           columns: individualColumnConfig
+          filters: filters
 
     $scope.loadParty()
 

@@ -115,17 +115,52 @@ angular.module('bwi-web-client')
           }
         ]
 
+        filters = [
+          {
+            name: 'startYear'
+            args: [ '$scope.selectedStartYear' ]
+          }
+          {
+            name: 'endYear'
+            args: [ '$scope.selectedEndYear' ]
+          }
+          {
+            name: 'keyFilter'
+            args: [
+              'elected_official.office_chamber',
+              '$scope.$parent.chamber.selected.name'
+            ]
+          }
+          {
+            name: 'keyFilter'
+            args: [
+              'elected_official.affiliation',
+              '$scope.$parent.party.selected.name'
+            ]
+          }
+          {
+            name: 'keyFilter'
+            args: [
+              'elected_official.name',
+              '$scope.filterText'
+            ]
+          }
+        ]
+
+
         $scope.cumulativeOptions =
           data: response.cumulative
           title: 'Cumulative Campaign Contributions'
           columns: cumulativeColumnConfig
           filteredResults: []
+          filters: filters
 
         $scope.individualOptions =
           data: response.individual
           title: 'Campaign Contributions'
           columns: individualColumnConfig
           filteredResults: []
+          filters: filters
 
     $scope.loadExp()
 

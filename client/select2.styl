@@ -1,25 +1,29 @@
-.ui-select-container {
-  &.open {
-    .selectize-input {
-      border-radius: 11px 11px 0 0;
-    }
-  }
+.select.selectize-control {
+  border-radius: 11px;
+}
+
+.error {
+  color: #710F11;
 }
 
 .selectize-input {
   padding: 15px 30px;
   line-height: 1;
-  border-radius: 11px;  
-  
+  border-radius: 11px;
+
   & > * {
     float: left;
+  }
+
+  &.open.focus {
+    border-radius: 11px 11px 0 0;
   }
 }
 
 .ui-select-choices {
   text-align: left;
   border-radius: 0 0 11px 11px;
-  
+
 }
 
 .ui-select-choices-row {
