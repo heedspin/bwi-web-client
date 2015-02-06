@@ -10,19 +10,20 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
+        console.log response
 
         cumulativeColumnConfig = [
           {
-            title: 'Pac Name'
-            key: 'pac.name'
+            title: 'Party Name'
+            key: 'party.name'
           }
           {
-            title: 'Industry'
-            key: 'pac.industry'
+            title: 'Affiliation'
+            key: 'party.affiliation'
           }
           {
-            title: 'Sector'
-            key: 'pac.sector'
+            title: 'City'
+            key: 'party.city'
           }
           {
             title: 'Amount'
@@ -33,21 +34,16 @@ angular.module('bwi-web-client')
 
         individualColumnConfig = [
           {
-            title: 'Pac Name'
-            key: 'pac.name'
+            title: 'Party Name'
+            key: 'party.name'
           }
           {
-            title: 'Industry'
-            key: 'pac.industry'
+            title: 'Affiliation'
+            key: 'party.affiliation'
           }
           {
-            title: 'Sector'
-            key: 'pac.sector'
-          }
-          {
-            title: 'Date'
-            key: 'date'
-            filter: 'date'
+            title: 'City'
+            key: 'party.city'
           }
           {
             title: 'Amount'
@@ -68,7 +64,7 @@ angular.module('bwi-web-client')
           {
             name: 'keyFilter'
             args: [
-              'pac.name',
+              'party.name',
               '$scope.filterText'
             ]
           }
