@@ -17,6 +17,11 @@ angular.module('bwi-web-client')
       .then (response) ->
         $scope.results = response.data
 
+        if response.data.length < 1
+          $scope.error = 'No Results'
+        else
+          $scope.error = ''
+
     $scope.navigate = (item) ->
       switch item.type
         when 'elected_official'

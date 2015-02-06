@@ -3,3 +3,4 @@ div.search-outer
     ui-select-match(placeholder="Search") {{$select.selected.name}}
     ui-select-choices(refresh="searchMedia($select)", repeat="result in results", refresh-delay="300")
       div(ng-bind-html="result.name | highlight: $select.search")
+  p {{ error }}
