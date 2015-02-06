@@ -4,7 +4,7 @@ angular.module('bwi-web-client')
 
     $http.get("#{bwiConfig.API_URL}/classifications?only_industries")
     .then (response) ->
-      $scope.industries = [""].concat response.data.classifications
+      $scope.industries = response.data.classifications
 
     $scope.yearFilters =
       startYear: '2014'
