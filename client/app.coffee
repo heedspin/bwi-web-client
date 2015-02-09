@@ -11,6 +11,8 @@ app = angular.module("bwi-web-client", [
   "ngTable"
   "ngCookies"
   "angularSpinner"
+  "angulartics"
+  "angulartics.google.analytics"
 ])
 .config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig', '$httpProvider',
 ($stateProvider, $urlRouterProvider, uiSelectConfig) ->

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'PacCtrl', ($scope, Pac, $stateParams, usSpinnerService, $state) ->
+  .controller 'PacCtrl', ($scope, Pac, $stateParams, usSpinnerService, $state, $location, $analytics) ->
     type =  $state.current.name.split '.'
 
     $scope.loadPac = ->
@@ -14,7 +14,7 @@ angular.module('bwi-web-client')
 
         cumulativeColumnConfig = [
           {
-            title: 'Pac Name'
+            title: 'PAC Name'
             key: 'pac.name'
           }
           {
@@ -34,7 +34,7 @@ angular.module('bwi-web-client')
 
         individualColumnConfig = [
           {
-            title: 'Pac Name'
+            title: 'PAC Name'
             key: 'pac.name'
           }
           {
@@ -82,19 +82,21 @@ angular.module('bwi-web-client')
           }
         ]
 
-        $scope.cumulativeOptions =
-          data: response.cumulative
-          title: 'Pacs (Cumulative)'
-          columns: cumulativeColumnConfig
-          filteredResults: []
-          filters: filters
+        if response.cumulative.length > 0
+          $scope.cumulativeOptions =
+            data: response.cumulative
+            title: 'PACs (Cumulative)'
+            columns: cumulativeColumnConfig
+            filteredResults: []
+            filters: filters
 
-        $scope.individualOptions =
-          data: response.individual
-          title: 'Pacs (Individual)'
-          columns: individualColumnConfig
-          filteredResults: []
-          filters: filters
+        if response.individual.length > 0
+          $scope.individualOptions =
+            data: response.individual
+            title: 'PACs (Individual)'
+            columns: individualColumnConfig
+            filteredResults: []
+            filters: filters
 
     $scope.loadPac()
 
@@ -109,3 +111,8 @@ angular.module('bwi-web-client')
 
     $scope.clear = ->
       $scope.industry.selected = ''
+
+    $scope.industry = ->
+      $analytics.eventTrack 'Select',
+        category: 'Industry Dropdown'
+        label: "#{$scope.industry.selected.name} #{$location.path()}"

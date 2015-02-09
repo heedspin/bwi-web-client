@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'ExpendituresCtrl', ($scope, $http, bwiConfig, $state, $stateParams, Expenditures, usSpinnerService) ->
+  .controller 'ExpendituresCtrl', ($scope, $http, bwiConfig, $state, $stateParams, Expenditures, usSpinnerService, $analytics, $location) ->
     organizationType = $state.current.name.substring(0, $state.current.name.indexOf('.'))
     BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
 
@@ -147,20 +147,21 @@ angular.module('bwi-web-client')
           }
         ]
 
+        if response.cumulative.length > 0
+          $scope.cumulativeOptions =
+            data: response.cumulative
+            title: 'Cumulative Campaign Contributions'
+            columns: cumulativeColumnConfig
+            filteredResults: []
+            filters: filters
 
-        $scope.cumulativeOptions =
-          data: response.cumulative
-          title: 'Cumulative Campaign Contributions'
-          columns: cumulativeColumnConfig
-          filteredResults: []
-          filters: filters
-
-        $scope.individualOptions =
-          data: response.individual
-          title: 'Campaign Contributions'
-          columns: individualColumnConfig
-          filteredResults: []
-          filters: filters
+        if response.individual.length > 0
+          $scope.individualOptions =
+            data: response.individual
+            title: 'Campaign Contributions'
+            columns: individualColumnConfig
+            filteredResults: []
+            filters: filters
 
     $scope.loadExp()
 
@@ -214,3 +215,13 @@ angular.module('bwi-web-client')
 
       for i in $scope.chambers
         i.isDisabled = false
+        
+    $scope.party = ->
+      $analytics.eventTrack 'Dropdown',
+        category: 'Party Dropwdown'
+        label: "#{$scope.party.selected.name} #{$location.path()}"
+
+    $scope.chamber = ->
+      $analytics.eventTrack 'Dropdown',
+        category: 'Chamber Search'
+        label: "#{$scope.chamber.selected.name} #{$location.path()}"

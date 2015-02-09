@@ -53,15 +53,19 @@ angular.module('bwi-web-client')
           }
         ]
 
-        $scope.cumulativeOptions =
-          data: response.cumulative
-          title: 'Cumulative Receipts'
-          columns: cumulativeColumnConfig
+        if response.cumulative.length > 0
 
-        $scope.individualOptions =
-          data: response.individual
-          title: 'Individual Receipts'
-          columns: individualColumnConfig
+          $scope.cumulativeOptions =
+            data: response.cumulative
+            title: 'Cumulative Receipts'
+            columns: cumulativeColumnConfig
+
+        if response.individual > 0
+          
+          $scope.individualOptions =
+            data: response.individual
+            title: 'Individual Receipts'
+            columns: individualColumnConfig
 
 
     $scope.loadReceipts()

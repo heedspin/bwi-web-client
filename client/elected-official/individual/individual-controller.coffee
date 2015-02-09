@@ -75,17 +75,19 @@ angular.module('bwi-web-client')
           }
         ]
 
-        $scope.cumulativeOptions =
-          data: response.cumulative
-          title: 'Individual (Cumulative)'
-          columns: cumulativeColumnConfig
-          filters: filters
+        if response.cumulative.length > 0
+          $scope.cumulativeOptions =
+            data: response.cumulative
+            title: 'Individual (Cumulative)'
+            columns: cumulativeColumnConfig
+            filters: filters
 
-        $scope.individualOptions =
-          data: response.individual
-          title: 'Individual (Individual)'
-          columns: individualColumnConfig
-          filters: filters
+        if response.individual.length > 0
+          $scope.individualOptions =
+            data: response.individual
+            title: 'Individual (Individual)'
+            columns: individualColumnConfig
+            filters: filters
 
     $scope.loadIndividual()
 

@@ -7,7 +7,7 @@ angular.module('bwi-web-client')
   scope:
     options: "="
     filterText: "="
-  controller: ($scope, $element, $attrs, $location) ->
+  controller: ($scope, $element, $attrs, $location, $analytics) ->
 
     $scope.getDataForCol = (row, key, filterName) ->
       colData = row
@@ -75,3 +75,13 @@ angular.module('bwi-web-client')
         if result
           id = data["#{result.name}"].id
           $location.path "#{result.value}/#{id}"
+
+    timer = undefined
+    $scope.analytics = ->
+      clearTimeout timer
+
+      timer = setTimeout((->
+        $analytics.eventTrack 'Search',
+          category: 'Name Search'
+          label: "#{$scope.filterText} #{$location.path()}"
+      ), 1000)

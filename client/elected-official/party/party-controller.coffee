@@ -10,7 +10,6 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
-        console.log response
 
         cumulativeColumnConfig = [
           {
@@ -70,17 +69,19 @@ angular.module('bwi-web-client')
           }
         ]
 
-        $scope.cumulativeOptions =
-          data: response.cumulative
-          title: 'Parties (Cumulative)'
-          columns: cumulativeColumnConfig
-          filters: filters
+        if response.cumulative.length > 0
+          $scope.cumulativeOptions =
+            data: response.cumulative
+            title: 'Parties (Cumulative)'
+            columns: cumulativeColumnConfig
+            filters: filters
 
-        $scope.individualOptions =
-          data: response.individual
-          title: 'Parties (Individual)'
-          columns: individualColumnConfig
-          filters: filters
+        if response.individual.length > 0
+          $scope.individualOptions =
+            data: response.individual
+            title: 'Parties (Individual)'
+            columns: individualColumnConfig
+            filters: filters
 
     $scope.loadParty()
 

@@ -3,7 +3,7 @@
     h3 Top 10 Industry Donations
     h5 All Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
   .five.columns
-    ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled")
+    ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled", on-select="industry(industry.selected.name)")
       ui-select-match(placeholder="Start") {{ $select.selected.name }}
       ui-select-choices(repeat="industry in industries | filter: $select.search")
         span(ng-bind-html="industry.name | highlight: $select.search")
