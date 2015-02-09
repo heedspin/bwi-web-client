@@ -11,20 +11,21 @@ angular.module('bwi-web-client')
     API_URL = bwiConfig.API_URL
 
     $scope.searchMedia = ($select) ->
-      $http.get "#{API_URL}/entities",
-        params:
-          term: $select.search
-      .then (response) ->
-        $scope.results = response.data
+      if $select.search
+        $http.get "#{API_URL}/entities",
+          params:
+            term: $select.search
+        .then (response) ->
+          $scope.results = response.data
 
-        if response.data.length < 1
-          $scope.error = 'No Results'
-          $('.select .selectize-input').removeClass 'open'
-          $('.select').addClass "active"
-        else
-          $scope.error = ''
-          $('.select .selectize-input').addClass 'open'
-          $('.select').addClass "active"
+          if response.data.length < 1
+            $scope.error = 'No Results'
+            $('.select .selectize-input').removeClass 'open'
+            $('.select').addClass "active"
+          else
+            $scope.error = ''
+            $('.select .selectize-input').addClass 'open'
+            $('.select').addClass "active"
 
     $scope.navigate = (item) ->
       switch item.type
