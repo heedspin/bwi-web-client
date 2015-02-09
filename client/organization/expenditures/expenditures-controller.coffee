@@ -6,6 +6,7 @@ angular.module('bwi-web-client')
     BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
 
     type =  $state.current.name.split '.'
+    usSpinnerService.spin 'spinner-1'
 
     $scope.parties = [
       {
@@ -69,6 +70,7 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
+        usSpinnerService.stop 'spinner-1'
 
         cumulativeColumnConfig = [
           {
@@ -215,7 +217,7 @@ angular.module('bwi-web-client')
 
       for i in $scope.chambers
         i.isDisabled = false
-        
+
     $scope.party = ->
       $analytics.eventTrack 'Dropdown',
         category: 'Party Dropwdown'

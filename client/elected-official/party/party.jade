@@ -1,2 +1,4 @@
+.row.spinner(ng-if="!cumulativeOptions || !individualOptions")
+  span(us-spinner="{radius:30, width:8, length: 16}", spinner-key="spinner-1", spinner-start-active="true")
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.party")
 bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.party")

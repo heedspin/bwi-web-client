@@ -1,4 +1,6 @@
-section.contributions
+.row.spinner(ng-if="!cumulativeOptions || !individualOptions")
+  span(us-spinner="{radius:30, width:8, length: 16}", spinner-key="spinner-1", spinner-start-active="true")
+section.contributions(ng-if="cumulativeOptions || individualOptions")
   .row
     .seven.columns
       h3 Contributions By Party
@@ -18,7 +20,7 @@ section.contributions
           p {{ party.name }}
           p {{ party.amount | currency:symbol }}
 
-section.contributions
+section.contributions(ng-if="cumulativeOptions || individualOptions")
   .row
     .seven.columns
       h3 Contributions By Chamber
@@ -38,5 +40,5 @@ section.contributions
             p {{ chamber.name }}
             p {{ chamber.amount | currency:symbol }}
 
-bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text", search-attribute="party.selected.name", search-attribute2="chamber.selected.name")
-bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", search-attribute="party.selected.name", search-attribute2="chamber.selected.name")
+bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text")

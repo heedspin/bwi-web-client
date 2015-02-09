@@ -1,4 +1,6 @@
-.row
+.row.spinner(ng-if="!cumulativeOptions || !individualOptions")
+  span(us-spinner="{radius:30, width:8, length: 16}", spinner-key="spinner-1", spinner-start-active="true")
+.row(ng-if="cumulativeOptions || individualOptions")
   .seven.columns
     h3 Top 10 Industry Donations
     h5 All Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}

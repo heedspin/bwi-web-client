@@ -3,6 +3,7 @@
 angular.module('bwi-web-client')
   .controller 'PacCtrl', ($scope, Pac, $stateParams, usSpinnerService, $state, $location, $analytics) ->
     type =  $state.current.name.split '.'
+    usSpinnerService.spin 'spinner-1'
 
     $scope.loadPac = ->
       Pac.get
@@ -11,6 +12,8 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
+
+        usSpinnerService.stop 'spinner-1'
 
         cumulativeColumnConfig = [
           {

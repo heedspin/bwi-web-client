@@ -1,8 +1,10 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'PartyCtrl', ($scope, Party, $stateParams, $state) ->
+  .controller 'PartyCtrl', ($scope, Party, $stateParams, $state, usSpinnerService) ->
     type =  $state.current.name.split '.'
+    usSpinnerService.spin('spinner-1')
+
     $scope.loadParty = ->
       Party.get
         type: type
@@ -10,6 +12,9 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
+
+        usSpinnerService.stop('spinner-1')
+
 
         cumulativeColumnConfig = [
           {

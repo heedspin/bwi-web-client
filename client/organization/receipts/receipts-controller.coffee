@@ -1,10 +1,12 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'ReceiptsCtrl', ($scope, Settings, bwiConfig, $state, $stateParams, $http, Receipt) ->
+  .controller 'ReceiptsCtrl', ($scope, Settings, bwiConfig, $state, $stateParams, $http, Receipt, usSpinnerService) ->
     organizationType = $state.current.name.substring(0, $state.current.name.indexOf('.'))
     BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
     type =  $state.current.name.split '.'
+    usSpinnerService.spin 'spinner-1'
+
 
     $scope.loadReceipts = ->
       Receipt.get
@@ -13,6 +15,7 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
+        usSpinnerService.stop 'spinner-1'
 
         cumulativeColumnConfig = [
           {
@@ -53,19 +56,39 @@ angular.module('bwi-web-client')
           }
         ]
 
+        filters = [
+          {
+            name: 'startYear'
+            args: [ '$scope.selectedStartYear' ]
+          }
+          {
+            name: 'endYear'
+            args: [ '$scope.selectedEndYear' ]
+          }
+          {
+            name: 'keyFilter'
+            args: [
+              'donor.name',
+              '$scope.filterText'
+            ]
+          }
+        ]
+
+
         if response.cumulative.length > 0
 
           $scope.cumulativeOptions =
             data: response.cumulative
             title: 'Cumulative Receipts'
             columns: cumulativeColumnConfig
+            filters: filters
 
-        if response.individual > 0
-          
+        if response.individual.length > 0
+
           $scope.individualOptions =
             data: response.individual
             title: 'Individual Receipts'
             columns: individualColumnConfig
-
+            filters: filters
 
     $scope.loadReceipts()
