@@ -219,11 +219,11 @@ angular.module('bwi-web-client')
         i.isDisabled = false
 
     $scope.party = ->
-      $analytics.eventTrack 'Dropdown',
-        category: 'Party Dropwdown'
+      $analytics.eventTrack 'Select',
+        category: 'Party Dropdown'
         label: "#{$scope.party.selected.name} #{$location.path()}"
 
     $scope.chamber = ->
-      $analytics.eventTrack 'Dropdown',
-        category: 'Chamber Search'
+      $analytics.eventTrack 'Select',
+        category: 'Chamber Dropdown'
         label: "#{$scope.chamber.selected.name} #{$location.path()}"

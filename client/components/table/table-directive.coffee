@@ -78,10 +78,11 @@ angular.module('bwi-web-client')
 
     timer = undefined
     $scope.analytics = ->
+      title = @.options.title
       clearTimeout timer
 
       timer = setTimeout((->
         $analytics.eventTrack 'Search',
-          category: 'Name Search'
+          category: title
           label: "#{$scope.filterText} #{$location.path()}"
       ), 1000)

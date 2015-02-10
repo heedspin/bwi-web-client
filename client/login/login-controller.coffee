@@ -1,10 +1,14 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'LoginCtrl', ($scope, Settings, $http, bwiConfig, $cookieStore, $cookies, $state) ->
+  .controller 'LoginCtrl', ($scope, Settings, $http, bwiConfig, $cookieStore, $cookies, $state, $analytics, $location) ->
     user = []
 
     $scope.login = ->
+      $analytics.eventTrack 'Click',
+        category: 'Button'
+        label: "Login #{$location.path()}"
+
       user =
         email: $scope.user.email
         password: $scope.user.password
