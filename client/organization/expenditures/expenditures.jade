@@ -1,16 +1,22 @@
 .row.spinner(ng-if="!cumulativeOptions || !individualOptions")
   span(us-spinner="{radius:30, width:8, length: 16}", spinner-key="spinner-1", spinner-start-active="true")
 section.contributions(ng-if="cumulativeOptions || individualOptions")
+  .section-header
+    .row
+      .seven.columns
+        h3 Contributions By Party
+        
+      .five.columns
+        ui-select(ng-model="$parent.party.selected", theme="selectize", ng-disabled="disabled", on-select="party()")
+          ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+          ui-select-choices(repeat="party in parties | filter: $select.search")
+            span(ng-bind-html="party.name | highlight: $select.search")
+        span.clear(ng-click="clearParty()") Clear
+        
   .row
-    .seven.columns
-      h3 Contributions By Party
-    .five.columns
-      ui-select(ng-model="$parent.party.selected", theme="selectize", ng-disabled="disabled", on-select="party()")
-        ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
-        ui-select-choices(repeat="party in parties | filter: $select.search")
-          span(ng-bind-html="party.name | highlight: $select.search")
-      span.clear(ng-click="clearParty()") Clear
-              
+    .twelve.columns
+      h5.grand-total Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
+  
   .row
     .three.columns(ng-repeat="party in parties")
       .group(ng-class="{ 'disabled' : party.isDisabled }")
@@ -21,15 +27,16 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
           p {{ party.amount | currency:symbol }}
 
 section.contributions(ng-if="cumulativeOptions || individualOptions")
-  .row
-    .seven.columns
-      h3 Contributions By Chamber
-    .five.columns
-      ui-select(ng-model="$parent.chamber.selected", theme="selectize", ng-disabled="disabled", on-select="chamber()")
-        ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
-        ui-select-choices(repeat="chamber in chambers | filter: $select.search")
-          span(ng-bind-html="chamber.name | highlight: $select.search")
-      span.clear(ng-click="clearChamber()") Clear
+  .section-header
+    .row
+      .seven.columns
+        h3 Contributions By Chamber
+      .five.columns
+        ui-select(ng-model="$parent.chamber.selected", theme="selectize", ng-disabled="disabled", on-select="chamber()")
+          ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+          ui-select-choices(repeat="chamber in chambers | filter: $select.search")
+            span(ng-bind-html="chamber.name | highlight: $select.search")
+        span.clear(ng-click="clearChamber()") Clear
   .row
     .chambers
       .three.columns(ng-repeat="chamber in chambers")
