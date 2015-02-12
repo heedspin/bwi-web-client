@@ -12,6 +12,7 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
+        console.log response
 
         usSpinnerService.stop('spinner-1')
 
@@ -74,19 +75,17 @@ angular.module('bwi-web-client')
           }
         ]
 
-        if response.cumulative.length > 0
-          $scope.cumulativeOptions =
-            data: response.cumulative
-            title: 'Parties (Cumulative)'
-            columns: cumulativeColumnConfig
-            filters: filters
+        $scope.cumulativeOptions =
+          data: response.cumulative
+          title: 'Parties (Cumulative)'
+          columns: cumulativeColumnConfig
+          filters: filters
 
-        if response.individual.length > 0
-          $scope.individualOptions =
-            data: response.individual
-            title: 'Parties (Individual)'
-            columns: individualColumnConfig
-            filters: filters
+        $scope.individualOptions =
+          data: response.individual
+          title: 'Parties (Individual)'
+          columns: individualColumnConfig
+          filters: filters
 
     $scope.loadParty()
 

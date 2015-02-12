@@ -85,21 +85,19 @@ angular.module('bwi-web-client')
           }
         ]
 
-        if response.cumulative.length > 0
-          $scope.cumulativeOptions =
-            data: response.cumulative
-            title: 'PACs (Cumulative)'
-            columns: cumulativeColumnConfig
-            filteredResults: []
-            filters: filters
+        $scope.cumulativeOptions =
+          data: response.cumulative
+          title: 'PACs (Cumulative)'
+          columns: cumulativeColumnConfig
+          filteredResults: []
+          filters: filters
 
-        if response.individual.length > 0
-          $scope.individualOptions =
-            data: response.individual
-            title: 'PACs (Individual)'
-            columns: individualColumnConfig
-            filteredResults: []
-            filters: filters
+        $scope.individualOptions =
+          data: response.individual
+          title: 'PACs (Individual)'
+          columns: individualColumnConfig
+          filteredResults: []
+          filters: filters
 
     $scope.loadPac()
 

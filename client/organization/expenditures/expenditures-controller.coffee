@@ -149,23 +149,28 @@ angular.module('bwi-web-client')
           }
         ]
 
-        if response.cumulative.length > 0
-          $scope.cumulativeOptions =
-            data: response.cumulative
-            title: 'Cumulative Campaign Contributions'
-            columns: cumulativeColumnConfig
-            filteredResults: []
-            filters: filters
+        $scope.cumulativeOptions =
+          data: response.cumulative
+          title: 'Cumulative Campaign Contributions'
+          columns: cumulativeColumnConfig
+          filteredResults: []
+          filters: filters
 
-        if response.individual.length > 0
-          $scope.individualOptions =
-            data: response.individual
-            title: 'Campaign Contributions'
-            columns: individualColumnConfig
-            filteredResults: []
-            filters: filters
+        $scope.individualOptions =
+          data: response.individual
+          title: 'Campaign Contributions'
+          columns: individualColumnConfig
+          filteredResults: []
+          filters: filters
 
     $scope.loadExp()
+
+    $scope.$watch 'yearFilters.startYear', (val) ->
+      $scope.loadExp()
+
+    $scope.$watch 'yearFilters.endYear', (val) ->
+      $scope.loadExp()
+
 
     $scope.$watchCollection 'cumulativeOptions.filteredResults', (newVal, oldVal) ->
       if newVal
