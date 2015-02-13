@@ -5,3 +5,7 @@ module.exports =
     'styl'
   ]
 
+  build:
+    alternates: [
+      ['client/app.coffee', 'client/app-build.coffee']
+    ]
