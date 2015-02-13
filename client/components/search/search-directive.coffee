@@ -4,7 +4,7 @@ angular.module('bwi-web-client')
   replace: true
   restrict: 'E'
   scope: {}
-  controller: ($scope, $element, $attrs) ->
+  controller: ($scope, $element, $attrs, $analytics, $location) ->
     $scope.disabled = undefined
     $scope.enabled = undefined
     $scope.results = []
@@ -35,3 +35,13 @@ angular.module('bwi-web-client')
           $state.go 'parties.expenditures', { id: item.id }
         when 'pac'
           $state.go 'pacs.expenditures', { id: item.id }
+
+    timer = undefined
+    $scope.analytics = ($select) ->
+      clearTimeout timer
+
+      timer = setTimeout((->
+        $analytics.eventTrack 'Site Search',
+          category: "Search"
+          label: "#{$select.search} #{$location.path()}"
+      ), 1000)

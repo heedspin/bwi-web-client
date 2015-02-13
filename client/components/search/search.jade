@@ -1,5 +1,5 @@
 div.search-outer
-  ui-select.select(ng-model="selectionModel", data-ng-disabled="disabled", reset-search-input="false", on-select="navigate($item)")
+  ui-select.select(ng-model="selectionModel", data-ng-disabled="disabled", reset-search-input="false", on-select="navigate($item)", ng-keypress="analytics($select)")
     ui-select-match(placeholder="Search") {{$select.selected.name}}
     ui-select-choices(refresh="searchMedia($select)", repeat="result in results", refresh-delay="300")
       div(ng-bind-html="result.name | highlight: $select.search")

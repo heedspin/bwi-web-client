@@ -22,5 +22,5 @@ angular.module('bwi-web-client')
 
     $scope.endYear = ->
       $analytics.eventTrack 'Select',
-        category: 'Start Year Dropdown'
+        category: 'End Year Dropdown'
         label: "#{$scope.yearFilters.endYear} #{$location.path()}"
