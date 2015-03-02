@@ -1,3 +1,5 @@
+red = #b12025;
+
 .select.selectize-control {
   border-radius: 11px;
 }
@@ -29,4 +31,33 @@
 
 .selectize-dropdown .active {
   border-radius: 11px;
+}
+
+.ui-select-container {
+  position: relative;
+}
+
+.ui-select-clear {
+  background-color: #ccc;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  height: 1.25em;
+  line-height: 1.2;
+  position: absolute;
+  right: 1em;
+  text-align: center;
+  top: 0.75em;
+  transition: background-color 0.1s linear;
+  width: 1.25em;
+  z-index: 1;
+
+  &:hover {
+    background-color: lighten(red, 7%);
+  }
+
+  .ng-valid-parse + & {
+    display: block;
+  }
 }
