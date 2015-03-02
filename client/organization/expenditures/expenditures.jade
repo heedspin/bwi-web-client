@@ -8,7 +8,7 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
 
       .five.columns
         ui-select(ng-model="$parent.party.selected", theme="selectize", ng-disabled="disabled", on-select="party()")
-          ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+          ui-select-match(placeholder="Filter by Party") {{ $select.selected.name }}
           ui-select-choices(repeat="party in parties | filter: $select.search")
             span(ng-bind-html="party.name | highlight: $select.search")
         span.clear(ng-click="clearParty()") Clear
@@ -33,7 +33,7 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
         h3 Contributions By Chamber
       .five.columns
         ui-select(ng-model="$parent.chamber.selected", theme="selectize", ng-disabled="disabled", on-select="chamber()")
-          ui-select-match(placeholder="Sort by:") {{ $select.selected.name }}
+          ui-select-match(placeholder="Filter by Chamber") {{ $select.selected.name }}
           ui-select-choices(repeat="chamber in chambers | filter: $select.search")
             span(ng-bind-html="chamber.name | highlight: $select.search")
         span.clear(ng-click="clearChamber()") Clear
