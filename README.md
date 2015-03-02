@@ -22,7 +22,7 @@ smash serve
 ```
 
 This app is configured to consume the Staging API, so it will accept any staging
-credentials for authorization.
+credentials for authorization. This can be changed in `client/app.coffee`.
 
 This application is being built with the experimental [Smashing Dev Tool](https://github.com/smashingboxes/smashing-dev-tool). Once the dev tool is installed, the following commands are available from within the project repo:
 
