@@ -49,6 +49,11 @@ angular.module('bwi-web-client')
             key: 'party.city'
           }
           {
+            title: 'Date'
+            key: 'date'
+            filter: 'date'
+          }
+          {
             title: 'Amount'
             key: 'amount'
             filter: 'currency'
