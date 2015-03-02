@@ -1,21 +1,21 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'ReceiptsCtrl', ($scope, Settings, bwiConfig, $state, $stateParams, $http, Receipt, usSpinnerService) ->
+  .controller 'ReceiptsCtrl', ($scope, Settings, bwiConfig, $state, $stateParams, $http, Receipt) ->
     organizationType = $state.current.name.substring(0, $state.current.name.indexOf('.'))
     BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
     type =  $state.current.name.split '.'
-    usSpinnerService.spin 'spinner-1'
-
 
     $scope.loadReceipts = ->
+      $scope.showSpinner = true
+
       Receipt.get
         type: type
         id: $stateParams.id
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
-        usSpinnerService.stop 'spinner-1'
+        $scope.showSpinner = false
 
         cumulativeColumnConfig = [
           {

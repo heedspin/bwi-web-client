@@ -1,5 +1,4 @@
-.row.spinner(ng-if="!cumulativeOptions || !individualOptions")
-  span(us-spinner="{radius:30, width:8, length: 16}", spinner-key="spinner-1", spinner-start-active="true")
+.spinner(ng-if="showSpinner", us-spinner="{length:16, radius:30, width:8}")
 .row(ng-if="cumulativeOptions || individualOptions")
   .seven.columns
     h3 Top 10 Industry Donations

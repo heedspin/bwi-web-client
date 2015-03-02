@@ -1,19 +1,19 @@
 'use strict'
 
 angular.module('bwi-web-client')
-  .controller 'IndividualCtrl', ($scope, Settings, Individual, $stateParams, $state, usSpinnerService) ->
+  .controller 'IndividualCtrl', ($scope, Settings, Individual, $stateParams, $state) ->
     type =  $state.current.name.split '.'
-    usSpinnerService.spin 'spinner-1'
 
     $scope.loadIndividual = ->
+      $scope.showSpinner = true
+
       Individual.get
         type: type
         id: $stateParams.id
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
-
-        usSpinnerService.stop 'spinner-1'
+        $scope.showSpinner = false
 
         cumulativeColumnConfig = [
           {
