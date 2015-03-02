@@ -21,6 +21,9 @@ bower install
 smash serve
 ```
 
+This app is configured to consume the Staging API, so it will accept any staging
+credentials for authorization.
+
 This application is being built with the experimental [Smashing Dev Tool](https://github.com/smashingboxes/smashing-dev-tool). Once the dev tool is installed, the following commands are available from within the project repo:
 
 + `smash compile`: compile the project source into unoptimized HTML, JS and CSS ready for the browser
