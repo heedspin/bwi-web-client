@@ -163,14 +163,7 @@ angular.module('bwi-web-client')
           filteredResults: []
           filters: filters
 
-    $scope.loadExp()
-
-    $scope.$watch 'yearFilters.startYear', (val) ->
-      $scope.loadExp()
-
-    $scope.$watch 'yearFilters.endYear', (val) ->
-      $scope.loadExp()
-
+    $scope.$watch 'yearFilters', $scope.loadExp, true
 
     $scope.$watchCollection 'cumulativeOptions.filteredResults', (newVal, oldVal) ->
       if newVal

@@ -86,10 +86,4 @@ angular.module('bwi-web-client')
           columns: individualColumnConfig
           filters: filters
 
-    $scope.loadReceipts()
-
-    $scope.$watch 'yearFilters.startYear', (val) ->
-      $scope.loadReceipts()
-
-    $scope.$watch 'yearFilters.endYear', (val) ->
-      $scope.loadReceipts()
+    $scope.$watch 'yearFilters', $scope.loadReceipts, true

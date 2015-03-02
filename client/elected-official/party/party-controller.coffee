@@ -90,10 +90,4 @@ angular.module('bwi-web-client')
           columns: individualColumnConfig
           filters: filters
 
-    $scope.loadParty()
-
-    $scope.$watch 'yearFilters.startYear', (val) ->
-      $scope.loadParty()
-
-    $scope.$watch 'yearFilters.endYear', (val) ->
-      $scope.loadParty()
+    $scope.$watch 'yearFilters', $scope.loadParty, true

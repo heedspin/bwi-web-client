@@ -99,13 +99,7 @@ angular.module('bwi-web-client')
           filteredResults: []
           filters: filters
 
-    $scope.loadPac()
-
-    $scope.$watch 'yearFilters.startYear', (val) ->
-      $scope.loadPac()
-
-    $scope.$watch 'yearFilters.endYear', (val) ->
-      $scope.loadPac()
+    $scope.$watch 'yearFilters', $scope.loadPac, true
 
     $scope.$watchCollection 'individualOptions.filteredResults', (newData, oldData) ->
       $scope.graphData = newData
