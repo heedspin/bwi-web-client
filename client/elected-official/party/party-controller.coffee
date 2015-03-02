@@ -12,8 +12,6 @@ angular.module('bwi-web-client')
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
       .then (response) ->
-        console.log response
-
         usSpinnerService.stop('spinner-1')
 
 
