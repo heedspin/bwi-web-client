@@ -1,27 +1,41 @@
+blue = #19334e;
+baseFontColor = blue;
+lightFontColor = rgba(baseFontColor, 0.7);
+
 .contributions {
   margin-bottom: 70px;
 }
 
 .group {
-  transition: opacity .2s linear;
+  transition: opacity 0.2s linear;
 
-  .image {
-    display: inline-block;
-    vertical-align: top;
+  &.disabled {
+    opacity: 0.5;
   }
+}
 
-  .meta {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 15px;
-  }
+.group-image {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
 
   img {
     max-width: 50px;
     display: inline;
   }
+}
 
-  &.disabled {
-    opacity: 0.5;
+.group-meta {
+  display: inline-block;
+  vertical-align: middle;
+
+  dt {
+    color: baseFontColor;
+    margin-bottom: 5px;
+  }
+
+  dd {
+    color: lightFontColor;
+    margin-left: 0;
   }
 }
