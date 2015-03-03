@@ -7,7 +7,9 @@ angular.module('bwi-web-client')
   controller: ($scope, $element, $attrs, $analytics, $location) ->
     $scope.$watch 'data', (data) ->
       if data
-        $scope.years = [data.min_year..data.max_year]
+        availableYears = [data.min_year..data.max_year]
+        $scope.startYears = ({ id: year } for year in availableYears)
+        $scope.endYears = angular.copy($scope.startYears)
 
         $scope.quarters = [
           { id: 1, name: 'Q1' }
@@ -35,3 +37,10 @@ angular.module('bwi-web-client')
       $analytics.eventTrack 'Select',
         category: 'End Quarter Dropdown'
         label: "#{$scope.yearFilters.endQuarter} #{$location.path()}"
+
+    $scope.isEndYearDisabled = (year) ->
+      year < $scope.yearFilters.startYear
+
+    $scope.isEndQuarterDisabled = (quarter) ->
+      $scope.yearFilters.startYear == $scope.yearFilters.endYear &&
+        quarter < $scope.yearFilters.startQuarter
