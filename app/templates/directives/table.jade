@@ -15,5 +15,7 @@
     table(ng-table="tableParams")
       tr
         th(ng-repeat="col in options.columns", ng-class="col.title") {{ col.title }}
-      tr(ng-click="linkTo(data)", ng-repeat="data in getFilteredData()")
-        td(ng-repeat="col in options.columns") {{ getDataForCol(data, col.key, col.filter) }}
+      tr(ng-init="link = linkTo(filteredData)", ng-repeat="filteredData in getFilteredData()")
+        td(ng-init="colData = getDataForCol(filteredData, col.key, col.filter)", ng-repeat="col in options.columns")
+          a(ng-href="{{link}}", ng-if="$first && link") {{colData}}
+          span(ng-if="!$first || !link") {{colData}}

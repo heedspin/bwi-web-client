@@ -8,7 +8,7 @@ angular.module('bwi-web-client')
     options: "="
     filterText: "="
     onExport: "&"
-  controller: ($scope, $element, $attrs, $location, $analytics, User) ->
+  controller: ($scope, $element, $attrs, $location, $analytics, $state, User) ->
     unless $attrs.onExport
       $scope.onExport = undefined
 
@@ -80,7 +80,7 @@ angular.module('bwi-web-client')
 
         if result
           id = data["#{result.name}"].id
-          $location.path "#{result.value}/#{id}"
+          return $state.href(result.value, { id: id })
 
     timer = undefined
     $scope.analytics = ->
