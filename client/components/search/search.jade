@@ -1,6 +1,15 @@
 div.search-outer
   ui-select.select(ng-model="selectionModel", data-ng-disabled="disabled", reset-search-input="false", on-select="navigate($item)", ng-keypress="analytics($select)")
-    ui-select-match(placeholder="Search") {{$select.selected.name}}
+    ui-select-match(placeholder="Search for NC campaign contributions") {{$select.selected.name}}
     ui-select-choices(refresh="searchMedia($select)", repeat="result in results", refresh-delay="300")
       div(ng-bind-html="result.name | highlight: $select.search")
-  p.error {{ error }}
+  p.error.search-error {{ error }}
+
+  p.search-examples
+    | You can search for any Elected Official or PAC. For example, try searching for&nbsp;
+    a(ui-sref="elected-official.pac({ id: 166 })") Bob Rucho
+    | ,&nbsp;
+    a(ui-sref="pacs.expenditures({ id: 135 })") NC Dental Society
+    | , or&nbsp;
+    a(ui-sref="parties.expenditures({ id: 810 })") NC Republican Party
+    | .

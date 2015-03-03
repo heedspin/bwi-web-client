@@ -1,6 +1,7 @@
 lightGrey = #a3a3a3;
 beige = #fbf3e2;
 grey = #333333;
+medGrey = #616161;
 
 [state="search"] {
   .wrapper {
@@ -10,12 +11,8 @@ grey = #333333;
     background-attachment: fixed;
   }
 
-  .ui-select-container {
+  .search-outer {
     margin: 0 auto;
-    width: 820px;
-  }
-
-  .selectize-dropdown {
     width: 820px;
   }
 
@@ -44,5 +41,22 @@ grey = #333333;
     height: 100%;
     top: 0px;
     right: 10px;
+  }
+
+  .search-examples {
+    display: block;
+  }
+}
+
+.search-examples {
+  color: medGrey;
+  display: none;
+  line-height: 1.5;
+  margin-left: 30px;  // from selectize-input
+  margin-right: 30px; // from selectize-input
+  text-align: left;
+
+  a {
+    display: inline-block;
   }
 }
