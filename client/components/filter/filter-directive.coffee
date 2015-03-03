@@ -5,15 +5,9 @@ angular.module('bwi-web-client')
   templateUrl: 'components/filter/filter.html'
   restrict: 'E'
   controller: ($scope, $element, $attrs, $analytics, $location) ->
-    $scope.years = [
-      '2008',
-      '2009',
-      '2010',
-      '2011',
-      '2012',
-      '2013',
-      '2014'
-    ]
+    $scope.$watch 'data', (data) ->
+      if data
+        $scope.years = [data.min_year..data.max_year]
 
     $scope.startYear = ->
       $analytics.eventTrack 'Select',
