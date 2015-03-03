@@ -31,3 +31,11 @@ This application is being built with the experimental [Smashing Dev Tool](https:
 + `smash build`: build the compiled source into a minified, otpimized set of files for deployment
 + `smash docs`: generate a static documentation site for this codebase
 + `smash clean`: remove all generated files (`/compile`, `/build`, `/docs`)
+
+## Deployment
+
+### Staging
+
+Add your public SSH key to the *deployer* user and then run:
+
+    ./deploy staging
