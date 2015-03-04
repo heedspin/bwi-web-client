@@ -1,0 +1,42 @@
+section
+  .sup-header(ng-class="data.affiliation || 'Neutral'")
+    .container
+      .row
+        .seven.columns
+          .profile
+            h2 {{ data.name }}
+            .row
+              .two.columns
+                img(ng-src="/images/{{data.affiliation || 'Neutral'}}.png")
+              .five.columns.collapse
+                p(ng-if="data.street1") Street: {{ data.street1 }}
+                p(ng-if="data.city") City: {{ data.city }}
+                p(ng-if="data.state") State: {{ data.state }}
+                p(ng-if="data.zip") Zip: {{ data.zip }}
+        .five.columns
+          .select
+            label Start
+            ui-select(ng-model="yearFilters.startYear", theme="selectize", ng-disabled="disabled", on-select="startYear($select)")
+              ui-select-match(placeholder="Start") {{$select.selected}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year | highlight: $select.search")
+          .select
+            label End
+            ui-select(ng-model="yearFilters.endYear", theme="selectize", ng-disabled="disabled", on-select="endYear($select)")
+              ui-select-match(placeholder="End") {{$select.selected}}
+              ui-select-choices(repeat="year in years | filter: $select.search")
+                span(ng-bind-html="year | highlight: $select.search")
+.tab-wrapper
+  .container(ng-if="elected_official")
+    nav.row
+      li.four.columns(ui-sref="elected-official.pac", ui-sref-active="active") Pac
+      li.four.columns(ui-sref="elected-official.party", ui-sref-active="active") Party
+      li.four.columns(ui-sref="elected-official.individual", ui-sref-active="active") Individual
+  .container(ng-if="pac")
+    nav.row
+      li.six.columns(ui-sref="pacs.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="pacs.receipts", ui-sref-active="active") Receipts
+  .container(ng-if="party")
+    nav.row
+      li.six.columns(ui-sref="parties.expenditures", ui-sref-active="active") Expenditures
+      li.six.columns(ui-sref="parties.receipts", ui-sref-active="active") Receipts

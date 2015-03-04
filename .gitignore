@@ -1,9 +1,3 @@
-node_modules
-.tmp
-.sass-cache
-.DS_Store
-client/components/vendor
-compile
-build
-docs
-.groc.json
+/.tmp/
+/bower_components/
+/node_modules/

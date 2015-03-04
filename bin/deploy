@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Exit if any subcommand fails
+set -e
+
+# Compile unoptimized assets
+gulp
+
+# Sync with remote host
+rsync -av -e ssh .tmp/ deployer@$1.bellwetherinsights.com:bwi-web-client/compile/

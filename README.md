@@ -1,36 +1,30 @@
-bwi-web-client
-======================
+# bwi-web-client
 
-This is an AngularJS-based client-side application that will consume the BWI API.
-
-## Prerequisites
-
-+ [Node/NPM](http://nodejs.org/)
-+ [Bower](http://bower.io/)
-+ [Smashing Dev Tool](https://github.com/smashingboxes/smashing-dev-tool)
-
+An AngularJS client-side application that consumes the BWI API.
 
 ## Development
 
-For local setup:
+### Setup
 
-```
-git clone git@github.com:smashingboxes/bwi-web-client.git
-cd bwi-web-client
-bower install
-smash serve
-```
+1. Install [Node/NPM](http://nodejs.org).
 
-This app is configured to consume the Staging API, so it will accept any staging
-credentials for authorization. This can be changed in `client/app.coffee`.
+1. Install global build tools.
 
-This application is being built with the experimental [Smashing Dev Tool](https://github.com/smashingboxes/smashing-dev-tool). Once the dev tool is installed, the following commands are available from within the project repo:
+        $ npm install --global bower
+        $ npm install --global gulp
 
-+ `smash compile`: compile the project source into unoptimized HTML, JS and CSS ready for the browser
-+ `smash serve`: run a BrowserSync-based development server and re-compile on file changes
-+ `smash build`: build the compiled source into a minified, otpimized set of files for deployment
-+ `smash docs`: generate a static documentation site for this codebase
-+ `smash clean`: remove all generated files (`/compile`, `/build`, `/docs`)
+1. Install packages.
+
+        $ bower install
+        $ npm install
+
+1. Start the development server.
+
+        $ gulp serve
+
+    The app is configured to consume the staging API, so it will accept any
+    staging credentials for authorization. This can be changed in
+    `app/javascripts/app.coffee`.
 
 ## Deployment
 
@@ -38,4 +32,4 @@ This application is being built with the experimental [Smashing Dev Tool](https:
 
 Add your public SSH key to the *deployer* user and then run:
 
-    ./deploy staging
+    $ bin/deploy staging
