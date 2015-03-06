@@ -2,7 +2,7 @@
 
 angular.module('bwi-web-client')
 .directive 'bwiFilter', ->
-  templateUrl: 'templates/directives/filter.html'
+  templateUrl: 'directives/filter.html'
   restrict: 'E'
   controller: ($scope, $element, $attrs, $analytics, $location) ->
     $scope.$watch 'data', (data) ->

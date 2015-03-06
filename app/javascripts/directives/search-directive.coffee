@@ -1,6 +1,6 @@
 angular.module('bwi-web-client')
 .directive 'bwiSearch', (bwiConfig, $state, $http) ->
-  templateUrl: 'templates/directives/search.html'
+  templateUrl: 'directives/search.html'
   replace: true
   restrict: 'E'
   scope: {}

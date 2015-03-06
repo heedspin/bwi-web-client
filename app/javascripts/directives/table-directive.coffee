@@ -2,7 +2,7 @@
 
 angular.module('bwi-web-client')
 .directive 'bwiTable', ($filter) ->
-  templateUrl: 'templates/directives/table.html'
+  templateUrl: 'directives/table.html'
   restrict: 'E'
   scope:
     options: "="
