@@ -2,7 +2,7 @@
 
 angular.module('bwi-web-client')
 .directive 'bwiGraph', ->
-  templateUrl: 'templates/directives/graph.html'
+  templateUrl: 'directives/graph.html'
   restrict: 'E'
   scope:
     graphData: '='

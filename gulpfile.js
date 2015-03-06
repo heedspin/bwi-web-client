@@ -11,6 +11,7 @@ var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 var runSequence = require('run-sequence');
 var stylus = require('gulp-stylus');
+var templateCache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
 var useref = require('gulp-useref');
 
@@ -114,7 +115,7 @@ gulp.task('prepare', function(cb) {
     [
       'bower',
       'copy',
-      'html',
+      'templates',
       'javascripts',
       'stylesheets'
     ],
@@ -163,4 +164,14 @@ gulp.task('stylesheets', function() {
     )
     .pipe(stylus())
     .pipe(gulp.dest(paths.build));
+});
+
+gulp.task('templates', ['html'], function () {
+  return gulp.src(paths.build + '/templates/**/*.html')
+    .pipe(
+      templateCache({
+        module: 'bwi-web-client'
+      })
+    )
+    .pipe(gulp.dest(paths.build + '/javascripts/config/'));
 });
