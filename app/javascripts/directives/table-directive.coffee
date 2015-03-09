@@ -7,7 +7,10 @@ angular.module('bwi-web-client')
   scope:
     options: "="
     filterText: "="
+    onExport: "&"
   controller: ($scope, $element, $attrs, $location, $analytics) ->
+    unless $attrs.onExport
+      $scope.onExport = undefined
 
     $scope.getDataForCol = (row, key, filterName) ->
       colData = row

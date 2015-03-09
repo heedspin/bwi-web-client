@@ -13,4 +13,4 @@
 
 bwi-graph(graph-data="graphData")
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text")
-bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", on-export="exportToExcel()")

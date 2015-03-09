@@ -48,4 +48,4 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
           dd {{ chamber.amount | currency:symbol }}
 
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text")
-bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", on-export="exportToExcel()")

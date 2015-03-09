@@ -111,3 +111,10 @@ angular.module('bwi-web-client')
       $analytics.eventTrack 'Select',
         category: 'Industry Dropdown'
         label: "#{$scope.industry.selected.name} #{$location.path()}"
+
+    $scope.exportToExcel = ->
+      Pac.exportToExcel
+        type: type
+        id: $stateParams.id
+        startYear: $scope.yearFilters.startYear
+        endYear: $scope.yearFilters.endYear

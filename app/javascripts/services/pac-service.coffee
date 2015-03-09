@@ -1,7 +1,7 @@
 'user strict'
 
 angular.module('bwi-web-client')
-.factory "Pac", ($q, $http, bwiConfig) ->
+.factory "Pac", ($q, $http, $cookieStore, $window, bwiConfig) ->
 
   aggregatePacData = (collection)->
     aggregateCollection = []
@@ -23,9 +23,7 @@ angular.module('bwi-web-client')
 
     aggregateCollection
 
-  get: (params) ->
-    deferred = $q.defer()
-
+  urlFor = (params, format) ->
     requestParams = {}
 
     if params.type[0] is 'elected-official'
@@ -39,10 +37,19 @@ angular.module('bwi-web-client')
 
     requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/receipts_from_pacs"
 
-    if requestParams.start_date || requestParams.end_date
+    if format
+      requestUrl += ".#{format}"
+      requestParams.BWI_AUTH_TOKEN = $cookieStore.get('X-BWI-AUTH-TOKEN')
+
+    unless _.isEmpty(requestParams)
       requestUrl += ('?' + jQuery.param requestParams)
 
-    $http.get requestUrl
+    requestUrl
+
+  get: (params) ->
+    deferred = $q.defer()
+
+    $http.get urlFor(params)
     .then (response) ->
       data = response.data.receipts_from_pacs
       cumulativeData = aggregatePacData data
@@ -52,3 +59,7 @@ angular.module('bwi-web-client')
         individual: data
 
     deferred.promise
+
+  exportToExcel: (params) ->
+    exportUrl = urlFor(params, 'xlsx')
+    $window.location.assign exportUrl

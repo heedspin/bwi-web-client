@@ -4,6 +4,7 @@
       .seven.columns
         .table__title
           h3 {{ options.title }}
+        button(ng-click="onExport()" ng-if="onExport") Export
       .five.columns
         .table__actions
           .input--field-inline

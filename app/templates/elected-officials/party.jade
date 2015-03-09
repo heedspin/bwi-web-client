@@ -1,3 +1,3 @@
 .spinner(ng-if="showSpinner", us-spinner="{length:16, radius:30, width:8}")
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.party")
-bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.party")
+bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.party", on-export="exportToExcel()")
