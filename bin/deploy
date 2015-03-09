@@ -3,8 +3,8 @@
 # Exit if any subcommand fails
 set -e
 
-# Compile unoptimized assets
-gulp
+# Compile assets
+gulp dist
 
 # Sync with remote host
-rsync -av -e ssh .tmp/ deployer@$1.bellwetherinsights.com:bwi-web-client/compile/
+rsync -av -e ssh dist/ deployer@$1.bellwetherinsights.com:bwi-web-client/compile/
