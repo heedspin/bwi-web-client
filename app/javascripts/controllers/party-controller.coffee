@@ -91,3 +91,10 @@ angular.module('bwi-web-client')
           filters: filters
 
     $scope.$watch 'yearFilters', $scope.loadParty, true
+
+    $scope.exportToExcel = ->
+      Party.exportToExcel
+        type: type
+        id: $stateParams.id
+        startYear: $scope.yearFilters.startYear
+        endYear: $scope.yearFilters.endYear

@@ -95,3 +95,10 @@ angular.module('bwi-web-client')
           filters: filters
 
     $scope.$watch 'yearFilters', $scope.loadReceipts, true
+
+    $scope.exportToExcel = ->
+      Receipt.exportToExcel
+        type: type
+        id: $stateParams.id
+        startYear: $scope.yearFilters.startYear
+        endYear: $scope.yearFilters.endYear
