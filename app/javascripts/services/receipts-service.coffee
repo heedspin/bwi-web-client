@@ -24,27 +24,22 @@ angular.module('bwi-web-client')
     aggregateCollection
 
   urlFor = (params, format) ->
-    requestParams = {}
-
     if params.type[0] is 'elected-official'
       params.type[0] = 'elected_officials'
 
-    if params.startYear
-      requestParams.start_date = params.startYear + '-01-01'
-
-    if params.endYear
-      requestParams.end_date = params.endYear + '-12-31'
-
     requestUrl = "#{bwiConfig.API_URL}/#{params.type[0]}/#{params.id}/receipts_from_individuals"
+
+    requestParams =
+      start_year: params.yearFilters.startYear
+      end_year: params.yearFilters.endYear
+      start_quarter: params.yearFilters.startQuarter
+      end_quarter: params.yearFilters.endQuarter
 
     if format
       requestUrl += ".#{format}"
       requestParams.BWI_AUTH_TOKEN = $cookieStore.get('X-BWI-AUTH-TOKEN')
 
-    unless _.isEmpty(requestParams)
-      requestUrl += ('?' + jQuery.param requestParams)
-
-    requestUrl
+    requestUrl += ('?' + jQuery.param requestParams)
 
   get: (params) ->
     deferred = $q.defer()

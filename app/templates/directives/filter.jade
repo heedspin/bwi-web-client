@@ -17,15 +17,25 @@ section
           .select
             label Start
             ui-select(ng-model="yearFilters.startYear", theme="selectize", ng-disabled="disabled", on-select="startYear($select)")
-              ui-select-match(placeholder="Start") {{$select.selected}}
+              ui-select-match(placeholder="Year") {{$select.selected}}
               ui-select-choices(repeat="year in years | filter: $select.search")
                 span(ng-bind-html="year | highlight: $select.search")
           .select
+            ui-select(ng-model="yearFilters.startQuarter", theme="selectize", ng-disabled="disabled", on-select="startQuarter($select)")
+              ui-select-match(placeholder="Quarter") {{$select.selected.name}}
+              ui-select-choices(repeat="quarter.id as quarter in quarters | filter: $select.search")
+                span(ng-bind-html="quarter.name | highlight: $select.search")
+          .select
             label End
             ui-select(ng-model="yearFilters.endYear", theme="selectize", ng-disabled="disabled", on-select="endYear($select)")
-              ui-select-match(placeholder="End") {{$select.selected}}
+              ui-select-match(placeholder="Year") {{$select.selected}}
               ui-select-choices(repeat="year in years | filter: $select.search")
                 span(ng-bind-html="year | highlight: $select.search")
+          .select
+            ui-select(ng-model="yearFilters.endQuarter", theme="selectize", ng-disabled="disabled", on-select="endQuarter($select)")
+              ui-select-match(placeholder="Quarter") {{$select.selected.name}}
+              ui-select-choices(repeat="quarter.id as quarter in quarters | filter: $select.search")
+                span(ng-bind-html="quarter.name | highlight: $select.search")
 .tab-wrapper
   .container(ng-if="elected_official")
     nav.row

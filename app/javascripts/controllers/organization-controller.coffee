@@ -8,6 +8,8 @@ angular.module('bwi-web-client')
     $scope.yearFilters =
       startYear: '2014'
       endYear: '2014'
+      startQuarter: '1'
+      endQuarter: '4'
 
     $scope.textFilters =
       text: ''

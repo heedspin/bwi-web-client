@@ -10,8 +10,7 @@ angular.module('bwi-web-client')
       Party.get
         type: type
         id: $stateParams.id
-        startYear: $scope.yearFilters.startYear
-        endYear: $scope.yearFilters.endYear
+        yearFilters: $scope.yearFilters
       .then (response) ->
         $scope.showSpinner = false
 
