@@ -17,7 +17,7 @@ angular.module('bwi-web-client')
 
         cumulativeColumnConfig = [
           {
-            title: 'Party Name'
+            title: 'Name'
             key: 'party.name'
           }
           {
@@ -29,7 +29,7 @@ angular.module('bwi-web-client')
             key: 'party.city'
           }
           {
-            title: 'Amount'
+            title: 'Total'
             key: 'amount'
             filter: 'currency'
           }
@@ -37,7 +37,7 @@ angular.module('bwi-web-client')
 
         individualColumnConfig = [
           {
-            title: 'Party Name'
+            title: 'Name'
             key: 'party.name'
           }
           {
