@@ -2,6 +2,7 @@ footer
   div(ng-if="$state.current.name !== 'login'")
     p Have Specific Questions?
     a(href="mailto:info@bellwetherinsights.com", ng-click="support()").button.button--medium.button--med-grey Support
-  div(ng-if="$state.current.name == 'login'")    
+  div(ng-if="$state.current.name == 'login'")
     p Want to Subscribe
     a(href="mailto:info@bellwetherinsights.com", ng-click="signUp()").button.button--medium.button--blue Sign-up
+  a(ui-sref="pages.privacy-policy") Privacy Policy
