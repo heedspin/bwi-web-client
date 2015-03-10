@@ -232,3 +232,15 @@ angular.module('bwi-web-client')
         id: $stateParams.id
         startYear: $scope.yearFilters.startYear
         endYear: $scope.yearFilters.endYear
+
+    $scope.exportToImage = ($event) ->
+      chart = angular
+        .element($event.target)
+        .closest('.contributions')
+        .find('.chart')[0]
+
+      html2canvas chart,
+        onrendered: (canvas) ->
+          canvas.toBlob (blob) ->
+            saveAs blob, 'chart.png'
+          , 'image/png'

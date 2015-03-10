@@ -2,7 +2,7 @@
 .row(ng-if="cumulativeOptions || individualOptions")
   .seven.columns
     h3 Top 10 Industry Donations
-    h5 All Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
+    button(ng-click="exportToImage($event)") Export
   .five.columns
     .ui-select-container
       ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled", on-select="industry(industry.selected.name)")
@@ -10,7 +10,12 @@
         ui-select-choices(repeat="industry in industries | filter: $select.search")
           span(ng-bind-html="industry.name | highlight: $select.search")
       span.ui-select-clear(ng-click="clear()") &times;
+.chart
+  .row
+    .twelve.columns
+      h5 All Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
 
-bwi-graph(graph-data="graphData")
+  bwi-graph(graph-data="graphData")
+
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text")
 bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", on-export="exportToExcel()")

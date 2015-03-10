@@ -4,6 +4,7 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
     .row
       .seven.columns
         h3 Contributions By Party
+        button(ng-click="exportToImage($event)") Export
 
       .five.columns
         .ui-select-wrapper
@@ -13,24 +14,26 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
               span(ng-bind-html="party.name | highlight: $select.search")
           span.ui-select-clear(ng-click="clearParty()") &times;
 
-  .row
-    .twelve.columns
-      h5.grand-total Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
+  .chart
+    .row
+      .twelve.columns
+        h5.grand-total Grand Total: {{ cumulativeOptions.filteredResults | sumOfValue:'amount' | currency : symbol }}
 
-  .row
-    .three.columns(ng-repeat="party in parties")
-      .group(ng-class="{ 'disabled' : party.isDisabled }")
-        .group-image
-          img(ng-src="/images/{{ party.image }}.png")
-        dl.group-meta
-          dt {{ party.name }}
-          dd {{ party.amount | currency:symbol }}
+    .row
+      .three.columns(ng-repeat="party in parties")
+        .group(ng-class="{ 'disabled' : party.isDisabled }")
+          .group-image
+            img(ng-src="/images/{{ party.image }}.png")
+          dl.group-meta
+            dt {{ party.name }}
+            dd {{ party.amount | currency:symbol }}
 
 section.contributions(ng-if="cumulativeOptions || individualOptions")
   .section-header
     .row
       .seven.columns
         h3 Contributions By Chamber
+        button(ng-click="exportToImage($event)") Export
       .five.columns
         .ui-select-wrapper
           ui-select(ng-model="$parent.chamber.selected", theme="selectize", ng-disabled="disabled", on-select="chamber()")
@@ -38,14 +41,15 @@ section.contributions(ng-if="cumulativeOptions || individualOptions")
             ui-select-choices(repeat="chamber in chambers | filter: $select.search")
               span(ng-bind-html="chamber.name | highlight: $select.search")
           span.ui-select-clear(ng-click="clearChamber()") &times;
-  .row
-    .three.columns(ng-repeat="chamber in chambers")
-      .group(ng-class="{ 'disabled' : chamber.isDisabled }")
-        .group-image
-          img(ng-src="/images/{{ chamber.image }}.png")
-        dl.group-meta
-          dt {{ chamber.name }}
-          dd {{ chamber.amount | currency:symbol }}
+  .chart
+    .row
+      .three.columns(ng-repeat="chamber in chambers")
+        .group(ng-class="{ 'disabled' : chamber.isDisabled }")
+          .group-image
+            img(ng-src="/images/{{ chamber.image }}.png")
+          dl.group-meta
+            dt {{ chamber.name }}
+            dd {{ chamber.amount | currency:symbol }}
 
 bwi-table(options="cumulativeOptions", ng-if="cumulativeOptions", filter-text="textFilters.text")
 bwi-table(options="individualOptions", ng-if="individualOptions", filter-text="textFilters.text", on-export="exportToExcel()")
