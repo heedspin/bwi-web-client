@@ -112,7 +112,7 @@ angular.module('bwi-web-client')
             filter: 'date'
           }
           {
-            title: 'Total'
+            title: 'Amount'
             key: 'amount'
             filter: 'currency'
           }

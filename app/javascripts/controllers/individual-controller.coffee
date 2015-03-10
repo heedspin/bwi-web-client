@@ -17,7 +17,7 @@ angular.module('bwi-web-client')
 
         cumulativeColumnConfig = [
           {
-            title: 'Donor Name'
+            title: 'Name'
             key: 'donor.name'
           }
           {
@@ -29,7 +29,7 @@ angular.module('bwi-web-client')
             key: 'donor.profession'
           }
           {
-            title: 'Amount'
+            title: 'Total'
             key: 'amount'
             filter: 'currency'
           }
@@ -37,7 +37,7 @@ angular.module('bwi-web-client')
 
         individualColumnConfig = [
           {
-            title: 'Donor Name'
+            title: 'Name'
             key: 'donor.name'
           }
           {
