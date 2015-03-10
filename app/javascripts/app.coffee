@@ -79,6 +79,13 @@ app = angular.module("bwi-web-client", [
       url:                 ""
       controller:          "ExpendituresCtrl"
       data:                 {requiresLogin: true}
+    ).state("pages",
+      templateUrl:         "templates/pages/base.html"
+      url:                 "/pages"
+      abstract:            true
+    ).state("pages.privacy-policy",
+      templateUrl:         "templates/pages/privacy-policy.html"
+      url:                 "/privacy-policy"
     )
 
   $urlRouterProvider.otherwise "/"

@@ -1,7 +1,9 @@
 footer
-  div(ng-if="$state.current.name !== 'login'")
-    p Have Specific Questions?
-    a(href="mailto:info@bellwetherinsights.com", ng-click="support()").button.button--medium.button--med-grey Support
-  div(ng-if="$state.current.name == 'login'")    
-    p Want to Subscribe
-    a(href="mailto:info@bellwetherinsights.com", ng-click="signUp()").button.button--medium.button--blue Sign-up
+  ol.container
+    li(ng-if="$state.current.name !== 'login'")
+      a(href="mailto:info@bellwetherinsights.com", ng-click="support()") Contact Support
+    li(ng-if="$state.current.name == 'login'")
+      a(href="mailto:info@bellwetherinsights.com",
+      ng-click="signUp()") Sign up for the Newsletter
+    li
+      a(ui-sref="pages.privacy-policy") Privacy Policy
