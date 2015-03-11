@@ -3,7 +3,7 @@
     .row
       .seven.columns
         h3.table__title {{ options.title }}
-        button.table__export(ng-click="onExport()" ng-if="onExport")
+        button.table__export(ng-disabled="exportDisabled" ng-click="onExport()" ng-if="onExport")
           span Export as .xlxs
           ng-include(src="'images/icon-download.svg'")
       .five.columns

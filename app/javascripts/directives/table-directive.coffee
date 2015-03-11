@@ -8,9 +8,12 @@ angular.module('bwi-web-client')
     options: "="
     filterText: "="
     onExport: "&"
-  controller: ($scope, $element, $attrs, $location, $analytics) ->
+  controller: ($scope, $element, $attrs, $location, $analytics, User) ->
     unless $attrs.onExport
       $scope.onExport = undefined
+
+    User.current().then (user) ->
+      $scope.exportDisabled = user.isLiteServiceLevel()
 
     $scope.getDataForCol = (row, key, filterName) ->
       colData = row

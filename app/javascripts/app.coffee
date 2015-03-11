@@ -13,6 +13,7 @@ app = angular.module("bwi-web-client", [
   "angularSpinner"
   "angulartics"
   "angulartics.google.analytics"
+  "rails"
 ])
 .config(['$stateProvider','$urlRouterProvider', 'uiSelectConfig', '$httpProvider',
 ($stateProvider, $urlRouterProvider, uiSelectConfig) ->
