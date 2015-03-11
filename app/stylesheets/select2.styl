@@ -1,7 +1,5 @@
-red = #b12025;
-
 .select.selectize-control {
-  border-radius: 11px;
+  border-radius: baseBorderRadius;
 }
 
 .error {
@@ -17,9 +15,13 @@ red = #b12025;
 }
 
 .selectize-input {
+  border-color: baseBorderColor;
   padding: 15px 30px;
   line-height: 1;
-  border-radius: 11px;
+
+  &:hover {
+    border-color: darken(baseBorderColor, 15%);
+  }
 
   & > * {
     float: left;
@@ -28,7 +30,7 @@ red = #b12025;
 
 .ui-select-choices {
   text-align: left;
-  border-radius: 11px;
+  border-radius: baseBorderRadius;
 
 }
 
@@ -37,7 +39,7 @@ red = #b12025;
 }
 
 .selectize-dropdown .active {
-  border-radius: 11px;
+  border-radius: baseBorderRadius;
 }
 
 .ui-select-container {
@@ -65,7 +67,7 @@ red = #b12025;
   z-index: 1;
 
   &:hover {
-    background-color: lighten(red, 7%);
+    background-color: lighten(red, 20%);
   }
 
   .ng-valid-parse + & {

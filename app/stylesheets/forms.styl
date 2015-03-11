@@ -1,6 +1,10 @@
 input {
-  border: 1px solid #DDD;
-  border-radius: 11px;
+  border: baseBorder;
+  border-radius: baseBorderRadius;
+
+  &:hover {
+    border-color: darken(baseBorderColor, 15%);
+  }
 
   &:focus {
     outline: none;
@@ -13,7 +17,6 @@ input {
     width: 580px;
     padding: 20px 30px;
   }
-
 }
 
 .input--field-horizontal {
@@ -35,7 +38,7 @@ input {
     padding: 13px 20px;
     font-size: 1.125em;
     display: table-cell;
-    border-radius: 11px 0 0 11px;
+    border-radius: baseBorderRadius 0 0 baseBorderRadius;
     z-index: 2;
     position: relative;
   }
@@ -46,8 +49,9 @@ input {
     font-size: 1.4em;
     color: lightGrey;
     background: white;
-    border: 1px solid #dadbdb;
-    border-radius: 0 11px 11px 0;
+    border: baseBorder 
+    border-left: none;
+    border-radius: 0 baseBorderRadius baseBorderRadius 0;
     width: 63px;
     text-align: center;
     margin-left: -1px;
@@ -90,7 +94,7 @@ input {
     width: 42px;
     text-align: center;
     line-height: 50px;
-    border-radius: 0 11px 11px 0;
+    border-radius: 0 baseBorderRadius baseBorderRadius 0;
     margin-top: 0;
     border: none;
     right: 0px;
@@ -99,6 +103,5 @@ input {
     border-left: 1px solid #dadbdb;
     height: 47px;
     top: 0;
-    border-radius: 0 11px 11px 0;
   }
 }
