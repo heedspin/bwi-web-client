@@ -2,7 +2,9 @@
 .row(ng-if="cumulativeOptions || individualOptions")
   .seven.columns
     h3 Top 10 Industry Donations
-    button(ng-click="exportToImage($event)") Export
+    button.export-button(ng-click="exportToImage($event)")
+      ng-include(src="'images/icon-download.svg'")
+      span Export as .png
   .five.columns
     .ui-select-container
       ui-select(ng-model="$parent.industry.selected", theme="selectize", ng-disabled="disabled", on-select="industry(industry.selected.name)")

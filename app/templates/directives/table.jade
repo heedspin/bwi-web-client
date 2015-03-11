@@ -3,9 +3,9 @@
     .row
       .seven.columns
         h3.table__title {{ options.title }}
-        button.table__export(ng-disabled="exportDisabled" ng-click="onExport()" ng-if="onExport")
-          span Export as .xlxs
+        button.export-button(ng-disabled="exportDisabled" ng-click="onExport()" ng-if="onExport")
           ng-include(src="'images/icon-download.svg'")
+          span Export as .xlxs
       .five.columns
         .table__actions
           .input--field-inline
