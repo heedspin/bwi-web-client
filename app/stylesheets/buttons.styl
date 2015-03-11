@@ -1,3 +1,24 @@
+base-button(color)
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: color;
+  border: none;
+  border-radius: baseBorderRadius;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.75em 1em;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: lighten(color, 10%);
+  }
+
 .button {
   border-radius: baseBorderRadius;
   color: white;

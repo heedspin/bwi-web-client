@@ -2,9 +2,10 @@
   header
     .row
       .seven.columns
-        .table__title
-          h3 {{ options.title }}
-        button(ng-click="onExport()" ng-if="onExport") Export
+        h3.table__title {{ options.title }}
+        button.table__export(ng-click="onExport()" ng-if="onExport")
+          span Export as .xlxs
+          ng-include(src="'images/icon-download.svg'")
       .five.columns
         .table__actions
           .input--field-inline
