@@ -1,0 +1,66 @@
+.button {
+  border-radius: 11px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.125em;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background: grey;
+  }
+}
+
+.button--blue {
+  background: blue;
+
+  &:hover {
+    background: lightBlue;
+  }
+}
+
+.button--red {
+  background: red;
+
+  &:hover {
+    background: lightRed;
+  }
+}
+
+.button--grey {
+  background: grey;
+
+  &:hover {
+    background: lightGrey;
+  }
+}
+
+.button--med-grey {
+  background: medGrey;
+
+  &:hover {
+    background: lightGrey;
+  }
+}
+
+.button--light-grey {
+  background: lightGrey;
+
+  &:hover {
+    background: darken(lightGrey, 5%);
+  }
+}
+
+.button--large {
+  font-size: 2em;
+  padding: 10px 50px;
+  margin-top: 20px;
+}
+
+.button--medium {
+  text-transform: uppercase;
+  padding: 15px 50px;
+}
