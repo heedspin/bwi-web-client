@@ -70,13 +70,13 @@ app = angular.module("bwi-web-client", [
       data:                 {requiresLogin: true}
       abstract:            true
     ).state("parties.receipts",
-      templateUrl:         "templates/organizations/receipts/receipts.html"
+      templateUrl:         "templates/organizations/receipts.html"
       url:                 "/receipts"
       controller:          "ReceiptsCtrl"
       data:                 {requiresLogin: true}
     ).state("parties.expenditures",
-      templateUrl:         "templates/organizations/expenditures/expenditures.html"
-      url:                 "/expenditures"
+      templateUrl:         "templates/organizations/expenditures.html"
+      url:                 ""
       controller:          "ExpendituresCtrl"
       data:                 {requiresLogin: true}
     )
