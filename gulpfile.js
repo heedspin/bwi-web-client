@@ -155,7 +155,12 @@ gulp.task('serve:dist', ['dist'], function() {
 });
 
 gulp.task('stylesheets', function() {
-  return gulp.src('app/**/*.styl')
+  return gulp.src(
+      'app/stylesheets/app.styl',
+      {
+        base: 'app'
+      }
+    )
     .pipe(stylus())
     .pipe(gulp.dest(paths.build));
 });
