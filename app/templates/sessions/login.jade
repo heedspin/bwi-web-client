@@ -1,7 +1,9 @@
 .page.page--login
   form.auth(ng-submit="login()")
     h1.logo: img(src="/images/logo.png")
-    input(placeholder="Email Address", type="email", ng-model="user.email", name="email", autocomplete="on")
-    input(placeholder="Password", type="password", ng-model="user.password", name="password", autocomplete="on")
+    .error(ng-if="showError")
+      | There was an error while signing in, please check your credentials and try again.
+    input(placeholder="Email Address", required, type="email", ng-model="user.email", name="email", autocomplete="on")
+    input(placeholder="Password", required, type="password", ng-model="user.password", name="password", autocomplete="on")
     .input-field
       button.button.button--blue Sign In
