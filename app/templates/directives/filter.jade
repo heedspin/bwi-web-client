@@ -4,15 +4,17 @@ section
       .row
         .seven.columns
           .profile
-            h2 {{ data.name }}
             .row
               .two.columns
                 img(ng-src="/images/{{data.affiliation || 'Neutral'}}.png")
               .five.columns.collapse
-                p(ng-if="data.street1") Street: {{ data.street1 }}
-                p(ng-if="data.city") City: {{ data.city }}
-                p(ng-if="data.state") State: {{ data.state }}
-                p(ng-if="data.zip") Zip: {{ data.zip }}
+                h2 {{ data.name }}
+                address
+                  span(ng-if="data.street1") {{ data.street1 }}
+                  br
+                  span(ng-if="data.city") {{ data.city }}, 
+                  span(ng-if="data.state") {{ data.state }}  
+                  span(ng-if="data.zip") {{ data.zip }}
         .five.columns
           label.date-select-label Date Range
           .date-select-group
