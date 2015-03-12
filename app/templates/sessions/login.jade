@@ -1,9 +1,7 @@
 .page.page--login
-  h1.logo: img(src="/images/logo.png")
-  form(ng-submit="login()")
+  form.auth(ng-submit="login()")
+    h1.logo: img(src="/images/logo.png")
+    input(placeholder="Email Address", type="email", ng-model="user.email", name="email", autocomplete="on")
+    input(placeholder="Password", type="password", ng-model="user.password", name="password", autocomplete="on")
     .input-field
-      input.input--large(placeholder="Email Address", type="email", ng-model="user.email", name="email", autocomplete="on")
-    .input-field
-      input.input--large(placeholder="Password", type="password", ng-model="user.password", name="password", autocomplete="on")
-    .input-field
-      button.button.button--blue.button--large Log In
+      button.button.button--blue Sign In

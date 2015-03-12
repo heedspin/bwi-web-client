@@ -1,6 +1,11 @@
 input {
-  border: baseBorder;
   border-radius: baseBorderRadius;
+  border: baseBorder;
+  font-size: 1em;
+  font-smoothing: antialiased;
+  margin-bottom: 0.25em;
+  padding: 0.5em;
+  width: 100%;
 
   &:hover {
     border-color: darken(baseBorderColor, 15%);
@@ -8,14 +13,6 @@ input {
 
   &:focus {
     outline: none;
-  }
-
-  &.input--large {
-    margin-bottom: 20px;
-    font-size: 2em;
-    border: none;
-    width: 580px;
-    padding: 20px 30px;
   }
 }
 
@@ -35,12 +32,13 @@ input {
   border-collapse: separate;
 
   input {
-    padding: 13px 20px;
-    font-size: 1.125em;
-    display: table-cell;
     border-radius: baseBorderRadius 0 0 baseBorderRadius;
-    z-index: 2;
+    display: table-cell;
+    font-size: 1.125em;
+    margin-bottom: 0;
+    padding: 13px 20px;
     position: relative;
+    z-index: 2;
   }
 
   i {

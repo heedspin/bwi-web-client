@@ -27,10 +27,11 @@ outline-button(color)
 
 .button {
   border-radius: baseBorderRadius;
-  color: white;
   border: none;
+  color: #fff;
   cursor: pointer;
   font-size: 1.125em;
+  position: relative;
 
   &:focus {
     outline: none;
@@ -38,14 +39,16 @@ outline-button(color)
 
   &:active {
     background: grey;
+    top: 1px;
   }
 }
 
 .button--blue {
-  background: blue;
+  background-color: blue;
 
-  &:hover {
-    background: lightBlue;
+  &:hover,
+  &:focus {
+    background-color: lighten(blue, 5%);
   }
 }
 
@@ -79,12 +82,6 @@ outline-button(color)
   &:hover {
     background: darken(lightGrey, 5%);
   }
-}
-
-.button--large {
-  font-size: 2em;
-  padding: 10px 50px;
-  margin-top: 20px;
 }
 
 .button--medium {
