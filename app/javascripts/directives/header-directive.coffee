@@ -5,6 +5,5 @@ angular.module('bwi-web-client')
     templateUrl: 'directives/header.html'
     restrict: 'E'
     controller: ($scope, Auth) ->
-      $scope.signout = ->
-        Auth.signOut()
+      $scope.signOut = Auth.signOut
   )

@@ -26,6 +26,7 @@ app = angular.module("bwi-web-client", [
     ).state("search",
       templateUrl:         "search/search.html"
       url:                 "/search"
+      controller:          "SearchCtrl"
       data:                 {requiresLogin: true}
     ).state("elected-official",
       templateUrl:         "elected-officials/elected-official.html"
