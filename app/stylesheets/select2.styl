@@ -36,10 +36,18 @@
 
 .ui-select-choices-row {
   padding: 15px 30px;
-}
 
-.selectize-dropdown .active {
-  border-radius: baseBorderRadius;
+  &.disabled {
+    color: lightGrey;
+
+    &.active {
+      background-color: transparent;
+    }
+
+    [data-selectable]:hover {
+      cursor: default;
+    }
+  }
 }
 
 .ui-select-container {
