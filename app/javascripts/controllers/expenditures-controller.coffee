@@ -230,8 +230,7 @@ angular.module('bwi-web-client')
       Expenditures.exportToExcel
         type: type
         id: $stateParams.id
-        startYear: $scope.yearFilters.startYear
-        endYear: $scope.yearFilters.endYear
+        yearFilters: $scope.yearFilters
 
     $scope.exportToImage = ($event) ->
       chart = angular

@@ -95,5 +95,4 @@ angular.module('bwi-web-client')
       Party.exportToExcel
         type: type
         id: $stateParams.id
-        startYear: $scope.yearFilters.startYear
-        endYear: $scope.yearFilters.endYear
+        yearFilters: $scope.yearFilters

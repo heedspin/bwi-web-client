@@ -99,5 +99,4 @@ angular.module('bwi-web-client')
       Receipt.exportToExcel
         type: type
         id: $stateParams.id
-        startYear: $scope.yearFilters.startYear
-        endYear: $scope.yearFilters.endYear
+        yearFilters: $scope.yearFilters
