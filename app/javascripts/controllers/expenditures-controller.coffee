@@ -158,7 +158,7 @@ angular.module('bwi-web-client')
 
         $scope.individualOptions =
           data: response.individual
-          title: 'Campaign Contributions'
+          title: 'Individual Campaign Contributions'
           columns: individualColumnConfig
           filteredResults: []
           filters: filters

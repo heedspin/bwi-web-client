@@ -79,13 +79,13 @@ angular.module('bwi-web-client')
 
         $scope.cumulativeOptions =
           data: response.cumulative
-          title: 'Parties (Cumulative)'
+          title: 'Cumulative'
           columns: cumulativeColumnConfig
           filters: filters
 
         $scope.individualOptions =
           data: response.individual
-          title: 'Parties (Individual)'
+          title: 'Individual'
           columns: individualColumnConfig
           filters: filters
 
