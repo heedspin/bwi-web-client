@@ -7,8 +7,8 @@ angular.module('bwi-web-client')
       $scope.industries = response.data.classifications
 
     $scope.yearFilters =
-      startYear: '2014'
-      endYear: '2014'
+      startYear: '2017'
+      endYear: '2017'
       startQuarter: '1'
       endQuarter: '4'
 

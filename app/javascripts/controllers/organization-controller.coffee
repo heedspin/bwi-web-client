@@ -6,8 +6,8 @@ angular.module('bwi-web-client')
     BASE_URL = "#{bwiConfig.API_URL}/#{organizationType}/#{$stateParams.id}"
 
     $scope.yearFilters =
-      startYear: '2014'
-      endYear: '2014'
+      startYear: '2017'
+      endYear: '2017'
       startQuarter: '1'
       endQuarter: '4'
 
