@@ -97,8 +97,8 @@ app = angular.module("bwi-web-client", [
 ])
 
 .constant "bwiConfig",
-  BASE_URL: "https://stagingapi.bellwetherinsights.com"
-  API_URL: "https://stagingapi.bellwetherinsights.com/api/v1"
+  BASE_URL: "https://www.bellwetherinsights.com"
+  API_URL: "https://be.bellwetherinsights.com/api/v1"
 
 .run ($rootScope, $state, $cookieStore, $http, Auth) ->
   $rootScope.$state = $state

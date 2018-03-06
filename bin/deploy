@@ -7,4 +7,6 @@ set -e
 gulp dist
 
 # Sync with remote host
-rsync -av -e ssh dist/ deployer@$1.bellwetherinsights.com:bwi-web-client/compile/
+# rsync -av -e ssh dist/ deployer@$1.bellwetherinsights.com:bwi-web-client/compile/
+rm -rf /var/www/bwi-web-client/compile/
+cp -r dist/ /var/www/bwi-web-client/compile/
